@@ -21,8 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    // MARK: UISceneSession Lifecycle
-
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
