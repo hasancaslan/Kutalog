@@ -257,6 +257,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gsn-SZ-ij1">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Exb-hs-qJX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="HvV-sQ-vkL" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="uM5-kU-KlO">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -268,7 +269,6 @@
                         <segue destination="iOo-bt-XwL" kind="relationship" relationship="rootViewController" id="p2S-en-ugj"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Exb-hs-qJX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3474" y="1"/>
         </scene>
@@ -343,7 +343,6 @@
                     <connections>
                         <outlet property="loginButton" destination="pxK-Q5-bUA" id="EhU-7x-cGF"/>
                         <outlet property="registerButton" destination="IPA-Tq-sLL" id="Fan-we-vop"/>
-                        <segue destination="ZfN-gj-KyW" kind="show" id="3Yv-Tf-LQy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CCe-ka-SZ2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -364,7 +363,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xvd-8N-3WF" customClass="MadokaTextField" customModule="TextFieldEffects">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e-mail" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Xvd-8N-3WF" customClass="MadokaTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="212" width="374" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="CWm-4q-M3o"/>
