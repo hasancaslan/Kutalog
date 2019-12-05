@@ -30,7 +30,6 @@
 		F3CF0017238BFA7E00450C5D /* KUtalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0016238BFA7E00450C5D /* KUtalogTests.swift */; };
 		F3CF0022238BFA7E00450C5D /* KUtalogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0021238BFA7E00450C5D /* KUtalogUITests.swift */; };
 		F3CFFFFD238BFA7800450C5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */; };
-		F3CFFFFF238BFA7800450C5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CFFFFE238BFA7800450C5D /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +85,6 @@
 		F3CF0023238BFA7E00450C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3CFFFF9238BFA7800450C5D /* KUtalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KUtalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F3CFFFFE238BFA7800450C5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,7 +233,6 @@
 				F339533423994F7900647058 /* Cells */,
 				F339533323994F6F00647058 /* ViewControllers */,
 				F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */,
-				F3CFFFFE238BFA7800450C5D /* SceneDelegate.swift */,
 				F3CF0000238BFA7800450C5D /* ViewController.swift */,
 				F3CF0002238BFA7800450C5D /* Main.storyboard */,
 				F3CF0008238BFA7E00450C5D /* Assets.xcassets */,
@@ -507,7 +504,6 @@
 				F3CF0001238BFA7800450C5D /* ViewController.swift in Sources */,
 				F339533A23994FB700647058 /* RegisterViewController.swift in Sources */,
 				F3CFFFFD238BFA7800450C5D /* AppDelegate.swift in Sources */,
-				F3CFFFFF238BFA7800450C5D /* SceneDelegate.swift in Sources */,
 				F33953482399503200647058 /* EditTaskViewController.swift in Sources */,
 				F33953442399502000647058 /* TasksViewController.swift in Sources */,
 				F339533623994F9E00647058 /* LandingViewController.swift in Sources */,
@@ -679,6 +675,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXV9WLK4Q4;
 				INFOPLIST_FILE = KUtalog/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -700,6 +697,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXV9WLK4Q4;
 				INFOPLIST_FILE = KUtalog/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
