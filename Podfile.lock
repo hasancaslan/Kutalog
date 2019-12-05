@@ -79,11 +79,13 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - TextFieldEffects (1.6.0)
 
 DEPENDENCIES:
   - FBSDKCoreKit
   - Firebase/Auth
   - Firebase/Core
+  - TextFieldEffects
 
 SPEC REPOS:
   trunk:
@@ -102,6 +104,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - nanopb
+    - TextFieldEffects
 
 SPEC CHECKSUMS:
   FBSDKCoreKit: fa3ac4dc9b1afc9ae70b3de4dd704d1b6aeeed0d
@@ -119,7 +122,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 2bdc0c72799169c12c524dcc88dd4ec5865c29fc
+PODFILE CHECKSUM: c09ba8ac8177d09eb0ff6477c93ab2f5caf59d5c
 
 COCOAPODS: 1.8.4

@@ -9,6 +9,9 @@ target 'KUtalog' do
   pod 'Firebase/Core'
   pod 'FBSDKCoreKit'
   pod 'Firebase/Auth'
+
+  pod 'TextFieldEffects'
+
   target 'KUtalogTests' do
     inherit! :search_paths
     # Pods for testing

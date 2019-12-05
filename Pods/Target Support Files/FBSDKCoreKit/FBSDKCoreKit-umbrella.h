@@ -12,11 +12,13 @@
 
 #import "FBSDKAccessToken.h"
 #import "FBSDKApplicationDelegate.h"
+#import "FBSDKButton 2.h"
 #import "FBSDKButton.h"
 #import "FBSDKConstants.h"
 #import "FBSDKCopying.h"
 #import "FBSDKCoreKit.h"
 #import "FBSDKGraphErrorRecoveryProcessor.h"
+#import "FBSDKGraphRequest 2.h"
 #import "FBSDKGraphRequest.h"
 #import "FBSDKGraphRequestConnection.h"
 #import "FBSDKGraphRequestDataAttachment.h"
@@ -29,6 +31,7 @@
 #import "FBSDKURL.h"
 #import "FBSDKUtility.h"
 #import "FBSDKAppEvents.h"
+#import "FBSDKAppLink 2.h"
 #import "FBSDKAppLink.h"
 #import "FBSDKAppLinkNavigation.h"
 #import "FBSDKAppLinkResolver.h"
@@ -37,6 +40,7 @@
 #import "FBSDKAppLinkReturnToRefererView.h"
 #import "FBSDKAppLinkTarget.h"
 #import "FBSDKAppLinkUtility.h"
+#import "FBSDKWebViewAppLinkResolver 2.h"
 #import "FBSDKWebViewAppLinkResolver.h"
 
 FOUNDATION_EXPORT double FBSDKCoreKitVersionNumber;
