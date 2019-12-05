@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C6B4BDE1103A164881CC55C /* Pods_KUtalogTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B35012E8F30DF6F16C10702 /* Pods_KUtalogTests.framework */; };
+		9B0E7091FC6DA3821FA4FB8E /* Pods_KUtalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E98DA2A99933D470B449AED /* Pods_KUtalog.framework */; };
+		D1A6BEFB8DDDB8B844EC9348 /* Pods_KUtalog_KUtalogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFE9FDA2E8C42D4DA28727A /* Pods_KUtalog_KUtalogUITests.framework */; };
+		F33652EE23995B7100384E30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F33652ED23995B7100384E30 /* GoogleService-Info.plist */; };
 		F339533623994F9E00647058 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F339533523994F9E00647058 /* LandingViewController.swift */; };
 		F339533823994FAD00647058 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F339533723994FAD00647058 /* LoginViewController.swift */; };
 		F339533A23994FB700647058 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F339533923994FB700647058 /* RegisterViewController.swift */; };
@@ -47,6 +51,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13555812C34E6661CF496D90 /* Pods-KUtalog-KUtalogUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalog-KUtalogUITests.release.xcconfig"; path = "Target Support Files/Pods-KUtalog-KUtalogUITests/Pods-KUtalog-KUtalogUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2B35012E8F30DF6F16C10702 /* Pods_KUtalogTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KUtalogTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		57A02408B7078A1BE6B6AEEA /* Pods-KUtalogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalogTests.release.xcconfig"; path = "Target Support Files/Pods-KUtalogTests/Pods-KUtalogTests.release.xcconfig"; sourceTree = "<group>"; };
+		624325FEEF673D9CFA4FC7CB /* Pods-KUtalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalog.release.xcconfig"; path = "Target Support Files/Pods-KUtalog/Pods-KUtalog.release.xcconfig"; sourceTree = "<group>"; };
+		71A1F59D20370ABDD95E4C90 /* Pods-KUtalogTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalogTests.debug.xcconfig"; path = "Target Support Files/Pods-KUtalogTests/Pods-KUtalogTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8E98DA2A99933D470B449AED /* Pods_KUtalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KUtalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FFE9FDA2E8C42D4DA28727A /* Pods_KUtalog_KUtalogUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KUtalog_KUtalogUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D281B7BF236FB4FDF1D4776A /* Pods-KUtalog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalog.debug.xcconfig"; path = "Target Support Files/Pods-KUtalog/Pods-KUtalog.debug.xcconfig"; sourceTree = "<group>"; };
+		E53CD2F66C77B4C8C572F4EE /* Pods-KUtalog-KUtalogUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalog-KUtalogUITests.debug.xcconfig"; path = "Target Support Files/Pods-KUtalog-KUtalogUITests/Pods-KUtalog-KUtalogUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F33652ED23995B7100384E30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F339533523994F9E00647058 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		F339533723994FAD00647058 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F339533923994FB700647058 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C6B4BDE1103A164881CC55C /* Pods_KUtalogTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1A6BEFB8DDDB8B844EC9348 /* Pods_KUtalog_KUtalogUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,12 +110,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B0E7091FC6DA3821FA4FB8E /* Pods_KUtalog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5408A1EB5E171C74E8BC5F99 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E98DA2A99933D470B449AED /* Pods_KUtalog.framework */,
+				8FFE9FDA2E8C42D4DA28727A /* Pods_KUtalog_KUtalogUITests.framework */,
+				2B35012E8F30DF6F16C10702 /* Pods_KUtalogTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6FBB3DDBC9155D68BC7DC614 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D281B7BF236FB4FDF1D4776A /* Pods-KUtalog.debug.xcconfig */,
+				624325FEEF673D9CFA4FC7CB /* Pods-KUtalog.release.xcconfig */,
+				E53CD2F66C77B4C8C572F4EE /* Pods-KUtalog-KUtalogUITests.debug.xcconfig */,
+				13555812C34E6661CF496D90 /* Pods-KUtalog-KUtalogUITests.release.xcconfig */,
+				71A1F59D20370ABDD95E4C90 /* Pods-KUtalogTests.debug.xcconfig */,
+				57A02408B7078A1BE6B6AEEA /* Pods-KUtalogTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F339533323994F6F00647058 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +214,8 @@
 				F3CF0015238BFA7E00450C5D /* KUtalogTests */,
 				F3CF0020238BFA7E00450C5D /* KUtalogUITests */,
 				F3CFFFFA238BFA7800450C5D /* Products */,
+				6FBB3DDBC9155D68BC7DC614 /* Pods */,
+				5408A1EB5E171C74E8BC5F99 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,6 +241,7 @@
 				F3CF0008238BFA7E00450C5D /* Assets.xcassets */,
 				F3CF000A238BFA7E00450C5D /* LaunchScreen.storyboard */,
 				F3CF000D238BFA7E00450C5D /* Info.plist */,
+				F33652ED23995B7100384E30 /* GoogleService-Info.plist */,
 				F3CF0005238BFA7800450C5D /* KUtalog.xcdatamodeld */,
 			);
 			path = KUtalog;
@@ -211,6 +254,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3CF0029238BFA7E00450C5D /* Build configuration list for PBXNativeTarget "KUtalogTests" */;
 			buildPhases = (
+				23A2D48918FCCF83FA8A1426 /* [CP] Check Pods Manifest.lock */,
 				F3CF000E238BFA7E00450C5D /* Sources */,
 				F3CF000F238BFA7E00450C5D /* Frameworks */,
 				F3CF0010238BFA7E00450C5D /* Resources */,
@@ -229,9 +273,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3CF002C238BFA7E00450C5D /* Build configuration list for PBXNativeTarget "KUtalogUITests" */;
 			buildPhases = (
+				9461513B92526174657795F7 /* [CP] Check Pods Manifest.lock */,
 				F3CF0019238BFA7E00450C5D /* Sources */,
 				F3CF001A238BFA7E00450C5D /* Frameworks */,
 				F3CF001B238BFA7E00450C5D /* Resources */,
+				C85FCA2B4CBB0013A55F8F87 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -247,9 +293,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3CF0026238BFA7E00450C5D /* Build configuration list for PBXNativeTarget "KUtalog" */;
 			buildPhases = (
+				6F67A25D030CDD81CD048026 /* [CP] Check Pods Manifest.lock */,
 				F3CFFFF5238BFA7800450C5D /* Sources */,
 				F3CFFFF6238BFA7800450C5D /* Frameworks */,
 				F3CFFFF7238BFA7800450C5D /* Resources */,
+				28BA05C30CD2BB8997D12356 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -323,12 +371,116 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3CF000C238BFA7E00450C5D /* LaunchScreen.storyboard in Resources */,
+				F33652EE23995B7100384E30 /* GoogleService-Info.plist in Resources */,
 				F3CF0009238BFA7E00450C5D /* Assets.xcassets in Resources */,
 				F3CF0004238BFA7800450C5D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		23A2D48918FCCF83FA8A1426 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KUtalogTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		28BA05C30CD2BB8997D12356 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KUtalog/Pods-KUtalog-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KUtalog/Pods-KUtalog-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KUtalog/Pods-KUtalog-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F67A25D030CDD81CD048026 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KUtalog-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9461513B92526174657795F7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KUtalog-KUtalogUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C85FCA2B4CBB0013A55F8F87 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KUtalog-KUtalogUITests/Pods-KUtalog-KUtalogUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KUtalog-KUtalogUITests/Pods-KUtalog-KUtalogUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KUtalog-KUtalogUITests/Pods-KUtalog-KUtalogUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F3CF000E238BFA7E00450C5D /* Sources */ = {
@@ -520,6 +672,7 @@
 		};
 		F3CF0027238BFA7E00450C5D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D281B7BF236FB4FDF1D4776A /* Pods-KUtalog.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -530,7 +683,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ceren-hasancan.KUtalogddddd";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ceren-hasancan.KUtalog";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -540,6 +693,7 @@
 		};
 		F3CF0028238BFA7E00450C5D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 624325FEEF673D9CFA4FC7CB /* Pods-KUtalog.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -550,7 +704,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ceren-hasancan.KUtalogddddd";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ceren-hasancan.KUtalog";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -560,6 +714,7 @@
 		};
 		F3CF002A238BFA7E00450C5D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71A1F59D20370ABDD95E4C90 /* Pods-KUtalogTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -582,6 +737,7 @@
 		};
 		F3CF002B238BFA7E00450C5D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57A02408B7078A1BE6B6AEEA /* Pods-KUtalogTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -604,6 +760,7 @@
 		};
 		F3CF002D238BFA7E00450C5D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E53CD2F66C77B4C8C572F4EE /* Pods-KUtalog-KUtalogUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -624,6 +781,7 @@
 		};
 		F3CF002E238BFA7E00450C5D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13555812C34E6661CF496D90 /* Pods-KUtalog-KUtalogUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

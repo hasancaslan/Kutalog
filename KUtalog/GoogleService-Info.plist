@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>906983747915-e9gij925npljv192qpitibku504g9lmp.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.906983747915-e9gij925npljv192qpitibku504g9lmp</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD8qJIIXoWcduozKfm4qt4P8oPeeIsI0xc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>906983747915</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ceren-hasancan.KUtalog</string>
+	<key>PROJECT_ID</key>
+	<string>kutalog-74e9d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kutalog-74e9d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:906983747915:ios:087dd08275cd21ad3cf8ce</string>
+	<key>DATABASE_URL</key>
+	<string>https://kutalog-74e9d.firebaseio.com</string>
+</dict>
+</plist>
