@@ -9,14 +9,24 @@
 import UIKit
 
 class LandingViewController: UIViewController {
-
+    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.registerButton.layer.cornerRadius = 55/2
+        self.loginButton.layer.cornerRadius = 55/2
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         // Do any additional setup after loading the view.
     }
     
-
+// MARK:- Actions
+    @IBAction func loginTapped(_ sender: Any) {
+    }
+    
+    @IBAction func registerTapped(_ sender: Any) {
+    }
+    
     /*
     // MARK: - Navigation
 

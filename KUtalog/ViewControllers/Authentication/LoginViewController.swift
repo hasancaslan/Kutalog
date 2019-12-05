@@ -7,16 +7,25 @@
 //
 
 import UIKit
+import TextFieldEffects
 
 class LoginViewController: UIViewController {
-
+    @IBOutlet weak var emailField: MadokaTextField!
+    @IBOutlet weak var passwordField: MadokaTextField!
+    @IBOutlet weak var loginButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.loginButton.layer.cornerRadius = 55/2
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         // Do any additional setup after loading the view.
     }
     
-
+// MARK:- Actions
+    
+    @IBAction func loginTapped(_ sender: Any) {
+    }
+    
     /*
     // MARK: - Navigation
 

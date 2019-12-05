@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3C6B4BDE1103A164881CC55C /* Pods_KUtalogTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B35012E8F30DF6F16C10702 /* Pods_KUtalogTests.framework */; };
-		9B0E7091FC6DA3821FA4FB8E /* Pods_KUtalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E98DA2A99933D470B449AED /* Pods_KUtalog.framework */; };
 		D1A6BEFB8DDDB8B844EC9348 /* Pods_KUtalog_KUtalogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFE9FDA2E8C42D4DA28727A /* Pods_KUtalog_KUtalogUITests.framework */; };
 		F33652EE23995B7100384E30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F33652ED23995B7100384E30 /* GoogleService-Info.plist */; };
 		F339533623994F9E00647058 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F339533523994F9E00647058 /* LandingViewController.swift */; };
@@ -22,7 +21,6 @@
 		F33953462399502800647058 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33953452399502800647058 /* AddTaskViewController.swift */; };
 		F33953482399503200647058 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33953472399503200647058 /* EditTaskViewController.swift */; };
 		F339534A2399503A00647058 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33953492399503A00647058 /* SettingsViewController.swift */; };
-		F3CF0001238BFA7800450C5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0000238BFA7800450C5D /* ViewController.swift */; };
 		F3CF0004238BFA7800450C5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CF0002238BFA7800450C5D /* Main.storyboard */; };
 		F3CF0007238BFA7800450C5D /* KUtalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0005238BFA7800450C5D /* KUtalog.xcdatamodeld */; };
 		F3CF0009238BFA7E00450C5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3CF0008238BFA7E00450C5D /* Assets.xcassets */; };
@@ -30,6 +28,7 @@
 		F3CF0017238BFA7E00450C5D /* KUtalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0016238BFA7E00450C5D /* KUtalogTests.swift */; };
 		F3CF0022238BFA7E00450C5D /* KUtalogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0021238BFA7E00450C5D /* KUtalogUITests.swift */; };
 		F3CFFFFD238BFA7800450C5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */; };
+		F3DAB6BE23997A1C0075980B /* Pods_KUtalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DAB6BD23997A1C0075980B /* Pods_KUtalog.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +70,6 @@
 		F33953452399502800647058 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		F33953472399503200647058 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
 		F33953492399503A00647058 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		F3CF0000238BFA7800450C5D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F3CF0003238BFA7800450C5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3CF0006238BFA7800450C5D /* KUtalog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KUtalog.xcdatamodel; sourceTree = "<group>"; };
 		F3CF0008238BFA7E00450C5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,6 +83,8 @@
 		F3CF0023238BFA7E00450C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3CFFFF9238BFA7800450C5D /* KUtalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KUtalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F3DAB6BB239979F90075980B /* Pods_KUtalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_KUtalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3DAB6BD23997A1C0075980B /* Pods_KUtalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_KUtalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B0E7091FC6DA3821FA4FB8E /* Pods_KUtalog.framework in Frameworks */,
+				F3DAB6BE23997A1C0075980B /* Pods_KUtalog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +118,8 @@
 		5408A1EB5E171C74E8BC5F99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F3DAB6BD23997A1C0075980B /* Pods_KUtalog.framework */,
+				F3DAB6BB239979F90075980B /* Pods_KUtalog.framework */,
 				8E98DA2A99933D470B449AED /* Pods_KUtalog.framework */,
 				8FFE9FDA2E8C42D4DA28727A /* Pods_KUtalog_KUtalogUITests.framework */,
 				2B35012E8F30DF6F16C10702 /* Pods_KUtalogTests.framework */,
@@ -233,7 +235,6 @@
 				F339533423994F7900647058 /* Cells */,
 				F339533323994F6F00647058 /* ViewControllers */,
 				F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */,
-				F3CF0000238BFA7800450C5D /* ViewController.swift */,
 				F3CF0002238BFA7800450C5D /* Main.storyboard */,
 				F3CF0008238BFA7E00450C5D /* Assets.xcassets */,
 				F3CF000A238BFA7E00450C5D /* LaunchScreen.storyboard */,
@@ -501,7 +502,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F339533823994FAD00647058 /* LoginViewController.swift in Sources */,
-				F3CF0001238BFA7800450C5D /* ViewController.swift in Sources */,
 				F339533A23994FB700647058 /* RegisterViewController.swift in Sources */,
 				F3CFFFFD238BFA7800450C5D /* AppDelegate.swift in Sources */,
 				F33953482399503200647058 /* EditTaskViewController.swift in Sources */,
