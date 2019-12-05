@@ -1,0 +1,700 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F339533623994F9E00647058 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F339533523994F9E00647058 /* LandingViewController.swift */; };
+		F339533823994FAD00647058 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F339533723994FAD00647058 /* LoginViewController.swift */; };
+		F339533A23994FB700647058 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F339533923994FB700647058 /* RegisterViewController.swift */; };
+		F339533C23994FC900647058 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F339533B23994FC900647058 /* TimetableViewController.swift */; };
+		F339533E23994FDE00647058 /* ScheduledClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F339533D23994FDE00647058 /* ScheduledClassViewController.swift */; };
+		F339534023994FE900647058 /* ClassSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F339533F23994FE900647058 /* ClassSearchViewController.swift */; };
+		F33953422399500E00647058 /* SearchedClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33953412399500E00647058 /* SearchedClassDetailViewController.swift */; };
+		F33953442399502000647058 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33953432399502000647058 /* TasksViewController.swift */; };
+		F33953462399502800647058 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33953452399502800647058 /* AddTaskViewController.swift */; };
+		F33953482399503200647058 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33953472399503200647058 /* EditTaskViewController.swift */; };
+		F339534A2399503A00647058 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33953492399503A00647058 /* SettingsViewController.swift */; };
+		F3CF0001238BFA7800450C5D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0000238BFA7800450C5D /* ViewController.swift */; };
+		F3CF0004238BFA7800450C5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CF0002238BFA7800450C5D /* Main.storyboard */; };
+		F3CF0007238BFA7800450C5D /* KUtalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0005238BFA7800450C5D /* KUtalog.xcdatamodeld */; };
+		F3CF0009238BFA7E00450C5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3CF0008238BFA7E00450C5D /* Assets.xcassets */; };
+		F3CF000C238BFA7E00450C5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CF000A238BFA7E00450C5D /* LaunchScreen.storyboard */; };
+		F3CF0017238BFA7E00450C5D /* KUtalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0016238BFA7E00450C5D /* KUtalogTests.swift */; };
+		F3CF0022238BFA7E00450C5D /* KUtalogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0021238BFA7E00450C5D /* KUtalogUITests.swift */; };
+		F3CFFFFD238BFA7800450C5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */; };
+		F3CFFFFF238BFA7800450C5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CFFFFE238BFA7800450C5D /* SceneDelegate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F3CF0013238BFA7E00450C5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3CFFFF1238BFA7800450C5D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3CFFFF8238BFA7800450C5D;
+			remoteInfo = KUtalog;
+		};
+		F3CF001E238BFA7E00450C5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3CFFFF1238BFA7800450C5D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3CFFFF8238BFA7800450C5D;
+			remoteInfo = KUtalog;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F339533523994F9E00647058 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		F339533723994FAD00647058 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F339533923994FB700647058 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		F339533B23994FC900647058 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
+		F339533D23994FDE00647058 /* ScheduledClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledClassViewController.swift; sourceTree = "<group>"; };
+		F339533F23994FE900647058 /* ClassSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassSearchViewController.swift; sourceTree = "<group>"; };
+		F33953412399500E00647058 /* SearchedClassDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedClassDetailViewController.swift; sourceTree = "<group>"; };
+		F33953432399502000647058 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
+		F33953452399502800647058 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
+		F33953472399503200647058 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		F33953492399503A00647058 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F3CF0000238BFA7800450C5D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F3CF0003238BFA7800450C5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F3CF0006238BFA7800450C5D /* KUtalog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KUtalog.xcdatamodel; sourceTree = "<group>"; };
+		F3CF0008238BFA7E00450C5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F3CF000B238BFA7E00450C5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F3CF000D238BFA7E00450C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3CF0012238BFA7E00450C5D /* KUtalogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KUtalogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3CF0016238BFA7E00450C5D /* KUtalogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KUtalogTests.swift; sourceTree = "<group>"; };
+		F3CF0018238BFA7E00450C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3CF001D238BFA7E00450C5D /* KUtalogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KUtalogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3CF0021238BFA7E00450C5D /* KUtalogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KUtalogUITests.swift; sourceTree = "<group>"; };
+		F3CF0023238BFA7E00450C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3CFFFF9238BFA7800450C5D /* KUtalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KUtalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F3CFFFFE238BFA7800450C5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F3CF000F238BFA7E00450C5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3CF001A238BFA7E00450C5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3CFFFF6238BFA7800450C5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F339533323994F6F00647058 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F339534D2399506B00647058 /* AccessoryViews */,
+				F339534C2399505900647058 /* MainViews */,
+				F339534B2399504300647058 /* Authentication */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F339533423994F7900647058 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F339534B2399504300647058 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				F339533523994F9E00647058 /* LandingViewController.swift */,
+				F339533723994FAD00647058 /* LoginViewController.swift */,
+				F339533923994FB700647058 /* RegisterViewController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		F339534C2399505900647058 /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				F339533B23994FC900647058 /* TimetableViewController.swift */,
+				F339533F23994FE900647058 /* ClassSearchViewController.swift */,
+				F33953432399502000647058 /* TasksViewController.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		F339534D2399506B00647058 /* AccessoryViews */ = {
+			isa = PBXGroup;
+			children = (
+				F339533D23994FDE00647058 /* ScheduledClassViewController.swift */,
+				F33953412399500E00647058 /* SearchedClassDetailViewController.swift */,
+				F33953452399502800647058 /* AddTaskViewController.swift */,
+				F33953472399503200647058 /* EditTaskViewController.swift */,
+				F33953492399503A00647058 /* SettingsViewController.swift */,
+			);
+			path = AccessoryViews;
+			sourceTree = "<group>";
+		};
+		F3CF0015238BFA7E00450C5D /* KUtalogTests */ = {
+			isa = PBXGroup;
+			children = (
+				F3CF0016238BFA7E00450C5D /* KUtalogTests.swift */,
+				F3CF0018238BFA7E00450C5D /* Info.plist */,
+			);
+			path = KUtalogTests;
+			sourceTree = "<group>";
+		};
+		F3CF0020238BFA7E00450C5D /* KUtalogUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F3CF0021238BFA7E00450C5D /* KUtalogUITests.swift */,
+				F3CF0023238BFA7E00450C5D /* Info.plist */,
+			);
+			path = KUtalogUITests;
+			sourceTree = "<group>";
+		};
+		F3CFFFF0238BFA7800450C5D = {
+			isa = PBXGroup;
+			children = (
+				F3CFFFFB238BFA7800450C5D /* KUtalog */,
+				F3CF0015238BFA7E00450C5D /* KUtalogTests */,
+				F3CF0020238BFA7E00450C5D /* KUtalogUITests */,
+				F3CFFFFA238BFA7800450C5D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F3CFFFFA238BFA7800450C5D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F3CFFFF9238BFA7800450C5D /* KUtalog.app */,
+				F3CF0012238BFA7E00450C5D /* KUtalogTests.xctest */,
+				F3CF001D238BFA7E00450C5D /* KUtalogUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3CFFFFB238BFA7800450C5D /* KUtalog */ = {
+			isa = PBXGroup;
+			children = (
+				F339533423994F7900647058 /* Cells */,
+				F339533323994F6F00647058 /* ViewControllers */,
+				F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */,
+				F3CFFFFE238BFA7800450C5D /* SceneDelegate.swift */,
+				F3CF0000238BFA7800450C5D /* ViewController.swift */,
+				F3CF0002238BFA7800450C5D /* Main.storyboard */,
+				F3CF0008238BFA7E00450C5D /* Assets.xcassets */,
+				F3CF000A238BFA7E00450C5D /* LaunchScreen.storyboard */,
+				F3CF000D238BFA7E00450C5D /* Info.plist */,
+				F3CF0005238BFA7800450C5D /* KUtalog.xcdatamodeld */,
+			);
+			path = KUtalog;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F3CF0011238BFA7E00450C5D /* KUtalogTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3CF0029238BFA7E00450C5D /* Build configuration list for PBXNativeTarget "KUtalogTests" */;
+			buildPhases = (
+				F3CF000E238BFA7E00450C5D /* Sources */,
+				F3CF000F238BFA7E00450C5D /* Frameworks */,
+				F3CF0010238BFA7E00450C5D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3CF0014238BFA7E00450C5D /* PBXTargetDependency */,
+			);
+			name = KUtalogTests;
+			productName = KUtalogTests;
+			productReference = F3CF0012238BFA7E00450C5D /* KUtalogTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F3CF001C238BFA7E00450C5D /* KUtalogUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3CF002C238BFA7E00450C5D /* Build configuration list for PBXNativeTarget "KUtalogUITests" */;
+			buildPhases = (
+				F3CF0019238BFA7E00450C5D /* Sources */,
+				F3CF001A238BFA7E00450C5D /* Frameworks */,
+				F3CF001B238BFA7E00450C5D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3CF001F238BFA7E00450C5D /* PBXTargetDependency */,
+			);
+			name = KUtalogUITests;
+			productName = KUtalogUITests;
+			productReference = F3CF001D238BFA7E00450C5D /* KUtalogUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F3CFFFF8238BFA7800450C5D /* KUtalog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3CF0026238BFA7E00450C5D /* Build configuration list for PBXNativeTarget "KUtalog" */;
+			buildPhases = (
+				F3CFFFF5238BFA7800450C5D /* Sources */,
+				F3CFFFF6238BFA7800450C5D /* Frameworks */,
+				F3CFFFF7238BFA7800450C5D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KUtalog;
+			productName = KUtalog;
+			productReference = F3CFFFF9238BFA7800450C5D /* KUtalog.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F3CFFFF1238BFA7800450C5D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = cerenhasancan;
+				TargetAttributes = {
+					F3CF0011238BFA7E00450C5D = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = F3CFFFF8238BFA7800450C5D;
+					};
+					F3CF001C238BFA7E00450C5D = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = F3CFFFF8238BFA7800450C5D;
+					};
+					F3CFFFF8238BFA7800450C5D = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = F3CFFFF4238BFA7800450C5D /* Build configuration list for PBXProject "KUtalog" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F3CFFFF0238BFA7800450C5D;
+			productRefGroup = F3CFFFFA238BFA7800450C5D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F3CFFFF8238BFA7800450C5D /* KUtalog */,
+				F3CF0011238BFA7E00450C5D /* KUtalogTests */,
+				F3CF001C238BFA7E00450C5D /* KUtalogUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F3CF0010238BFA7E00450C5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3CF001B238BFA7E00450C5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3CFFFF7238BFA7800450C5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3CF000C238BFA7E00450C5D /* LaunchScreen.storyboard in Resources */,
+				F3CF0009238BFA7E00450C5D /* Assets.xcassets in Resources */,
+				F3CF0004238BFA7800450C5D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F3CF000E238BFA7E00450C5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3CF0017238BFA7E00450C5D /* KUtalogTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3CF0019238BFA7E00450C5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3CF0022238BFA7E00450C5D /* KUtalogUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3CFFFF5238BFA7800450C5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F339533823994FAD00647058 /* LoginViewController.swift in Sources */,
+				F3CF0001238BFA7800450C5D /* ViewController.swift in Sources */,
+				F339533A23994FB700647058 /* RegisterViewController.swift in Sources */,
+				F3CFFFFD238BFA7800450C5D /* AppDelegate.swift in Sources */,
+				F3CFFFFF238BFA7800450C5D /* SceneDelegate.swift in Sources */,
+				F33953482399503200647058 /* EditTaskViewController.swift in Sources */,
+				F33953442399502000647058 /* TasksViewController.swift in Sources */,
+				F339533623994F9E00647058 /* LandingViewController.swift in Sources */,
+				F339534A2399503A00647058 /* SettingsViewController.swift in Sources */,
+				F339533E23994FDE00647058 /* ScheduledClassViewController.swift in Sources */,
+				F339534023994FE900647058 /* ClassSearchViewController.swift in Sources */,
+				F339533C23994FC900647058 /* TimetableViewController.swift in Sources */,
+				F3CF0007238BFA7800450C5D /* KUtalog.xcdatamodeld in Sources */,
+				F33953422399500E00647058 /* SearchedClassDetailViewController.swift in Sources */,
+				F33953462399502800647058 /* AddTaskViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F3CF0014238BFA7E00450C5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3CFFFF8238BFA7800450C5D /* KUtalog */;
+			targetProxy = F3CF0013238BFA7E00450C5D /* PBXContainerItemProxy */;
+		};
+		F3CF001F238BFA7E00450C5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3CFFFF8238BFA7800450C5D /* KUtalog */;
+			targetProxy = F3CF001E238BFA7E00450C5D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F3CF0002238BFA7800450C5D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3CF0003238BFA7800450C5D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F3CF000A238BFA7E00450C5D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3CF000B238BFA7E00450C5D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F3CF0024238BFA7E00450C5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F3CF0025238BFA7E00450C5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F3CF0027238BFA7E00450C5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WXV9WLK4Q4;
+				INFOPLIST_FILE = KUtalog/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ceren-hasancan.KUtalogddddd";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F3CF0028238BFA7E00450C5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WXV9WLK4Q4;
+				INFOPLIST_FILE = KUtalog/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ceren-hasancan.KUtalogddddd";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F3CF002A238BFA7E00450C5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WXV9WLK4Q4;
+				INFOPLIST_FILE = KUtalogTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ceren-hasancan.KUtalogTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KUtalog.app/KUtalog";
+			};
+			name = Debug;
+		};
+		F3CF002B238BFA7E00450C5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WXV9WLK4Q4;
+				INFOPLIST_FILE = KUtalogTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ceren-hasancan.KUtalogTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KUtalog.app/KUtalog";
+			};
+			name = Release;
+		};
+		F3CF002D238BFA7E00450C5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WXV9WLK4Q4;
+				INFOPLIST_FILE = KUtalogUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ceren-hasancan.KUtalogUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KUtalog;
+			};
+			name = Debug;
+		};
+		F3CF002E238BFA7E00450C5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WXV9WLK4Q4;
+				INFOPLIST_FILE = KUtalogUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ceren-hasancan.KUtalogUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KUtalog;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F3CF0026238BFA7E00450C5D /* Build configuration list for PBXNativeTarget "KUtalog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3CF0027238BFA7E00450C5D /* Debug */,
+				F3CF0028238BFA7E00450C5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3CF0029238BFA7E00450C5D /* Build configuration list for PBXNativeTarget "KUtalogTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3CF002A238BFA7E00450C5D /* Debug */,
+				F3CF002B238BFA7E00450C5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3CF002C238BFA7E00450C5D /* Build configuration list for PBXNativeTarget "KUtalogUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3CF002D238BFA7E00450C5D /* Debug */,
+				F3CF002E238BFA7E00450C5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3CFFFF4238BFA7800450C5D /* Build configuration list for PBXProject "KUtalog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3CF0024238BFA7E00450C5D /* Debug */,
+				F3CF0025238BFA7E00450C5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F3CF0005238BFA7800450C5D /* KUtalog.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F3CF0006238BFA7800450C5D /* KUtalog.xcdatamodel */,
+			);
+			currentVersion = F3CF0006238BFA7800450C5D /* KUtalog.xcdatamodel */;
+			path = KUtalog.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F3CFFFF1238BFA7800450C5D /* Project object */;
+}
