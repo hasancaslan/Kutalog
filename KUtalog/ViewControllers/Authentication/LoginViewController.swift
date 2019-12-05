@@ -8,6 +8,7 @@
 
 import UIKit
 import TextFieldEffects
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailField: MadokaTextField!
@@ -21,19 +22,55 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-// MARK:- Actions
+    // MARK:- Actions
     
     @IBAction func loginTapped(_ sender: Any) {
+        let activityIndicator: UIActivityIndicatorView = {
+            let activity = UIActivityIndicatorView(style: .gray)
+            activity.translatesAutoresizingMaskIntoConstraints = false
+            activity.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+            activity.startAnimating()
+            return activity
+        }()
+        loginButton.setTitle(nil, for: .normal)
+        loginButton.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: loginButton.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: loginButton.centerYAnchor).isActive = true
+        
+        guard let email = emailField.text, let password = passwordField.text else {
+            let alert = createErrorAlert(message: .fieldsEmpty)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password) {[unowned self] (user, err) in
+            if err != nil {
+                activityIndicator.stopAnimating()
+                self.loginButton.setTitle("Log In", for: .normal)
+                activityIndicator.removeFromSuperview()
+                let alert = createErrorAlert(message: .loginFailed)
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            let uid = user?.user.uid
+            UserDefaults.standard.set(email, forKey: "email")
+            UserDefaults.standard.set(password, forKey: "password")
+            UserDefaults.standard.set(uid, forKey: "uid")
+            
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = controller
+        }
+        
+        /*
+         // MARK: - Navigation
+         
+         // In a storyboard-based application, you will often want to do a little preparation before navigation
+         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         // Get the new view controller using segue.destination.
+         // Pass the selected object to the new view controller.
+         }
+         */
+        
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

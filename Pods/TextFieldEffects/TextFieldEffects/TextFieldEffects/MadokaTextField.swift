@@ -70,7 +70,7 @@ import UIKit
         let frame = CGRect(origin: CGPoint.zero, size: CGSize(width: rect.size.width, height: rect.size.height))
         
         placeholderLabel.frame = frame.insetBy(dx: placeholderInsets.x, dy: placeholderInsets.y)
-        placeholderLabel.font = placeholderFontFromFont(font!)
+        placeholderLabel.font = UIFont.systemFont(ofSize: 16)
         
         updateBorder()
         updatePlaceholder()
