@@ -18,7 +18,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginButton.layer.cornerRadius = 55/2
-        self.navigationController?.navigationBar.shadowImage = UIImage()
         // Do any additional setup after loading the view.
     }
     
@@ -38,7 +37,7 @@ class LoginViewController: UIViewController {
         activityIndicator.centerYAnchor.constraint(equalTo: loginButton.centerYAnchor).isActive = true
         
         guard let email = emailField.text, let password = passwordField.text else {
-            let alert = createErrorAlert(message: .fieldsEmpty)
+            let alert = createErrorAlert(message: .fieldsEmpty, error: nil)
             self.present(alert, animated: true, completion: nil)
             return
         }
@@ -48,7 +47,7 @@ class LoginViewController: UIViewController {
                 activityIndicator.stopAnimating()
                 self.loginButton.setTitle("Log In", for: .normal)
                 activityIndicator.removeFromSuperview()
-                let alert = createErrorAlert(message: .loginFailed)
+                let alert = createErrorAlert(message: .loginFailed, error: nil)
                 self.present(alert, animated: true, completion: nil)
                 return
             }

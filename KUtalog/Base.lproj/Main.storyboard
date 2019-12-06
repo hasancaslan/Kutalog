@@ -150,32 +150,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" placeholder="e-mail" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="P1N-nT-SaF" customClass="MadokaTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="212" width="374" height="54"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="6oJ-rT-pAh"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" textContentType="email"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.93725490199999995" green="0.94509803920000002" blue="0.95294117649999999" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ae-Xc-Rvg" customClass="MadokaTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="320" width="374" height="54"/>
                                 <constraints>
@@ -214,27 +188,59 @@
                                 </state>
                                 <connections>
                                     <action selector="loginTapped:" destination="bnU-k1-wH5" eventType="touchUpInside" id="dr8-tZ-Ci5"/>
+                                    <action selector="registerTapped:" destination="hW6-Mb-de8" eventType="touchUpInside" id="Vj3-4b-LLf"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qnm-VP-3aI" customClass="MadokaTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="212" width="374" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="tOY-wR-twf"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.8980392157" green="0.1450980392" blue="0.08235294118" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Qnm-VP-3aI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y4u-kP-nIO" secondAttribute="bottom" constant="40" id="01t-Lr-P1j"/>
                             <constraint firstItem="elB-ph-XfZ" firstAttribute="top" secondItem="1Ae-Xc-Rvg" secondAttribute="bottom" constant="64" id="4bb-rW-4Io"/>
                             <constraint firstItem="1Ae-Xc-Rvg" firstAttribute="leading" secondItem="hwr-nv-afe" secondAttribute="leading" constant="20" id="BnD-PH-ihK"/>
-                            <constraint firstItem="1Ae-Xc-Rvg" firstAttribute="top" secondItem="P1N-nT-SaF" secondAttribute="bottom" constant="54" id="Ccm-mw-WZ1"/>
-                            <constraint firstItem="P1N-nT-SaF" firstAttribute="leading" secondItem="hwr-nv-afe" secondAttribute="leading" constant="20" id="Hei-V5-Xg3"/>
                             <constraint firstItem="elB-ph-XfZ" firstAttribute="leading" secondItem="hwr-nv-afe" secondAttribute="leading" constant="60" id="Kky-mb-hrb"/>
                             <constraint firstItem="hwr-nv-afe" firstAttribute="trailing" secondItem="1Ae-Xc-Rvg" secondAttribute="trailing" constant="20" id="MIY-l0-fCb"/>
-                            <constraint firstItem="P1N-nT-SaF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y4u-kP-nIO" secondAttribute="bottom" constant="40" id="VlY-AV-gP0"/>
+                            <constraint firstItem="Qnm-VP-3aI" firstAttribute="leading" secondItem="hwr-nv-afe" secondAttribute="leading" constant="20" id="P00-he-M0v"/>
+                            <constraint firstItem="1Ae-Xc-Rvg" firstAttribute="top" secondItem="Qnm-VP-3aI" secondAttribute="bottom" constant="54" id="Rsf-gs-wM3"/>
                             <constraint firstItem="hwr-nv-afe" firstAttribute="trailing" secondItem="elB-ph-XfZ" secondAttribute="trailing" constant="60" id="Wc2-6N-ehY"/>
-                            <constraint firstItem="hwr-nv-afe" firstAttribute="trailing" secondItem="P1N-nT-SaF" secondAttribute="trailing" constant="20" id="bzu-Pi-37o"/>
                             <constraint firstItem="1Ae-Xc-Rvg" firstAttribute="centerY" secondItem="hwr-nv-afe" secondAttribute="centerY" constant="-40" id="emb-ya-EPq"/>
                             <constraint firstItem="y4u-kP-nIO" firstAttribute="top" secondItem="hwr-nv-afe" secondAttribute="top" priority="999" constant="60" id="fXO-4z-DmK"/>
                             <constraint firstItem="y4u-kP-nIO" firstAttribute="leading" secondItem="hwr-nv-afe" secondAttribute="leading" constant="20" id="qen-jo-Tg2"/>
+                            <constraint firstItem="hwr-nv-afe" firstAttribute="trailing" secondItem="Qnm-VP-3aI" secondAttribute="trailing" constant="20" id="xaV-S5-aBJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hwr-nv-afe"/>
                     </view>
                     <navigationItem key="navigationItem" id="yzn-bc-u3D"/>
+                    <connections>
+                        <outlet property="emailField" destination="Qnm-VP-3aI" id="64l-Fx-URI"/>
+                        <outlet property="passwordField" destination="1Ae-Xc-Rvg" id="SPn-4C-AXg"/>
+                        <outlet property="registerButton" destination="elB-ph-XfZ" id="0nc-z0-sxz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0NR-oT-UPp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -462,26 +468,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" placeholder="e-mail" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Xvd-8N-3WF" customClass="MadokaTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="212" width="374" height="54"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="CWm-4q-M3o"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" textContentType="email"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="s6A-uO-45n" customClass="MadokaTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="320" width="374" height="54"/>
                                 <constraints>
@@ -516,19 +502,45 @@
                                     <action selector="loginTapped:" destination="bnU-k1-wH5" eventType="touchUpInside" id="HKx-2L-EIL"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nkN-bZ-3i1" customClass="MadokaTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="212" width="374" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="2ks-Am-t36"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.8980392157" green="0.1450980392" blue="0.08235294118" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="s6A-uO-45n" firstAttribute="centerY" secondItem="l9B-9V-Ct6" secondAttribute="centerY" constant="-40" id="0Lc-kx-cYi"/>
-                            <constraint firstItem="Xvd-8N-3WF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Qha-lh-Uux" secondAttribute="bottom" constant="40" id="3ww-DJ-uw4"/>
+                            <constraint firstItem="s6A-uO-45n" firstAttribute="top" secondItem="nkN-bZ-3i1" secondAttribute="bottom" constant="54" id="7oE-wh-r3x"/>
                             <constraint firstItem="Qha-lh-Uux" firstAttribute="top" secondItem="l9B-9V-Ct6" secondAttribute="top" priority="999" constant="60" id="8j6-vp-1eQ"/>
                             <constraint firstItem="l9B-9V-Ct6" firstAttribute="trailing" secondItem="HOR-lE-WZM" secondAttribute="trailing" constant="60" id="Bf7-91-FDU"/>
+                            <constraint firstItem="nkN-bZ-3i1" firstAttribute="leading" secondItem="l9B-9V-Ct6" secondAttribute="leading" constant="20" id="QK1-1t-L5V"/>
                             <constraint firstItem="s6A-uO-45n" firstAttribute="leading" secondItem="l9B-9V-Ct6" secondAttribute="leading" constant="20" id="R90-oa-6kB"/>
-                            <constraint firstItem="Xvd-8N-3WF" firstAttribute="leading" secondItem="l9B-9V-Ct6" secondAttribute="leading" constant="20" id="RlH-Th-vau"/>
+                            <constraint firstItem="l9B-9V-Ct6" firstAttribute="trailing" secondItem="nkN-bZ-3i1" secondAttribute="trailing" constant="20" id="UtQ-ta-Rha"/>
                             <constraint firstItem="l9B-9V-Ct6" firstAttribute="trailing" secondItem="s6A-uO-45n" secondAttribute="trailing" constant="20" id="VTN-WC-JwS"/>
-                            <constraint firstItem="s6A-uO-45n" firstAttribute="top" secondItem="Xvd-8N-3WF" secondAttribute="bottom" constant="54" id="bjb-m8-ZMF"/>
                             <constraint firstItem="HOR-lE-WZM" firstAttribute="top" secondItem="s6A-uO-45n" secondAttribute="bottom" constant="64" id="bo5-gq-WiN"/>
-                            <constraint firstItem="l9B-9V-Ct6" firstAttribute="trailing" secondItem="Xvd-8N-3WF" secondAttribute="trailing" constant="20" id="kGk-TP-7gD"/>
+                            <constraint firstItem="nkN-bZ-3i1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Qha-lh-Uux" secondAttribute="bottom" constant="40" id="gFh-DF-upK"/>
                             <constraint firstItem="Qha-lh-Uux" firstAttribute="leading" secondItem="l9B-9V-Ct6" secondAttribute="leading" constant="20" id="pXE-32-1Wb"/>
                             <constraint firstItem="HOR-lE-WZM" firstAttribute="leading" secondItem="l9B-9V-Ct6" secondAttribute="leading" constant="60" id="xYc-0G-VR2"/>
                         </constraints>
@@ -536,7 +548,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gQS-YV-bwA"/>
                     <connections>
-                        <outlet property="emailField" destination="Xvd-8N-3WF" id="W3r-NP-j93"/>
+                        <outlet property="emailField" destination="nkN-bZ-3i1" id="bld-8e-Ekx"/>
                         <outlet property="loginButton" destination="HOR-lE-WZM" id="Zlz-FK-N7S"/>
                         <outlet property="passwordField" destination="s6A-uO-45n" id="YNc-iS-OAA"/>
                     </connections>
