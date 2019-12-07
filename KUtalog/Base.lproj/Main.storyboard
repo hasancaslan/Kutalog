@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HvV-sQ-vkL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZfN-gj-KyW">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -590,14 +590,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="16" maxX="0.0" maxY="16"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ClassCell" id="LnK-ao-Kpc" customClass="ClassCollectionViewCell" customModule="KUtalog" customModuleProvider="target">
+                                    <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ClassCell" id="LnK-ao-Kpc" customClass="ClassCollectionViewCell" customModule="KUtalog" customModuleProvider="target">
                                         <rect key="frame" x="20" y="16" width="374" height="234"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="234"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Be6-yi-ipG">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Be6-yi-ipG">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="156"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
@@ -643,6 +643,7 @@
                                                 </visualEffectView>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="VTc-GO-45q" secondAttribute="bottom" id="7hY-zW-ver"/>
                                             <constraint firstItem="VTc-GO-45q" firstAttribute="leading" secondItem="LnK-ao-Kpc" secondAttribute="leading" id="CnF-6p-bXK"/>
@@ -681,6 +682,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Class Search" id="79F-BY-pDx"/>
                     <connections>
+                        <outlet property="classListCollectionView" destination="Ikp-XF-hPr" id="Utn-KP-MjD"/>
                         <segue destination="ibb-WL-TEw" kind="presentation" id="Rzd-yW-3Uu"/>
                     </connections>
                 </viewController>

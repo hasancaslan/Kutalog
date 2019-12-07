@@ -8,10 +8,28 @@
 
 import Foundation
 
+struct SemesterData: Codable {
+    let semester: Int?
+    let examDate: String?
+    let examDuration: Int?
+}
+
+struct Module: Codable {
+    let moduleCode: String?
+    let title: String?
+    let description: String?
+    let moduleCredit: String?
+    let department: String?
+    let faculty: String?
+    let preclusion: String?
+    //let workload: [Int?]
+    let semesterData: [SemesterData?]
+}
+
 /*extension RawServerResponse: Decodable {
 
     init(from decoder: Decoder) throws {
-        // semesterDataata
+         semesterDataata
         let container = try decoder.container(keyedBy: RootKeys.self)
         moduleCode = try container.decode(String.self, forKey: .moduleCode)
         title = try container.decode(String.self, forKey: .title)
@@ -21,10 +39,10 @@ import Foundation
         prerequisite = try container.decode(String.self, forKey: .prerequisite)
         preclusion = try container.decode(String.self, forKey: .preclusion)
         corequisite = try container.decode(String.self, forKey: .corequisite)
-        //let semesterDatacontainer = try decoder.cont
-        //semester = try semesterDatacontainer.decode(Int.self, forKey: .semester)
-        //examDate = try semesterDatacontainer.decode(String.self, forKey: .examDate)
-        //examDuration = try semesterDatacontainer.decode(Int.self, forKey: .examDuration)
+        let semesterDatacontainer = try decoder.cont
+        semester = try semesterDatacontainer.decode(Int.self, forKey: .semester)
+        examDate = try semesterDatacontainer.decode(String.self, forKey: .examDate)
+        examDuration = try semesterDatacontainer.decode(Int.self, forKey: .examDuration)
     }
 
 }
