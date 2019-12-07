@@ -12,6 +12,8 @@ extension ClassSearchViewController: ClassSearchDataSourceDelegate {
     func moduleListLoaded(moduleList: [Module]) {
         self.moduleArray = moduleList
         self.classListCollectionView.reloadData()
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.removeFromSuperview()
     }
 }
 
@@ -30,19 +32,26 @@ extension ClassSearchViewController: UICollectionViewDataSource {
         return cell
     }
     
-    
 }
 
 class ClassSearchViewController: UIViewController {
 
     let moduleDataSource = ClassSearchDataSource()
     var moduleArray: [Module] = []
+    var activityIndicator = UIActivityIndicatorView(style: .gray)
     @IBOutlet weak var classListCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         moduleDataSource.delegate = self
         moduleDataSource.loadClassList()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        //activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.startAnimating()
+        classListCollectionView.addSubview(activityIndicator)
+        activityIndicator.centerXAnchor.constraint(equalTo: classListCollectionView.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: classListCollectionView.centerYAnchor).isActive = true
+
         // Do any additional setup after loading the view.
     }
     
