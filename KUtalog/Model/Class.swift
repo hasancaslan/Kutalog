@@ -22,69 +22,74 @@ struct Module: Codable {
     let department: String?
     let faculty: String?
     let preclusion: String?
-    //let workload: [Int?]
+    let workload: Workload?
     let semesterData: [SemesterData?]
+    
+    enum CodingKeys: String, CodingKey {
+        case moduleCode
+        case title
+        case description
+        case moduleCredit
+        case department
+        case faculty
+        case preclusion
+        case workload = "workload"
+        case semesterData
+    }
 }
 
-/*extension RawServerResponse: Decodable {
-
+enum Workload: Codable {
+    case array(Array<WorkloadItem>)
+    case string(String)
+    
     init(from decoder: Decoder) throws {
-         semesterDataata
-        let container = try decoder.container(keyedBy: RootKeys.self)
-        moduleCode = try container.decode(String.self, forKey: .moduleCode)
-        title = try container.decode(String.self, forKey: .title)
-        description = try container.decode(String.self, forKey: .description)
-        moduleCredit = try container.decode(String.self, forKey: .moduleCredit)
-        faculty = try container.decode(String.self, forKey: .faculty)
-        prerequisite = try container.decode(String.self, forKey: .prerequisite)
-        preclusion = try container.decode(String.self, forKey: .preclusion)
-        corequisite = try container.decode(String.self, forKey: .corequisite)
-        let semesterDatacontainer = try decoder.cont
-        semester = try semesterDatacontainer.decode(Int.self, forKey: .semester)
-        examDate = try semesterDatacontainer.decode(String.self, forKey: .examDate)
-        examDuration = try semesterDatacontainer.decode(Int.self, forKey: .examDuration)
+        let container = try decoder.singleValueContainer()
+        if let x = try? container.decode(String.self) {
+            self = .string(x)
+            return
+        }
+        if let x = try? container.decode(Array<WorkloadItem>.self) {
+            self = .array(x)
+            return
+        }
+        throw DecodingError.typeMismatch(Workload.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Workload"))
     }
 
-}
-
-struct RawServerResponse {
-    
-    enum RootKeys: String, CodingKey {
-        case moduleCode, title, description, moduleCredit, department, faculty, prerequisite, preclusion, corequisite, SemesterData
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .string(let x):
+            try container.encode(x)
+        case .array(let x):
+            try container.encode(x)
+        }
     }
+}
+
+enum WorkloadItem: Codable {
+    case string(String)
+    case float(Float)
     
-    enum SemesterDataKeys: String, CodingKey {
-        case semester, examDate, examDuration
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let x = try? container.decode(String.self) {
+            self = .string(x)
+            return
+        }
+        if let x = try? container.decode(Float.self) {
+            self = .float(x)
+            return
+        }
+        throw DecodingError.typeMismatch(Workload.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Workload"))
     }
-    
-    let moduleCode: String
-    let title: String
-    let description: String
-    let moduleCredit: String
-    let department: String
-    let faculty: String
-    let prerequisite: String
-    let preclusion: String
-    let corequisite: String
-    let semester: Int
-    let examDate: String
-    let examDuration: Int
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .string(let x):
+            try container.encode(x)
+        case .float(let x):
+            try container.encode(x)
+        }
+    }
 }
-
-
-
-struct Class:Codable  {
-    let moduleCode: String
-    let title: String
-    let description: String
-    let moduleCredit: String
-    let department: String
-    let faculty: String
-    let prerequisite: String
-    let preclusion: String
-    let corerequisite: String
-    let semester: Int
-    let examDate: String
-    let examDuration: Int
-}
-*/
