@@ -18,11 +18,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginButton.layer.cornerRadius = 55/2
-        // Do any additional setup after loading the view.
     }
     
     // MARK:- Actions
-    
     @IBAction func loginTapped(_ sender: Any) {
         let activityIndicator: UIActivityIndicatorView = {
             let activity = UIActivityIndicatorView(style: .gray)
@@ -51,6 +49,7 @@ class LoginViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 return
             }
+            
             let uid = user?.user.uid
             UserDefaults.standard.set(email, forKey: "email")
             UserDefaults.standard.set(password, forKey: "password")
@@ -60,16 +59,5 @@ class LoginViewController: UIViewController {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = controller
         }
-        
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-         }
-         */
-        
     }
 }

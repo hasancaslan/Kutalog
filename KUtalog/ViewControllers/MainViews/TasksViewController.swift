@@ -9,14 +9,19 @@
 import UIKit
 
 class TasksViewController: UIViewController {
-
+    @IBOutlet weak var daysSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var tasksTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tasksTableView.delegate = self
+        self.tasksTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     
-
+// MARK:- Actions
+    @IBAction func didDaysSegmentedControlChanged(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 
@@ -27,4 +32,21 @@ class TasksViewController: UIViewController {
     }
     */
 
+}
+
+// MARK:- Table View Delegate
+extension TasksViewController: UITableViewDelegate {
+    
+}
+
+// MARK:- Table View Data Source
+extension TasksViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell") as! TaskTableViewCell
+        return cell
+    }
 }

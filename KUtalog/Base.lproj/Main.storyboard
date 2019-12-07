@@ -25,6 +25,9 @@
                                     <segment title="Thu"/>
                                     <segment title="Fri"/>
                                 </segments>
+                                <connections>
+                                    <action selector="didDaysSegmentedControlChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="oxc-bk-kXX"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4ka-bu-LaH">
                                 <rect key="frame" x="0.0" y="179" width="414" height="634"/>
@@ -101,6 +104,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="daysSegmentedControl" destination="Mhw-Xi-uyd" id="ZCR-yD-XYV"/>
+                        <outlet property="tasksTableView" destination="4ka-bu-LaH" id="3ET-GV-7vR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -362,7 +369,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gsn-SZ-ij1">
             <objects>
-                <navigationController id="HvV-sQ-vkL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LandingNavigationController" id="HvV-sQ-vkL" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="uM5-kU-KlO">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -380,19 +387,19 @@
         <!--Landing View Controller-->
         <scene sceneID="opA-Js-WWj">
             <objects>
-                <viewController id="iOo-bt-XwL" customClass="LandingViewController" customModule="KUtalog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LandingViewController" id="iOo-bt-XwL" customClass="LandingViewController" customModule="KUtalog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O2w-me-KLb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="5QY-mU-2rp">
-                                <rect key="frame" x="157" y="101" width="100" height="100"/>
+                                <rect key="frame" x="157" y="337" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="6HV-Mb-U9m"/>
                                     <constraint firstAttribute="width" constant="100" id="ykv-Qn-Dl8"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxK-Q5-bUA">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxK-Q5-bUA">
                                 <rect key="frame" x="57" y="574" width="300" height="64"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -403,11 +410,10 @@
                                     <color key="titleColor" red="0.8980392157" green="0.1450980392" blue="0.08235294118" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginTapped:" destination="iOo-bt-XwL" eventType="touchUpInside" id="aHc-L0-Wib"/>
                                     <segue destination="bnU-k1-wH5" kind="show" id="yg2-uf-lcu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPA-Tq-sLL">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPA-Tq-sLL">
                                 <rect key="frame" x="57" y="670" width="300" height="64"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -418,12 +424,11 @@
                                     <color key="titleColor" red="0.8980392157" green="0.1450980392" blue="0.08235294118" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="registerTapped:" destination="iOo-bt-XwL" eventType="touchUpInside" id="btd-cl-2fM"/>
                                     <segue destination="hW6-Mb-de8" kind="show" id="x3P-Es-xuK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KUtalog" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVK-uU-PoQ">
-                                <rect key="frame" x="134" y="233" width="146" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KUtalog" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVK-uU-PoQ">
+                                <rect key="frame" x="134" y="469" width="146" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -436,18 +441,22 @@
                             <constraint firstItem="5QY-mU-2rp" firstAttribute="centerX" secondItem="246-j8-4VD" secondAttribute="centerX" id="VOc-QL-Aao"/>
                             <constraint firstItem="IPA-Tq-sLL" firstAttribute="trailing" secondItem="pxK-Q5-bUA" secondAttribute="trailing" id="YHN-3x-53t"/>
                             <constraint firstItem="TVK-uU-PoQ" firstAttribute="centerX" secondItem="5QY-mU-2rp" secondAttribute="centerX" id="aJm-hg-FaP"/>
-                            <constraint firstItem="TVK-uU-PoQ" firstAttribute="centerY" secondItem="246-j8-4VD" secondAttribute="centerY" constant="-130" id="dXf-0N-TZe"/>
+                            <constraint firstItem="TVK-uU-PoQ" firstAttribute="centerY" secondItem="246-j8-4VD" secondAttribute="centerY" priority="1" constant="-130" id="dXf-0N-TZe"/>
                             <constraint firstItem="246-j8-4VD" firstAttribute="bottom" secondItem="IPA-Tq-sLL" secondAttribute="bottom" constant="40" id="hxU-Sv-Wc1"/>
                             <constraint firstItem="IPA-Tq-sLL" firstAttribute="top" secondItem="pxK-Q5-bUA" secondAttribute="bottom" constant="32" id="i7F-ze-TYg"/>
                             <constraint firstItem="TVK-uU-PoQ" firstAttribute="top" secondItem="5QY-mU-2rp" secondAttribute="bottom" constant="32" id="lyf-5c-IlX"/>
                             <constraint firstItem="pxK-Q5-bUA" firstAttribute="leading" secondItem="246-j8-4VD" secondAttribute="leading" constant="57" id="pUG-PP-enF"/>
+                            <constraint firstItem="5QY-mU-2rp" firstAttribute="centerY" secondItem="246-j8-4VD" secondAttribute="centerY" priority="999" id="qts-ae-0fc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="246-j8-4VD"/>
                     </view>
                     <navigationItem key="navigationItem" id="lln-2D-dk3"/>
                     <connections>
                         <outlet property="loginButton" destination="pxK-Q5-bUA" id="EhU-7x-cGF"/>
+                        <outlet property="logoLayoutConstraintToCenter" destination="qts-ae-0fc" id="Tz5-Yq-tX6"/>
                         <outlet property="registerButton" destination="IPA-Tq-sLL" id="Fan-we-vop"/>
+                        <outlet property="titleLabel" destination="TVK-uU-PoQ" id="Ora-1g-HiC"/>
+                        <outlet property="titleLabelLayoutConstraintToCenter" destination="dXf-0N-TZe" id="PLr-ep-Bax"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CCe-ka-SZ2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
