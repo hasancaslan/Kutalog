@@ -43,7 +43,10 @@ class LandingViewController: UIViewController {
                 return
             } else {
                 DispatchQueue.main.async {
-                    self.animateView()
+                    let alert = UIAlertController(title: "There was an error when logging in.", message: "Please try again.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+                        self.animateView()
+                    }))
                 }
                 return
             }

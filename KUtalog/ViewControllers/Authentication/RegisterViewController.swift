@@ -39,14 +39,6 @@ class RegisterViewController: UIViewController {
             return
         }
         
-        if validEmail(email: email) && validPassword(password: password) {
-            registerButton.isEnabled = true
-            registerButton.backgroundColor = .white
-        } else {
-            registerButton.backgroundColor = .gray
-            registerButton.isEnabled = false
-        }
-        
         Auth.auth().createUser(withEmail: email, password: password, completion: {(authResult, error) in
             guard let user = authResult?.user, error == nil else {
                 activityIndicator.stopAnimating()
@@ -75,4 +67,15 @@ class RegisterViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         })
     }
+    
+    @IBAction func textFieldDidChanged(_ sender: Any) {
+        if validEmail(email: emailField.text ?? "") && validPassword(password: passwordField.text ?? "") {
+                   registerButton.isEnabled = true
+                   registerButton.backgroundColor = .white
+               } else {
+                   registerButton.backgroundColor = .lightGray
+                   registerButton.isEnabled = false
+               }
+    }
 }
+

@@ -182,10 +182,13 @@
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="textFieldDidChanged:" destination="hW6-Mb-de8" eventType="editingChanged" id="cSY-P7-XL6"/>
+                                </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elB-ph-XfZ">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elB-ph-XfZ">
                                 <rect key="frame" x="60" y="438" width="294" height="64"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="Z4w-la-itx"/>
                                 </constraints>
@@ -223,6 +226,9 @@
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="textFieldDidChanged:" destination="hW6-Mb-de8" eventType="editingChanged" id="Yac-xA-EEb"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.8980392157" green="0.1450980392" blue="0.08235294118" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
