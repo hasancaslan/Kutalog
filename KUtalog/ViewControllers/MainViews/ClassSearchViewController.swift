@@ -35,7 +35,6 @@ extension ClassSearchViewController: UICollectionViewDataSource {
 }
 
 class ClassSearchViewController: UIViewController {
-
     let moduleDataSource = ClassSearchDataSource()
     var moduleArray: [Module] = []
     var activityIndicator = UIActivityIndicatorView(style: .gray)
@@ -51,8 +50,6 @@ class ClassSearchViewController: UIViewController {
         classListCollectionView.addSubview(activityIndicator)
         activityIndicator.centerXAnchor.constraint(equalTo: classListCollectionView.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: classListCollectionView.centerYAnchor).isActive = true
-
-        // Do any additional setup after loading the view.
     }
     
 

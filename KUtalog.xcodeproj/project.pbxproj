@@ -26,6 +26,7 @@
 		F339534A2399503A00647058 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33953492399503A00647058 /* SettingsViewController.swift */; };
 		F38C6A0723999E7800A4AF99 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C6A0623999E7800A4AF99 /* Alerts.swift */; };
 		F3A1AC1C239AAD63009D4FD1 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1AC1B239AAD63009D4FD1 /* Validations.swift */; };
+		F3B84CA1239ED56300C02626 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B84CA0239ED56300C02626 /* DataController.swift */; };
 		F3CF0004238BFA7800450C5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CF0002238BFA7800450C5D /* Main.storyboard */; };
 		F3CF0007238BFA7800450C5D /* KUtalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0005238BFA7800450C5D /* KUtalog.xcdatamodeld */; };
 		F3CF0009238BFA7E00450C5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3CF0008238BFA7E00450C5D /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		F33953492399503A00647058 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F38C6A0623999E7800A4AF99 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		F3A1AC1B239AAD63009D4FD1 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
+		F3B84CA0239ED56300C02626 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		F3CF0003238BFA7800450C5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3CF0006238BFA7800450C5D /* KUtalog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KUtalog.xcdatamodel; sourceTree = "<group>"; };
 		F3CF0008238BFA7E00450C5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				142AD43023999F5100DDA179 /* ClassSearchDataSource.swift */,
 				142AD43223999F5F00DDA179 /* Class.swift */,
+				F3B84CA0239ED56300C02626 /* DataController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				F339533623994F9E00647058 /* LandingViewController.swift in Sources */,
 				F339534A2399503A00647058 /* SettingsViewController.swift in Sources */,
 				142AD42C23999A6D00DDA179 /* ClassCollectionViewCell.swift in Sources */,
+				F3B84CA1239ED56300C02626 /* DataController.swift in Sources */,
 				F339533E23994FDE00647058 /* ScheduledClassViewController.swift in Sources */,
 				F339534023994FE900647058 /* ClassSearchViewController.swift in Sources */,
 				F339533C23994FC900647058 /* TimetableViewController.swift in Sources */,
