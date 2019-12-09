@@ -23,7 +23,8 @@ extension LandingViewController: ClassSearchDataSourceDelegate {
             oneClass.semester = Double(module.semesterData[0]?.semester ?? 0)
             oneClass.examDate = module.semesterData[0]?.examDate
             oneClass.examDuration = Double(module.semesterData[0]?.semester ?? 0)
-            oneClass.workload
+            //oneClass.workload = module.workload.map { LosslessStringConvertible($0) }.joined(separator: " ")
+            oneClass.workload = String(describing: module.workload)
         }
     }
 }

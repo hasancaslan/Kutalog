@@ -38,7 +38,7 @@ struct Module: Codable {
     }
 }
 
-enum Workload: Codable {
+enum Workload: Codable, CustomStringConvertible {
     case array(Array<WorkloadItem>)
     case string(String)
     
@@ -64,9 +64,22 @@ enum Workload: Codable {
             try container.encode(x)
         }
     }
+    
+    var description: String {
+        switch self {
+        case .array(let x):
+            var str = ""
+            x.forEach { (a) in
+                str += String(describing: a) + " "
+            }
+            return str
+        case .string(let x):
+            return x
+        }
+    }
 }
 
-enum WorkloadItem: Codable {
+enum WorkloadItem: Codable, CustomStringConvertible {
     case string(String)
     case float(Float)
     
@@ -90,6 +103,15 @@ enum WorkloadItem: Codable {
             try container.encode(x)
         case .float(let x):
             try container.encode(x)
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .float(let x):
+            return String(x)
+        case .string(let x):
+            return x
         }
     }
 }

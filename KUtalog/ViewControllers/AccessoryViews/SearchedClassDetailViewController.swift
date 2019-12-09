@@ -30,16 +30,33 @@ class SearchedClassDetailViewController: UIViewController {
         classCodeLabel.text = module?.moduleCode
         classNameLabel.text = module?.title
         firstInfoLineLabel.text = "\(module?.department ?? "") - \(module?.faculty ?? "")"
-        semesterLabel.text = module?.semesterData.map { "\($0?.semester)" }.joined(separator: "-")
+        let semesterArray = module?.semesterData.map { sem -> String in
+            if let s = sem?.semester {
+                return "Semester " + String(s)
+                }
+            else {
+                return ""
+                }
+        }
+        semesterLabel.text = semesterArray?.joined(separator: " - ")
         classDetailsText.text = module?.description
         preclusionLabel.text = "Preclusion"
         preclusionText.text = module?.preclusion
-        let semesterExamArray = module?.semesterData.map { "\($0?.examDate) \($0?.examDuration) " }
-        if let semester1Exam = semesterExamArray?[0]{
+        let semesterExamArray = module?.semesterData.map { sem -> String in
+            var str = ""
+            if let d = sem?.examDate {
+                str += d + " , "
+            }
+            if let dur = sem?.examDuration {
+                str += String(dur)
+            }
+            return str
+        }
+        if (semesterExamArray?[0]) != nil {
             semester1ExamLabel.text =  "Semester 1 Exam"
         }
         
-        if let semester2Exam = semesterExamArray?[1]{
+        if (semesterExamArray?[1]) != nil {
             semester2ExamLabel.text =  "Semester 2 Exam"
         }
         semester1ExamText.text = semesterExamArray?[0] ?? ""
