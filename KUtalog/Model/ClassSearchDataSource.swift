@@ -25,9 +25,7 @@ class ClassSearchDataSource {
             request.httpMethod = "GET"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            let dataTask = session.dataTask(with: request) {
-                (data, _, _) in print("HERE: \(String.init(data: data!, encoding: .utf8) ?? "An error occurred")")
-
+            let dataTask = session.dataTask(with: request) {data, _, _ in
                 let decoder = JSONDecoder()
                 let moduleList = try! decoder.decode([Module].self, from: data!)
                 DispatchQueue.main.async {
