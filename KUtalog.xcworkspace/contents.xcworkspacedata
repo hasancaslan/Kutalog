@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:KUtalog/Model/Task+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:KUtalog/Model/Task+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:KUtalog/Model/Class+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:KUtalog/Model/Class+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:KUtalog.xcodeproj">
    </FileRef>
    <FileRef
