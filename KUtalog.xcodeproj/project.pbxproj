@@ -132,7 +132,7 @@
 			children = (
 				F33275AF23A00B5D0096609A /* Core Data */,
 				F33275AE23A00B450096609A /* Data Sources */,
-				F3285A62239FFD89009B0498 /* Managed Objects */,
+				F3285A62239FFD89009B0498 /* Managed Object Classes */,
 				142AD43223999F5F00DDA179 /* Class.swift */,
 				F3B84CA4239FD70300C02626 /* Semesters.swift */,
 				F3C863FB23A00E9200071A17 /* KUtalog.xcdatamodeld */,
@@ -157,13 +157,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F3285A62239FFD89009B0498 /* Managed Objects */ = {
+		F3285A62239FFD89009B0498 /* Managed Object Classes */ = {
 			isa = PBXGroup;
 			children = (
 				F3285A63239FFDB5009B0498 /* Course.swift */,
 				F33275B123A00C170096609A /* Task.swift */,
 			);
-			path = "Managed Objects";
+			path = "Managed Object Classes";
 			sourceTree = "<group>";
 		};
 		F33275AE23A00B450096609A /* Data Sources */ = {
