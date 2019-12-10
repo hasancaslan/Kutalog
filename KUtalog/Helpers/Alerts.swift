@@ -30,9 +30,33 @@ func createErrorAlert(message: AlertMessages, error: Error?) -> UIAlertControlle
     }
 }
 
-
 func createSuccessAlert(message: AlertMessages) -> UIAlertController{
     let alert = UIAlertController(title: "Success!", message: message.rawValue, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
     return alert
+}
+
+enum ClassError: Error {
+    case urlError
+    case networkUnavailable
+    case wrongDataFormat
+    case missingData
+    case creationError
+}
+
+extension ClassError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .urlError:
+            return NSLocalizedString("Could not create a URL.", comment: "")
+        case .networkUnavailable:
+            return NSLocalizedString("Could not get data from the remote server.", comment: "")
+        case .wrongDataFormat:
+            return NSLocalizedString("Could not digest the fetched data.", comment: "")
+        case .missingData:
+            return NSLocalizedString("Found and will discard a module missing a valid data.", comment: "")
+        case .creationError:
+            return NSLocalizedString("Failed to create a new Quake object.", comment: "")
+        }
+    }
 }

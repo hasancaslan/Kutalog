@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Course" representedClassName=".Course" syncable="YES">
+        <attribute name="department" optional="YES" attributeType="String"/>
+        <attribute name="faculty" optional="YES" attributeType="String"/>
+        <attribute name="moduleCode" optional="YES" attributeType="String"/>
+        <attribute name="moduleCredit" optional="YES" attributeType="String"/>
+        <attribute name="moduleDescription" optional="YES" attributeType="String"/>
+        <attribute name="preclusion" optional="YES" attributeType="String"/>
+        <attribute name="semesterData" optional="YES" attributeType="Transformable" customClassName="Semesters"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="workload" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="moduleCode"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Task" representedClassName=".Task" syncable="YES"/>
+    <elements>
+        <element name="Task" positionX="-63" positionY="-18" width="128" height="43"/>
+        <element name="Course" positionX="-54" positionY="-9" width="128" height="178"/>
+    </elements>
+</model>

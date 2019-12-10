@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol ClassSearchDataSourceDelegate {
     func moduleListLoaded(moduleList: [Module])
 }

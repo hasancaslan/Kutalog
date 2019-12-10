@@ -8,11 +8,14 @@
 
 import UIKit
 import FirebaseAuth
+import CoreData
 
 extension LandingViewController: ClassSearchDataSourceDelegate {
     func moduleListLoaded(moduleList: [Module]) {
+        let entity = NSEntityDescription.entity(forEntityName: "Course", in: DataController.shared.viewContext)!
         moduleList.forEach { module in
-            let oneClass = Class(entity: Class.entity(), insertInto: DataController.shared.viewContext)
+            let oneClass = Course(entity: entity, insertInto: DataController.shared.viewContext)
+            let semesterData = Semesters(semesterData: module.semesterData)
             oneClass.title = module.title
             oneClass.moduleCode = module.moduleCode
             oneClass.department = module.department
@@ -20,10 +23,7 @@ extension LandingViewController: ClassSearchDataSourceDelegate {
             oneClass.moduleCredit = module.moduleCredit
             oneClass.moduleDescription = module.description
             oneClass.preclusion = module.preclusion
-            oneClass.semester = Double(module.semesterData[0]?.semester ?? 0)
-            oneClass.examDate = module.semesterData[0]?.examDate
-            oneClass.examDuration = Double(module.semesterData[0]?.semester ?? 0)
-            oneClass.workload
+            oneClass.semesterData = semesterData
         }
     }
 }
@@ -36,16 +36,13 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     let moduleDataSource = ClassSearchDataSource()
-    var moduleArray: [Module] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.global(qos: .utility).async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            
+//        moduleDataSource.delegate = self
+        DispatchQueue.global(qos: .utility).async {
+//            self.moduleDataSource.loadClassList()
+            print("global queue created.")
         }
         self.registerButton.layer.cornerRadius = 55/2
         self.loginButton.layer.cornerRadius = 55/2

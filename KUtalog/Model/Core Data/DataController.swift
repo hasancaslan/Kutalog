@@ -14,12 +14,15 @@ class DataController {
     var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
+    var taskContext: NSManagedObjectContext{
+        return persistentContainer.newBackgroundContext()
+    }
     static let shared: DataController = {
         return DataController()
     }()
 
     init() {
-        persistentContainer = NSPersistentContainer(name: "findphoto1")
+        persistentContainer = NSPersistentContainer(name: "KUtalog")
         self.load()
     }
 

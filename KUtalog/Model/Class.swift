@@ -8,10 +8,35 @@
 
 import Foundation
 
-struct SemesterData: Codable {
+class SemesterData: NSObject, Codable, NSCoding {
     let semester: Int?
     let examDate: String?
     let examDuration: Int?
+    
+    enum Key: String {
+        case semester = "semester"
+        case examDate = "examDate"
+        case examDuration = "examDuration"
+    }
+    
+    init(semester: Int?, examDate: String?, examDuration: Int?) {
+        self.semester = semester
+        self.examDate = examDate
+        self.examDuration = examDuration
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(semester, forKey: Key.semester.rawValue)
+        aCoder.encode(examDate, forKey: Key.examDate.rawValue)
+        aCoder.encode(examDuration, forKey: Key.examDuration.rawValue)
+    }
+    
+    public required convenience init?(coder aDecoder: NSCoder) {
+        let mSemester = aDecoder.decodeObject(forKey: Key.semester.rawValue) as? Int
+        let mExamDate = aDecoder.decodeObject(forKey: Key.examDate.rawValue) as? String
+        let mExamDuration = aDecoder.decodeObject(forKey: Key.examDuration.rawValue) as? Int
+        self.init(semester: mSemester, examDate: mExamDate, examDuration: mExamDuration)
+    }
 }
 
 struct Module: Codable {
@@ -54,7 +79,7 @@ enum Workload: Codable, CustomStringConvertible {
         }
         throw DecodingError.typeMismatch(Workload.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Workload"))
     }
-
+    
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
@@ -95,7 +120,7 @@ enum WorkloadItem: Codable, CustomStringConvertible {
         }
         throw DecodingError.typeMismatch(Workload.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Workload"))
     }
-
+    
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {

@@ -53,16 +53,19 @@ class ClassSearchViewController: UIViewController {
     }
     
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! ClassCollectionViewCell
-        let indexPath = classListCollectionView.indexPath(for: cell)
-        if let indexPath = indexPath {
-            let index = indexPath.row
-            let destination = segue.destination as! SearchedClassDetailViewController
-            destination.module = moduleArray[index]
-        }
-        
-    }
+    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let cell = sender as! ClassCollectionViewCell
+//        let indexPath = classListCollectionView.indexPath(for: cell)
+//
+//        if let indexPath = indexPath {
+//            let index = indexPath.row
+//            let module = moduleArray[index]
+//        }
+//    }
     
 
 }
