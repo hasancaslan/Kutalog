@@ -174,7 +174,7 @@ class ClassSearchDataSource {
         
         // Create a fetch request for the Quake entity sorted by time.
         let fetchRequest = NSFetchRequest<Course>(entityName: "Course")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "moduleCode", ascending: true)]
         
         // Create a fetched results controller and set its fetch request, context, and delegate.
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,

@@ -23,6 +23,6 @@ class ClassCollectionViewCell: UICollectionViewCell {
     func configure(with course: Course) {
         captionLabel.text = course.moduleCode
         titleLabel.text = course.title
-        infoTextView.text = course.description
+        infoTextView.text = course.moduleDescription
        }
 }
