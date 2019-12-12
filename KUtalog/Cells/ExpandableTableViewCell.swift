@@ -7,10 +7,13 @@
 //
 
 import UIKit
-import ExpandableCell
 
-class ExpandableTableViewCell: ExpandableCell {
+class ExpandableTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var codeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,14 +23,6 @@ class ExpandableTableViewCell: ExpandableCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    
-    override func isSelectable() -> Bool {
-        return true
-    }
-    
-    override func isInitiallyExpanded() -> Bool {
-        return false
     }
 
 }
