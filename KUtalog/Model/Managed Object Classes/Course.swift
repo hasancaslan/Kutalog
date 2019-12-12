@@ -8,17 +8,17 @@
 
 import CoreData
 
-class Course: NSManagedObject {
-       @NSManaged public var department: String?
-       @NSManaged public var faculty: String?
-       @NSManaged public var moduleCode: String?
-       @NSManaged public var moduleCredit: String?
-       @NSManaged public var moduleDescription: String?
-       @NSManaged public var preclusion: String?
-       @NSManaged public var semesterData: Semesters?
-       @NSManaged public var title: String?
-       @NSManaged public var workload: String?
-     @NSManaged public var tasks: NSSet?
+public class Course: NSManagedObject {
+    @NSManaged public var department: String?
+    @NSManaged public var faculty: String?
+    @NSManaged public var moduleCode: String?
+    @NSManaged public var moduleCredit: String?
+    @NSManaged public var moduleDescription: String?
+    @NSManaged public var preclusion: String?
+    @NSManaged public var semesterData: Semesters?
+    @NSManaged public var title: String?
+    @NSManaged public var workload: String?
+    @NSManaged public var tasks: NSSet?
     @NSManaged public var schedules: NSSet?
     
     func update(with module: Module) {
@@ -34,6 +34,6 @@ class Course: NSManagedObject {
     }
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Course> {
-           return NSFetchRequest<Course>(entityName: "Course")
-       }
+        return NSFetchRequest<Course>(entityName: "Course")
+    }
 }

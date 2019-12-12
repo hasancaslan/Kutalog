@@ -21,7 +21,6 @@ class ClassSearchDataSource {
        */
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "KUtalog")
-        
         container.loadPersistentStores { storeDesription, error in
             guard error == nil else {
                 fatalError("Unresolved error \(error!)")
