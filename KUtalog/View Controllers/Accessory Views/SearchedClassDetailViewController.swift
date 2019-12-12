@@ -10,8 +10,7 @@ import UIKit
 
 
 class SearchedClassDetailViewController: UIViewController {
-    let classSearchDataSource = ClassSearchDataSource()
-    var module: Module?
+    var course: Course?
     @IBOutlet weak var classCodeLabel: UILabel!
     @IBOutlet weak var classNameLabel: UILabel!
     @IBOutlet weak var firstInfoLineLabel: UILabel!
@@ -27,10 +26,10 @@ class SearchedClassDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        classCodeLabel.text = module?.moduleCode
-        classNameLabel.text = module?.title
-        firstInfoLineLabel.text = "\(module?.department ?? "") - \(module?.faculty ?? "")"
-        let semesterArray = module?.semesterData.map { sem -> String in
+        classCodeLabel.text = course?.moduleCode
+        classNameLabel.text = course?.title
+        firstInfoLineLabel.text = "\(course?.department ?? "") - \(course?.faculty ?? "")"
+        let semesterArray = course?.semesterData?.semesterData.map { sem -> String in
             if let s = sem?.semester {
                 return "Semester " + String(s)
                 }
@@ -39,10 +38,10 @@ class SearchedClassDetailViewController: UIViewController {
                 }
         }
         semesterLabel.text = semesterArray?.joined(separator: " - ")
-        classDetailsText.text = module?.description
+        classDetailsText.text = course?.moduleDescription
         preclusionLabel.text = "Preclusion"
-        preclusionText.text = module?.preclusion
-        let semesterExamArray = module?.semesterData.map { sem -> String in
+        preclusionText.text = course?.preclusion
+        let semesterExamArray = course?.semesterData?.semesterData.map { sem -> String in
             var str = ""
             if let d = sem?.examDate {
                 str += d + " , "

@@ -11,8 +11,10 @@ import CoreData
 
 class ClassSearchViewController: UIViewController {
     @IBOutlet weak var classListCollectionView: UICollectionView!
-    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
-    private let itemsPerRow: CGFloat = 1
+    var allCourses: [Course]? = [Course]()
+    var filteredCourses: [Course]? = [Course]()
+    let searchController = UISearchController(searchResultsController: nil)
+    private let debouncer = Debouncer(seconds: 0.3)
     
     private lazy var dataSource: ClassSearchDataSource = {
         let source = ClassSearchDataSource()
@@ -21,6 +23,9 @@ class ClassSearchViewController: UIViewController {
     }()
     
     // MARK: - View
+    private let sectionInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 50.0, right: 20.0)
+    private let itemsPerRow: CGFloat = 1
+    
     private lazy var spinner: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .whiteLarge)
         indicator.color = .gray
@@ -28,21 +33,45 @@ class ClassSearchViewController: UIViewController {
         return indicator
     }()
     
+    private lazy var noResultsLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.lineBreakMode = .byWordWrapping
+        label.text = "No Results"
+        label.font = UIFont.boldSystemFont(ofSize: 34.0)
+        label.numberOfLines = 0
+        return label
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if spinner.superview == nil, let superView = classListCollectionView.superview {
+         // Add spinner to superview
+        if spinner.superview == nil, allCourses?.isEmpty ?? true, let superView = classListCollectionView.superview {
             superView.addSubview(spinner)
             superView.bringSubviewToFront(spinner)
             spinner.translatesAutoresizingMaskIntoConstraints = false
             spinner.centerXAnchor.constraint(equalTo: superView.centerXAnchor).isActive = true
             spinner.centerYAnchor.constraint(equalTo: superView.centerYAnchor).isActive = true
         }
+        
+        // Add "No Results" label to superview
+        if let superView = classListCollectionView.superview {
+            superView.addSubview(noResultsLabel)
+            superView.bringSubviewToFront(noResultsLabel)
+            noResultsLabel.centerXAnchor.constraint(equalTo: superView.centerXAnchor).isActive = true
+            noResultsLabel.centerYAnchor.constraint(equalTo: superView.centerYAnchor).isActive = true
+            noResultsLabel.isHidden = true
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        spinner.startAnimating()
+        setupSearchController()
+        if allCourses?.isEmpty ?? true {
+            spinner.startAnimating()
+        }
         dataSource.loadClassList { error in
             DispatchQueue.main.async {
                 
@@ -59,33 +88,115 @@ class ClassSearchViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
+        reloadAllCourses()
     }
     
+    // MARK: - Helpers
+    func reloadAllCourses() {
+        allCourses = dataSource.fetchedResultsController.fetchedObjects
+        classListCollectionView.reloadData()
+    }
+    
+    func setupSearchController() {
+        
+        // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Courses"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+        // Setup the Scope Bar
+        searchController.searchBar.scopeButtonTitles = ["All", "Code", "Name", "Description"]
+        searchController.searchBar.delegate = self
+    }
+    
+    func filterContentForSearchText(_ searchText: String?, scope: String = "All") {
+        guard let query = searchText else {
+            return
+        }
+        debouncer.debounce {
+            self.filteredCourses = self.allCourses?.filter({( course: Course) -> Bool in
+                var doesCategoryMatch = true
+                switch scope {
+                case "All":
+                    doesCategoryMatch = course.title?.lowercased().contains(query.lowercased()) ?? false || course.moduleCode?.lowercased().contains(query.lowercased()) ?? false
+                    break
+                case "Code":
+                    doesCategoryMatch = course.moduleCode?.lowercased().contains(query.lowercased()) ?? false
+                    break
+                case "Name":
+                    doesCategoryMatch = course.title?.lowercased().contains(query.lowercased()) ?? false
+                    break
+                case "Description":
+                    doesCategoryMatch = course.moduleDescription?.lowercased().contains(query.lowercased()) ?? false
+                    break
+                default:
+                    break
+                }
+                if self.searchBarIsEmpty() {
+                    return true
+                } else {
+                    return doesCategoryMatch
+                }
+            })
+            
+            DispatchQueue.main.async {
+                self.classListCollectionView.reloadData()
+                if self.filteredCourses?.isEmpty ?? true {
+                    self.noResultsLabel.isHidden = false
+                } else {
+                    self.noResultsLabel.isHidden = true
+                }
+            }
+        }
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func isFiltering() -> Bool {
+        let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
+        return searchController.isActive && (!searchBarIsEmpty() || searchBarScopeIsFiltering)
+    }
     
     // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        let cell = sender as! ClassCollectionViewCell
-    //        let indexPath = classListCollectionView.indexPath(for: cell)
-    //
-    //        if let indexPath = indexPath {
-    //            let index = indexPath.row
-    //            let module = moduleArray[index]
-    //        }
-    //    }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! ClassCollectionViewCell
+        let indexPath = classListCollectionView.indexPath(for: cell)
+        
+        if let indexPath = indexPath {
+            let course: Course?
+            if isFiltering() {
+                course = filteredCourses?[indexPath.row]
+            } else {
+                course = allCourses?[indexPath.row]
+            }
+            if let vc = segue.destination as? SearchedClassDetailViewController {
+                vc.course = course
+            }
+        }
+    }
 }
 
 // MARK: - UI Collection View Data Source and Delegate
 extension ClassSearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSource.fetchedResultsController.fetchedObjects?.count ?? 0
+        if isFiltering() {
+            return filteredCourses?.count ?? 0
+        }
+        return allCourses?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClassCell", for: indexPath) as! ClassCollectionViewCell
-        guard let course = dataSource.fetchedResultsController.fetchedObjects?[indexPath.row] else { return cell }
+        let course: Course?
+        if isFiltering() {
+            course = filteredCourses?[indexPath.row]
+        } else {
+            course = allCourses?[indexPath.row]
+        }
         cell.configure(with: course)
         return cell
     }
@@ -123,6 +234,22 @@ extension ClassSearchViewController: NSFetchedResultsControllerDelegate {
      Reloads the table view when the fetched result controller's content changes.
      */
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.classListCollectionView.reloadData()
+        self.reloadAllCourses()
+    }
+}
+
+// MARK: - UISearchBar Delegate
+extension ClassSearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
+}
+
+// MARK: - UISearchResultsUpdating Delegate
+extension ClassSearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text, scope: scope)
     }
 }
