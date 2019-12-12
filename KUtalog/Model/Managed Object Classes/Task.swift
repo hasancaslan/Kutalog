@@ -6,4 +6,11 @@
 //  Copyright © 2019 cerenhasancan. All rights reserved.
 //
 
-import Foundation
+import CoreData
+
+class Task: NSManagedObject {
+       @NSManaged public var moduleCode: String?
+       @NSManaged public var taskDescription: String?
+       @NSManaged public var title: String?
+       @NSManaged public var date: Date?
+}
