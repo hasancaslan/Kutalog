@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ExpandableCell
 
-class ExpandableTableViewCell: UITableViewCell {
+class ExpandableTableViewCell: ExpandableCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +20,14 @@ class ExpandableTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func isSelectable() -> Bool {
+        return true
+    }
+    
+    override func isInitiallyExpanded() -> Bool {
+        return false
     }
 
 }

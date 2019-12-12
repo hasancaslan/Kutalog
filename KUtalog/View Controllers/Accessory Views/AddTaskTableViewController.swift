@@ -7,19 +7,27 @@
 //
 
 import UIKit
+import ExpandableCell
+
 
 class AddTaskTableViewController: UITableViewController {
 
+    
+    @IBOutlet var addTaskTableView: ExpandableTableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //addTaskTableView.expandableDelegate = self
+        //addTaskTableView.animation = .automatic
+        //addTaskTableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: "ExpandableTableViewCell")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -31,7 +39,7 @@ class AddTaskTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
-
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

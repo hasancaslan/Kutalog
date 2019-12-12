@@ -51,6 +51,9 @@ class LandingViewController: UIViewController {
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
                         self.animateView()
                     }))
+                    self.present(alert, animated: true) {
+                        
+                    }
                 }
                 return
             }
