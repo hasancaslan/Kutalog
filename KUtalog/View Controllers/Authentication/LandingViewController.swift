@@ -46,14 +46,14 @@ class LandingViewController: UIViewController {
                 appDelegate.window?.rootViewController = controller
                 return
             } else {
+                UserDefaults.standard.removeObject(forKey: "email")
+                UserDefaults.standard.removeObject(forKey: "password")
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "There was an error when logging in.", message: err?.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
                         self.animateView()
                     }))
-                    self.present(alert, animated: true) {
-                        
-                    }
+                    self.present(alert, animated: true)
                 }
                 return
             }
