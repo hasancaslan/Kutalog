@@ -15,7 +15,6 @@
 		14C6BBAF23A25EBF002931AB /* AddTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C6BBAE23A25EBF002931AB /* AddTaskTableViewController.swift */; };
 		D981C39D1C9DAA05CC9DC713 /* Pods_KUtalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */; };
 		F3285A64239FFDB5009B0498 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3285A63239FFDB5009B0498 /* Course.swift */; };
-		F33275B223A00C170096609A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33275B123A00C170096609A /* Task.swift */; };
 		F33275B423A00C3E0096609A /* TasksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33275B323A00C3E0096609A /* TasksDataSource.swift */; };
 		F33275B623A00C550096609A /* TimetableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33275B523A00C550096609A /* TimetableDataSource.swift */; };
 		F33652EE23995B7100384E30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F33652ED23995B7100384E30 /* GoogleService-Info.plist */; };
@@ -72,7 +71,6 @@
 		320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KUtalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D14C91BB5EF388AC06917CAA /* Pods-KUtalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalog.release.xcconfig"; path = "Target Support Files/Pods-KUtalog/Pods-KUtalog.release.xcconfig"; sourceTree = "<group>"; };
 		F3285A63239FFDB5009B0498 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
-		F33275B123A00C170096609A /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		F33275B323A00C3E0096609A /* TasksDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksDataSource.swift; sourceTree = "<group>"; };
 		F33275B523A00C550096609A /* TimetableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDataSource.swift; sourceTree = "<group>"; };
 		F33652ED23995B7100384E30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				F3285A63239FFDB5009B0498 /* Course.swift */,
-				F33275B123A00C170096609A /* Task.swift */,
 			);
 			path = "Managed Object Classes";
 			sourceTree = "<group>";
@@ -517,7 +514,6 @@
 				F3B84CA5239FD70300C02626 /* Semesters.swift in Sources */,
 				F33275B623A00C550096609A /* TimetableDataSource.swift in Sources */,
 				142AD42E23999BE600DDA179 /* TaskTableViewCell.swift in Sources */,
-				F33275B223A00C170096609A /* Task.swift in Sources */,
 				F3CFFFFD238BFA7800450C5D /* AppDelegate.swift in Sources */,
 				F3A1AC1C239AAD63009D4FD1 /* Validations.swift in Sources */,
 				F33953482399503200647058 /* EditTaskViewController.swift in Sources */,
