@@ -11,6 +11,8 @@
 		142AD42E23999BE600DDA179 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142AD42D23999BE600DDA179 /* TaskTableViewCell.swift */; };
 		142AD43123999F5100DDA179 /* ClassSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142AD43023999F5100DDA179 /* ClassSearchDataSource.swift */; };
 		142AD43323999F5F00DDA179 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142AD43223999F5F00DDA179 /* Class.swift */; };
+		14C6BBAF23A25EBF002931AB /* AddTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C6BBAE23A25EBF002931AB /* AddTaskTableViewController.swift */; };
+		14C6BBB723A262F8002931AB /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C6BBB623A262F8002931AB /* ExpandableTableViewCell.swift */; };
 		D981C39D1C9DAA05CC9DC713 /* Pods_KUtalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */; };
 		F3285A64239FFDB5009B0498 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3285A63239FFDB5009B0498 /* Course.swift */; };
 		F33275B423A00C3E0096609A /* TasksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33275B323A00C3E0096609A /* TasksDataSource.swift */; };
@@ -60,10 +62,12 @@
 
 /* Begin PBXFileReference section */
 		0EAFC532295EFD8653BE1421 /* Pods-KUtalog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalog.debug.xcconfig"; path = "Target Support Files/Pods-KUtalog/Pods-KUtalog.debug.xcconfig"; sourceTree = "<group>"; };
-		142AD42B23999A6D00DDA179 /* ClassCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		142AD42D23999BE600DDA179 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		142AD42B23999A6D00DDA179 /* ClassCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassCollectionViewCell.swift; path = KUtalog/Cells/ClassCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		142AD42D23999BE600DDA179 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = KUtalog/Cells/TaskTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		142AD43023999F5100DDA179 /* ClassSearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassSearchDataSource.swift; sourceTree = "<group>"; };
 		142AD43223999F5F00DDA179 /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
+		14C6BBAE23A25EBF002931AB /* AddTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTableViewController.swift; sourceTree = "<group>"; };
+		14C6BBB623A262F8002931AB /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KUtalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D14C91BB5EF388AC06917CAA /* Pods-KUtalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalog.release.xcconfig"; path = "Target Support Files/Pods-KUtalog/Pods-KUtalog.release.xcconfig"; sourceTree = "<group>"; };
 		F3285A63239FFDB5009B0498 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -140,6 +144,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		14C6BBB423A262B4002931AB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				142AD42B23999A6D00DDA179 /* ClassCollectionViewCell.swift */,
+				142AD42D23999BE600DDA179 /* TaskTableViewCell.swift */,
+				14C6BBB623A262F8002931AB /* ExpandableTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		1E0E0EEE72D0FF5527687E0A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,15 +215,6 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		F339533423994F7900647058 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				142AD42B23999A6D00DDA179 /* ClassCollectionViewCell.swift */,
-				142AD42D23999BE600DDA179 /* TaskTableViewCell.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		F339534B2399504300647058 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +243,7 @@
 				F33953452399502800647058 /* AddTaskViewController.swift */,
 				F33953472399503200647058 /* EditTaskViewController.swift */,
 				F33953492399503A00647058 /* SettingsViewController.swift */,
+				14C6BBAE23A25EBF002931AB /* AddTaskTableViewController.swift */,
 			);
 			path = "Accessory Views";
 			sourceTree = "<group>";
@@ -295,9 +301,9 @@
 		F3CFFFFB238BFA7800450C5D /* KUtalog */ = {
 			isa = PBXGroup;
 			children = (
+				14C6BBB423A262B4002931AB /* Cells */,
 				F38C6A0523999E6600A4AF99 /* Helpers */,
 				142AD42F23999F1500DDA179 /* Model */,
-				F339533423994F7900647058 /* Cells */,
 				F339533323994F6F00647058 /* View Controllers */,
 				F33275B023A00BD70096609A /* Resources */,
 				F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */,
@@ -504,6 +510,7 @@
 				F339533823994FAD00647058 /* LoginViewController.swift in Sources */,
 				F3C863FD23A00E9200071A17 /* KUtalog.xcdatamodeld in Sources */,
 				F339533A23994FB700647058 /* RegisterViewController.swift in Sources */,
+				14C6BBAF23A25EBF002931AB /* AddTaskTableViewController.swift in Sources */,
 				F3B84CA5239FD70300C02626 /* Semesters.swift in Sources */,
 				F33275B623A00C550096609A /* TimetableDataSource.swift in Sources */,
 				142AD42E23999BE600DDA179 /* TaskTableViewCell.swift in Sources */,
@@ -522,6 +529,7 @@
 				F33275B423A00C3E0096609A /* TasksDataSource.swift in Sources */,
 				142AD43123999F5100DDA179 /* ClassSearchDataSource.swift in Sources */,
 				F33953422399500E00647058 /* SearchedClassDetailViewController.swift in Sources */,
+				14C6BBB723A262F8002931AB /* ExpandableTableViewCell.swift in Sources */,
 				F38C6A0723999E7800A4AF99 /* Alerts.swift in Sources */,
 				F393588423A1B8CC0004DCE4 /* Debouncer.swift in Sources */,
 				142AD43323999F5F00DDA179 /* Class.swift in Sources */,

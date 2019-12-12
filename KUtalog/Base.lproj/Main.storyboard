@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HvV-sQ-vkL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HvV-sQ-vkL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -112,10 +112,10 @@
             </objects>
             <point key="canvasLocation" x="1298.5507246376812" y="707.8125"/>
         </scene>
-        <!--Add Task Table View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="IT6-RB-1MM">
             <objects>
-                <tableViewController id="jSP-ru-OIL" customClass="AddTaskTableViewController" customModule="KUtalog" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="jSP-ru-OIL" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Kl4-Qh-4Xm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,7 +123,7 @@
                         <sections>
                             <tableViewSection id="rWl-Le-Goe">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="250" id="2bf-P2-im3">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ExpandableTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="250" id="2bf-P2-im3" customClass="ExpandableTableViewCell" customModule="KUtalog" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2bf-P2-im3" id="IUG-PK-eV5">
@@ -164,10 +164,40 @@
                             <outlet property="delegate" destination="jSP-ru-OIL" id="0m0-Vt-BaD"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="addTaskTableView" destination="Kl4-Qh-4Xm" id="bDS-cm-bGq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3P9-Ta-wr1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2129" y="708"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mt8-lJ-bGp">
+            <objects>
+                <viewController id="ZM6-XD-UOJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WNu-wH-gQP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HjE-JH-15N">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ENM-wN-SBh" firstAttribute="bottom" secondItem="HjE-JH-15N" secondAttribute="bottom" id="5dq-Js-WVd"/>
+                            <constraint firstItem="ENM-wN-SBh" firstAttribute="trailing" secondItem="HjE-JH-15N" secondAttribute="trailing" id="Ad9-fJ-TRW"/>
+                            <constraint firstItem="HjE-JH-15N" firstAttribute="top" secondItem="ENM-wN-SBh" secondAttribute="top" id="OAI-I6-ruo"/>
+                            <constraint firstItem="HjE-JH-15N" firstAttribute="leading" secondItem="ENM-wN-SBh" secondAttribute="leading" id="giz-el-Cqw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ENM-wN-SBh"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ayg-Q1-CyK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2129" y="1414"/>
         </scene>
         <!--Edit Task View Controller-->
         <scene sceneID="JwM-R9-Izy">
