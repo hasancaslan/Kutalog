@@ -11,6 +11,9 @@
 		142AD42E23999BE600DDA179 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142AD42D23999BE600DDA179 /* TaskTableViewCell.swift */; };
 		142AD43123999F5100DDA179 /* ClassSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142AD43023999F5100DDA179 /* ClassSearchDataSource.swift */; };
 		142AD43323999F5F00DDA179 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142AD43223999F5F00DDA179 /* Class.swift */; };
+		14B937B923A3037D00AEF26C /* DatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B937B823A3037D00AEF26C /* DatePickerTableViewCell.swift */; };
+		14B937BB23A303C300AEF26C /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B937BA23A303C300AEF26C /* TextFieldTableViewCell.swift */; };
+		14B937BD23A303E200AEF26C /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B937BC23A303E200AEF26C /* PickerTableViewCell.swift */; };
 		14C6BBAF23A25EBF002931AB /* AddTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C6BBAE23A25EBF002931AB /* AddTaskTableViewController.swift */; };
 		D981C39D1C9DAA05CC9DC713 /* Pods_KUtalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */; };
 		F3285A64239FFDB5009B0498 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3285A63239FFDB5009B0498 /* Course.swift */; };
@@ -65,6 +68,9 @@
 		142AD42D23999BE600DDA179 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = KUtalog/Cells/TaskTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		142AD43023999F5100DDA179 /* ClassSearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassSearchDataSource.swift; sourceTree = "<group>"; };
 		142AD43223999F5F00DDA179 /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
+		14B937B823A3037D00AEF26C /* DatePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTableViewCell.swift; sourceTree = "<group>"; };
+		14B937BA23A303C300AEF26C /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		14B937BC23A303E200AEF26C /* PickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
 		14C6BBAE23A25EBF002931AB /* AddTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTableViewController.swift; sourceTree = "<group>"; };
 		320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KUtalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D14C91BB5EF388AC06917CAA /* Pods-KUtalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalog.release.xcconfig"; path = "Target Support Files/Pods-KUtalog/Pods-KUtalog.release.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +153,9 @@
 			children = (
 				142AD42B23999A6D00DDA179 /* ClassCollectionViewCell.swift */,
 				142AD42D23999BE600DDA179 /* TaskTableViewCell.swift */,
+				14B937B823A3037D00AEF26C /* DatePickerTableViewCell.swift */,
+				14B937BA23A303C300AEF26C /* TextFieldTableViewCell.swift */,
+				14B937BC23A303E200AEF26C /* PickerTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -512,6 +521,7 @@
 				F33275B623A00C550096609A /* TimetableDataSource.swift in Sources */,
 				142AD42E23999BE600DDA179 /* TaskTableViewCell.swift in Sources */,
 				F3CFFFFD238BFA7800450C5D /* AppDelegate.swift in Sources */,
+				14B937B923A3037D00AEF26C /* DatePickerTableViewCell.swift in Sources */,
 				F3A1AC1C239AAD63009D4FD1 /* Validations.swift in Sources */,
 				F33953482399503200647058 /* EditTaskViewController.swift in Sources */,
 				F33953442399502000647058 /* TasksViewController.swift in Sources */,
@@ -524,8 +534,10 @@
 				F339534023994FE900647058 /* ClassSearchViewController.swift in Sources */,
 				F339533C23994FC900647058 /* TimetableViewController.swift in Sources */,
 				F33275B423A00C3E0096609A /* TasksDataSource.swift in Sources */,
+				14B937BD23A303E200AEF26C /* PickerTableViewCell.swift in Sources */,
 				142AD43123999F5100DDA179 /* ClassSearchDataSource.swift in Sources */,
 				F33953422399500E00647058 /* SearchedClassDetailViewController.swift in Sources */,
+				14B937BB23A303C300AEF26C /* TextFieldTableViewCell.swift in Sources */,
 				F38C6A0723999E7800A4AF99 /* Alerts.swift in Sources */,
 				F393588423A1B8CC0004DCE4 /* Debouncer.swift in Sources */,
 				142AD43323999F5F00DDA179 /* Class.swift in Sources */,
