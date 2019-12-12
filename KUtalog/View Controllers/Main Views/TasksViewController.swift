@@ -9,7 +9,7 @@
 import UIKit
 
 class TasksViewController: UIViewController {
-    @IBOutlet weak var daysSegmentedControl: UISegmentedControl!
+
     @IBOutlet weak var tasksTableView: UITableView!
     
     var selectedRowIndex = -1
@@ -23,8 +23,6 @@ class TasksViewController: UIViewController {
     }
     
 // MARK:- Actions
-    @IBAction func didDaysSegmentedControlChanged(_ sender: Any) {
-    }
     /*
     // MARK: - Navigation
 
@@ -36,11 +34,10 @@ class TasksViewController: UIViewController {
     */
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
             return 250
         }
-        return 70
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
