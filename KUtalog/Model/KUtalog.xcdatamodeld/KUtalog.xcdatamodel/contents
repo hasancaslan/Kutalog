@@ -10,7 +10,7 @@
         <attribute name="semesterData" optional="YES" attributeType="Transformable" customClassName="Semesters"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="workload" optional="YES" attributeType="String"/>
-        <relationship name="schedule" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Schedule" inverseName="courses" inverseEntity="Schedule"/>
+        <relationship name="schedules" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Schedule" inverseName="courses" inverseEntity="Schedule"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="course" inverseEntity="Task"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -18,11 +18,11 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="Schedule" representedClassName="Schedule" syncable="YES" codeGenerationType="class">
+    <entity name="Schedule" representedClassName=".Schedule" syncable="YES" codeGenerationType="class">
         <attribute name="useruid" optional="YES" attributeType="String"/>
-        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="schedule" inverseEntity="Course"/>
+        <relationship name="courses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="schedules" inverseEntity="Course"/>
     </entity>
-    <entity name="Task" representedClassName=".Task" syncable="YES">
+    <entity name="Task" representedClassName=".Task" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="moduleCode" optional="YES" attributeType="String"/>
         <attribute name="taskDescription" optional="YES" attributeType="String"/>
@@ -31,7 +31,7 @@
     </entity>
     <elements>
         <element name="Course" positionX="124.50390625" positionY="58.90234375" width="128" height="208"/>
-        <element name="Schedule" positionX="123.33984375" positionY="-80.75390625" width="128" height="73"/>
-        <element name="Task" positionX="-61.67578125" positionY="133.875" width="128" height="118"/>
+        <element name="Schedule" positionX="-67.36328125" positionY="45.97265625" width="128" height="73"/>
+        <element name="Task" positionX="-67.484375" positionY="149.05078125" width="128" height="118"/>
     </elements>
 </model>

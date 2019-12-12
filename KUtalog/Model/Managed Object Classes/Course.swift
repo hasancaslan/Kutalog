@@ -18,6 +18,8 @@ class Course: NSManagedObject {
        @NSManaged public var semesterData: Semesters?
        @NSManaged public var title: String?
        @NSManaged public var workload: String?
+     @NSManaged public var tasks: NSSet?
+    @NSManaged public var schedules: NSSet?
     
     func update(with module: Module) {
         let data = Semesters(semesterData: module.semesterData)
@@ -30,4 +32,8 @@ class Course: NSManagedObject {
         preclusion = module.preclusion
         semesterData = data
     }
+    
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Course> {
+           return NSFetchRequest<Course>(entityName: "Course")
+       }
 }
