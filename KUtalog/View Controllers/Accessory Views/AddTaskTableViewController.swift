@@ -13,8 +13,9 @@ import ExpandableCell
 class AddTaskTableViewController: UITableViewController {
 
     
-    @IBOutlet var addTaskTableView: ExpandableTableView!
+    @IBOutlet var addTaskTableView: UITableView!
     
+    var selectedRowIndex: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         //addTaskTableView.expandableDelegate = self
@@ -35,10 +36,6 @@ class AddTaskTableViewController: UITableViewController {
         return 0
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
