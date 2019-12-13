@@ -28,11 +28,11 @@ class TasksDataSource {
     weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
     
     /**
-     A fetched results controller to fetch Quake records sorted by time.
+     A fetched results controller to fetch Course records sorted by time.
      */
     lazy var fetchedResultsController: NSFetchedResultsController<Task> = {
         
-        // Create a fetch request for the Quake entity sorted by time.
+        // Create a fetch request for the Course entity sorted by time.
         let fetchRequest = NSFetchRequest<Task>(entityName: "Task")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         

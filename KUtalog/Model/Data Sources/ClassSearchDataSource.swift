@@ -123,7 +123,7 @@ class ClassSearchDataSource {
         // taskContext.performAndWait runs on the URLSession's delegate queue
         // so it won’t block the main thread.
         taskContext.performAndWait {
-            // Create a new record for each quake in the batch.
+            // Create a new record for each course in the batch.
             for moduleData in modulesBatch {
                 
                 // Create a Course managed object on the private queue context.

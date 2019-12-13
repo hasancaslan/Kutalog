@@ -72,7 +72,7 @@ extension TasksViewController: UITableViewDelegate {
     }
 }
 
-// MARK:- Table View Data Source
+// MARK:- TableView DataSource
 extension TasksViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allTasks?.count ?? 0
@@ -87,7 +87,7 @@ extension TasksViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - NS Fetched Results Controller Delegate
+// MARK: - NSFetchedResultsController Delegate
 extension TasksViewController: NSFetchedResultsControllerDelegate {
     /**
      Reloads the table view when the fetched result controller's content changes.
@@ -97,6 +97,7 @@ extension TasksViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
+// MARK: - TasksDataSource Delegate
 extension TasksViewController: TasksDataSourceDelegate {
     func taskListLoaded(taskList: [Task]?) {
         self.allTasks = taskList
