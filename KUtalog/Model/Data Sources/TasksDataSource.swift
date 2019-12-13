@@ -17,22 +17,7 @@ class TasksDataSource {
     /**
      A persistent container to set up the Core Data stack.
      */
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "KUtalog")
-        
-        container.loadPersistentStores { storeDesription, error in
-            guard error == nil else {
-                fatalError("Unresolved error \(error!)")
-            }
-        }
-        
-        // Merge the changes from other contexts automatically.
-        container.viewContext.automaticallyMergesChangesFromParent = true
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        container.viewContext.undoManager = nil
-        container.viewContext.shouldDeleteInaccessibleFaults = true
-        return container
-    }()
+    lazy var persistentContainer = DataController.shared.persistentContainer
     
     // MARK: - NSFetchedResultsController
     

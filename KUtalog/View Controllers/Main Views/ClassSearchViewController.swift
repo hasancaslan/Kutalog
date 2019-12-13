@@ -19,6 +19,7 @@ class ClassSearchViewController: UIViewController {
     private lazy var dataSource: ClassSearchDataSource = {
         let source = ClassSearchDataSource()
         source.fetchedResultsControllerDelegate = self
+        source.delegate = self
         return source
     }()
     
@@ -69,10 +70,11 @@ class ClassSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
+        dataSource.loadCourseList()
         if allCourses?.isEmpty ?? true {
             spinner.startAnimating()
         }
-        dataSource.loadClassList { error in
+        dataSource.fetchCourseList { error in
             DispatchQueue.main.async {
                 
                 // Update the spinner and refresh button states.
@@ -88,15 +90,10 @@ class ClassSearchViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-        reloadAllCourses()
+       dataSource.loadCourseList()
     }
     
     // MARK: - Helpers
-    func reloadAllCourses() {
-        allCourses = dataSource.fetchedResultsController.fetchedObjects
-        classListCollectionView.reloadData()
-    }
-    
     func setupSearchController() {
         
         // Setup the Search Controller
@@ -180,7 +177,7 @@ class ClassSearchViewController: UIViewController {
     }
 }
 
-// MARK: - UI Collection View Data Source and Delegate
+// MARK: - UICollectionView DataSource and Delegate
 extension ClassSearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isFiltering() {
@@ -202,7 +199,7 @@ extension ClassSearchViewController: UICollectionViewDataSource, UICollectionVie
     }
 }
 
-// MARK: - UI Collection View Delegate Flow Layout
+// MARK: - UICollectionViewDelegateFlowLayout
 extension ClassSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -228,13 +225,13 @@ extension ClassSearchViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - NS Fetched Results Controller Delegate
+// MARK: - NSFetchedResultsController Delegate
 extension ClassSearchViewController: NSFetchedResultsControllerDelegate {
     /**
      Reloads the table view when the fetched result controller's content changes.
      */
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.reloadAllCourses()
+        self.dataSource.loadCourseList()
     }
 }
 
@@ -251,5 +248,13 @@ extension ClassSearchViewController: UISearchResultsUpdating {
         let searchBar = searchController.searchBar
         let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
         filterContentForSearchText(searchController.searchBar.text, scope: scope)
+    }
+}
+
+// MARK: - ClassSearchDataSource Delegate
+extension ClassSearchViewController: ClassSearchDataSourceDelegate {
+    func courseListLoaded(courseList: [Course]?) {
+        self.allCourses = courseList
+        self.classListCollectionView.reloadData()
     }
 }
