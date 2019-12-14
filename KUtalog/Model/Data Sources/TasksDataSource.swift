@@ -19,6 +19,22 @@ class TasksDataSource {
      */
     lazy var persistentContainer = DataController.shared.persistentContainer
     
+    func createTask(uid: String, title: String?, moduleCode: String?, description: String?, date: Date?, course: Course) {
+        let task = Task(context: persistentContainer.viewContext)
+        task.uid = uid
+        task.title = title
+        task.moduleCode = moduleCode
+        task.taskDescription = description
+        task.date = date
+        task.course = course
+        try? persistentContainer.viewContext.save()
+    }
+    
+    func deleteTask(_ taskToDelete: Task) {
+        persistentContainer.viewContext.delete(taskToDelete)
+        try? persistentContainer.viewContext.save()
+    }
+    
     // MARK: - NSFetchedResultsController
     
     /**
