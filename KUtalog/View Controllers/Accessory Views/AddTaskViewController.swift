@@ -35,9 +35,13 @@ class AddTaskViewController: UIViewController {
     var task: Task?
     var datePickerTableViewCell = DatePickerTableViewCell()
     
+    @IBOutlet weak var addTaskTableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         datePickerTableViewCell.delegate = self
+        addTaskTableView.register(DatePickerTableViewCell.self, forCellReuseIdentifier: "DatePickerTableViewCell")
         // Do any additional setup after loading the view.
     }
     
