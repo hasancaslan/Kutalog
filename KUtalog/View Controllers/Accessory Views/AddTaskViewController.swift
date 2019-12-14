@@ -8,11 +8,36 @@
 
 import UIKit
 
-class AddTaskViewController: UIViewController {
+extension AddTaskViewController: DatePickerTableViewCellDelegate {
+    func getSelectedDate(date: Date) {
+        task?.date = date
+        print(date)
+    }
+}
 
+extension AddTaskViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            return datePickerTableViewCell
+        }
+        print("we have a problem")
+        return datePickerTableViewCell
+    }
+    
+    
+}
+
+class AddTaskViewController: UIViewController {
+    var task: Task?
+    var datePickerTableViewCell = DatePickerTableViewCell()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        datePickerTableViewCell.delegate = self
         // Do any additional setup after loading the view.
     }
     

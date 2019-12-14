@@ -9,15 +9,26 @@
 import UIKit
 import ExpandableCell
 
+extension AddTaskTableViewController: DatePickerTableViewCellDelegate {
+    func getSelectedDate(date: Date) {
+        task?.date = date
+        print(date)
+    }
+}
+
 
 class AddTaskTableViewController: UITableViewController {
-
+    var task: Task?
+    var datePickerTableViewCell = DatePickerTableViewCell()
     
     @IBOutlet var addTaskTableView: UITableView!
     var dataSource: TasksDataSource!
     var selectedRowIndex: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
+        datePickerTableViewCell.delegate = self
+        addTaskTableView.delegate = self
+        addTaskTableView.register(DatePickerTableViewCell.self, forCellReuseIdentifier: "DatePickerTableViewCell")
         //addTaskTableView.expandableDelegate = self
         //addTaskTableView.animation = .automatic
         //addTaskTableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: "ExpandableTableViewCell")
@@ -36,7 +47,17 @@ class AddTaskTableViewController: UITableViewController {
         return 0
     }
 
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            return datePickerTableViewCell
+        }
+        print("we have a problem")
+        return datePickerTableViewCell
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

@@ -8,8 +8,15 @@
 
 import UIKit
 
+protocol DatePickerTableViewCellDelegate {
+    func getSelectedDate(date: Date)
+}
+
 class DatePickerTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var dateLabel: UILabel!
+    var delegate: DatePickerTableViewCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +28,8 @@ class DatePickerTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func dateValueChanged(_ sender: Any) {
+        self.delegate?.getSelectedDate(date: datePicker.date)
+    }
+    
 }
