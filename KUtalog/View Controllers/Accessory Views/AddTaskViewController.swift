@@ -18,15 +18,27 @@ extension AddTaskViewController: DatePickerTableViewCellDelegate {
 
 extension AddTaskViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DatePickerTableViewCell", for: indexPath) as! DatePickerTableViewCell
             cell.delegate = self
             return cell
-        }
+        } else if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
+            cell.textField?.placeholder = "Title"
+            return cell
+        } else if indexPath.row == 1 {
+             let cell = tableView.dequeueReusableCell(withIdentifier: "PickerTableViewCell", for: indexPath) as! PickerTableViewCell
+
+              return cell
+         } else if indexPath.row == 3 {
+              let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
+              cell.textField?.placeholder = "Description"
+              return cell
+         }
         return UITableViewCell()
     }
 }
