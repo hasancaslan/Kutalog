@@ -10,6 +10,7 @@ import CoreData
 
 protocol TasksDataSourceDelegate {
     func taskListLoaded (taskList: [Task]?)
+    func scheduledCoursesLoaded (courseList: [Course]?)
 }
 
 class TasksDataSource {
@@ -55,10 +56,29 @@ class TasksDataSource {
         // Create a fetched results controller and set its fetch request, context, and delegate.
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                     managedObjectContext: persistentContainer.viewContext,
-                                                    sectionNameKeyPath: nil, cacheName: nil)
+                                                    sectionNameKeyPath: nil, cacheName: "tasks")
         controller.delegate = fetchedResultsControllerDelegate
         
         // Perform the fetch.
+        do {
+            try controller.performFetch()
+        } catch {
+            fatalError("Unresolved error \(error)")
+        }
+        
+        return controller
+    }()
+    
+    /**
+     A fetched results controller to fetch Schedule records sorted by time.
+     */
+    lazy var scheduleFetchedResultsController: NSFetchedResultsController<Schedule> = {
+        let fetchRequest = NSFetchRequest<Schedule>(entityName: "Schedule")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "uid", ascending: false)]
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                    managedObjectContext: persistentContainer.viewContext,
+                                                    sectionNameKeyPath: nil, cacheName: "scheduledCourses")
+        controller.delegate = fetchedResultsControllerDelegate
         do {
             try controller.performFetch()
         } catch {
@@ -74,6 +94,20 @@ class TasksDataSource {
         let fetchedObjects = fetchedResultsController.fetchedObjects
         DispatchQueue.main.async {
             self.delegate?.taskListLoaded(taskList: fetchedObjects)
+        }
+    }
+    
+    func loadScheduledCoursed(uid: String) {
+        let fetchedObjects = scheduleFetchedResultsController.fetchedObjects?.filter({ schedule in
+            schedule.uid == uid
+        })
+        guard let currentSchedule = fetchedObjects?.first else {
+            return
+        }
+        if let courseList = currentSchedule.courses?.allObjects as? [Course] {
+            DispatchQueue.main.async {
+                self.delegate?.scheduledCoursesLoaded(courseList: courseList)
+            }
         }
     }
 }

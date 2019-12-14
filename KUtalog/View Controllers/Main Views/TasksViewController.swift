@@ -37,8 +37,6 @@ class TasksViewController: UIViewController {
             vc.dataSource = self.dataSource
         }
      }
-    
-    
 }
 
 // MARK:- Table View Delegate

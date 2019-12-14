@@ -170,7 +170,7 @@ class ClassSearchDataSource {
         // Create a fetched results controller and set its fetch request, context, and delegate.
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                     managedObjectContext: persistentContainer.viewContext,
-                                                    sectionNameKeyPath: nil, cacheName: nil)
+                                                    sectionNameKeyPath: nil, cacheName: "courses")
         controller.delegate = fetchedResultsControllerDelegate
         
         // Perform the fetch.
