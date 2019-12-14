@@ -13,6 +13,10 @@ protocol ClassSearchDataSourceDelegate {
     func courseListLoaded(courseList: [Course]?)
 }
 
+extension ClassSearchDataSourceDelegate {
+    func courseListLoaded(courseList: [Course]?) { }
+}
+
 class ClassSearchDataSource {
     
     // MARK: - Core Data

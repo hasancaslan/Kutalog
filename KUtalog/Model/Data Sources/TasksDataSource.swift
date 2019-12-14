@@ -13,6 +13,11 @@ protocol TasksDataSourceDelegate {
     func scheduledCoursesLoaded (courseList: [Course]?)
 }
 
+extension TasksDataSourceDelegate {
+    func taskListLoaded (taskList: [Task]?) { }
+    func scheduledCoursesLoaded (courseList: [Course]?) { }
+}
+
 class TasksDataSource {
     // MARK: - Core Data
     /**
