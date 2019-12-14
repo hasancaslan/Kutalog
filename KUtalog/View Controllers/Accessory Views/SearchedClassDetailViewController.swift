@@ -61,10 +61,16 @@ class SearchedClassDetailViewController: UIViewController {
         semester1ExamText.text = semesterExamArray?[0] ?? ""
         semester2ExamText.text = semesterExamArray?[1] ?? ""
     }
+    
+// MARK:- Actions
     @IBAction func dismissButton(_ sender: Any) {
         self.dismiss(animated: true) {
             
         }
+    }
+    
+    @IBAction func addToScheduleTapped(_ sender: Any) {
+        
     }
     
 
