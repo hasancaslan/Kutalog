@@ -22,7 +22,9 @@ extension AddTaskViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            return datePickerTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DatePickerTableViewCell", for: indexPath) as! DatePickerTableViewCell
+            cell.delegate = self
+            return cell
         }
         print("we have a problem")
         return datePickerTableViewCell
@@ -34,7 +36,7 @@ extension AddTaskViewController: UITableViewDataSource {
 class AddTaskViewController: UIViewController {
     var task: Task?
     var datePickerTableViewCell = DatePickerTableViewCell()
-    
+
     @IBOutlet weak var addTaskTableView: UITableView!
     
     

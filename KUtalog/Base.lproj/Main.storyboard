@@ -165,7 +165,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="250" id="9bM-Sb-fzN" customClass="DatePickerTableViewCell" customModule="KUtalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DatePickerTableViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="250" id="9bM-Sb-fzN" customClass="DatePickerTableViewCell" customModule="KUtalog" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9bM-Sb-fzN" id="5Wg-I6-qee">
@@ -187,7 +187,7 @@
                                                         <constraint firstAttribute="height" constant="162" id="j4D-rB-B4d"/>
                                                     </constraints>
                                                     <connections>
-                                                        <action selector="dateValueChanged:" destination="9bM-Sb-fzN" eventType="valueChanged" id="Ny5-V1-b7p"/>
+                                                        <action selector="dateValueChanged:" destination="9bM-Sb-fzN" eventType="valueChanged" id="hee-6h-YKx"/>
                                                     </connections>
                                                 </datePicker>
                                             </subviews>
@@ -201,8 +201,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="dateLabel" destination="XaR-2G-DDM" id="kTM-ZK-NgY"/>
-                                            <outlet property="datePicker" destination="oho-4X-xIa" id="Qma-t2-g1d"/>
+                                            <outlet property="dateLabel" destination="XaR-2G-DDM" id="GpU-68-kFa"/>
+                                            <outlet property="datePicker" destination="oho-4X-xIa" id="ecE-xe-LRp"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
