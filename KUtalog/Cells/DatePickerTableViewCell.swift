@@ -16,9 +16,14 @@ class DatePickerTableViewCell: UITableViewCell {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
     var delegate: DatePickerTableViewCellDelegate?
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM yyyy EEEE HH:mm"
+        return formatter
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+         self.dateLabel.text = dateFormatter.string(from: self.datePicker.date)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,6 +33,7 @@ class DatePickerTableViewCell: UITableViewCell {
     }
     
     @IBAction func dateChanged(_ sender: Any) {
+        self.dateLabel.text = dateFormatter.string(from: self.datePicker.date)
         self.delegate?.getSelectedDate(date: datePicker.date)
     }
 }

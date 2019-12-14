@@ -11,6 +11,7 @@ import UIKit
 extension AddTaskViewController: DatePickerTableViewCellDelegate {
     func getSelectedDate(date: Date) {
         task?.date = date
+        
         print(date)
     }
 }
@@ -24,7 +25,6 @@ extension AddTaskViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DatePickerTableViewCell", for: indexPath) as! DatePickerTableViewCell
             cell.delegate = self
-            cell.dateLabel.text = "test"
             return cell
         }
         return UITableViewCell()
