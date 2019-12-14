@@ -15,6 +15,8 @@ protocol DatePickerTableViewCellDelegate {
 class DatePickerTableViewCell: UITableViewCell {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var deadlineLabel: UILabel!
+    
     var delegate: DatePickerTableViewCellDelegate?
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()

@@ -16,6 +16,30 @@ extension AddTaskViewController: DatePickerTableViewCellDelegate {
     }
 }
 
+extension AddTaskViewController: PickerTableViewCellDelegate {
+    func pickedCourse(course: String) {
+        //task?.course = course
+        print(course)
+    }
+    
+    
+}
+
+extension AddTaskViewController: TextFieldTableViewCellDelegate {
+    func getTitle(title: String) {
+        task?.title = title
+        print(title)
+    }
+    
+    func getDescription(description: String) {
+        // Hata veriyor, description immutablemış çünkü.
+        //task?.description = description
+        print(description)
+    }
+    
+    
+}
+
 extension AddTaskViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -29,14 +53,16 @@ extension AddTaskViewController: UITableViewDataSource {
         } else if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
             cell.textField?.placeholder = "Title"
+            cell.delegate = self
             return cell
         } else if indexPath.row == 1 {
              let cell = tableView.dequeueReusableCell(withIdentifier: "PickerTableViewCell", for: indexPath) as! PickerTableViewCell
-
+            cell.delegate = self
               return cell
          } else if indexPath.row == 3 {
               let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
               cell.textField?.placeholder = "Description"
+            cell.delegate = self
               return cell
          }
         return UITableViewCell()
