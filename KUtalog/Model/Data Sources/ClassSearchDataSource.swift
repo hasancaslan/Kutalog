@@ -72,6 +72,21 @@ class ClassSearchDataSource {
         dataTask.resume()
     }
     
+    func addCourseToSchedule(uid: String, course: Course) {
+           let fetchedObjects = scheduleFetchedResultsController.fetchedObjects?.filter({ schedule in
+               schedule.uid == uid
+           })
+           if let currentSchedule = fetchedObjects?.first {
+            course.schedules?.adding(currentSchedule)
+            try? persistentContainer.viewContext.save()
+           } else {
+               let newSchedule = Schedule(context: persistentContainer.viewContext)
+               newSchedule.uid = uid
+               course.schedules?.adding(newSchedule)
+               try? persistentContainer.viewContext.save()
+           }
+       }
+    
     func loadCourseList() {
         let courses = self.fetchedResultsController.fetchedObjects
         DispatchQueue.main.async {
@@ -185,4 +200,22 @@ class ClassSearchDataSource {
         }
         return controller
     }()
+    
+    lazy var scheduleFetchedResultsController: NSFetchedResultsController<Schedule> = {
+        let fetchRequest = NSFetchRequest<Schedule>(entityName: "Schedule")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "uid", ascending: true)]
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                    managedObjectContext: persistentContainer.viewContext,
+                                                    sectionNameKeyPath: nil, cacheName: nil)
+        controller.delegate = fetchedResultsControllerDelegate
+        do {
+            try controller.performFetch()
+        } catch {
+            fatalError("Unresolved error \(error)")
+        }
+        return controller
+    }()
+    
+    
+    
 }

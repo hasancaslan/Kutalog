@@ -35,7 +35,7 @@ class TimetableDataSource {
     }()
     
     var delegate: TimetableDataSourceDelegate?
-
+    
     func loadSchedule(uid: String) {
         let fetchedObjects = fetchedResultsController.fetchedObjects?.filter({ schedule in
             schedule.uid == uid
@@ -43,6 +43,13 @@ class TimetableDataSource {
         if let currentSchedule = fetchedObjects?.first {
             DispatchQueue.main.async {
                 self.delegate?.scheduleLoaded(schedule: currentSchedule)
+            }
+        } else {
+            let newSchedule = Schedule(context: persistentContainer.viewContext)
+            newSchedule.uid = uid
+            try? persistentContainer.viewContext.save()
+            DispatchQueue.main.async {
+                self.delegate?.scheduleLoaded(schedule: newSchedule)
             }
         }
     }
