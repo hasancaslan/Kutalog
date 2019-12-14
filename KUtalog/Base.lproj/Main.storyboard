@@ -141,7 +141,7 @@
                     <navigationItem key="navigationItem" title="Tasks" id="I6X-sd-uzZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="h1n-dY-R0U">
                             <connections>
-                                <segue destination="m9q-6H-hZy" kind="presentation" id="SJU-yx-vSk"/>
+                                <segue destination="m9q-6H-hZy" kind="presentation" identifier="addTaskSegue" id="SJU-yx-vSk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

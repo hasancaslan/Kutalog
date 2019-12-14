@@ -30,16 +30,14 @@ class TasksViewController: UIViewController {
     }
     
     // MARK:- Helpers
-
-    /*
+    
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+        if let vc = segue.destination as? AddTaskTableViewController {
+            vc.dataSource = self.dataSource
+        }
      }
-     */
+    
     
 }
 
@@ -92,16 +90,48 @@ extension TasksViewController: NSFetchedResultsControllerDelegate {
     /**
      Reloads the table view when the fetched result controller's content changes.
      */
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            tasksTableView.insertRows(at: [newIndexPath!], with: .fade)
+            break
+        case .delete:
+            tasksTableView.deleteRows(at: [indexPath!], with: .fade)
+            break
+        case .update:
+            tasksTableView.reloadRows(at: [indexPath!], with: .fade)
+        case .move:
+            tasksTableView.moveRow(at: indexPath!, to: newIndexPath!)
+        }
     }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        let indexSet = IndexSet(integer: sectionIndex)
+        switch type {
+        case .insert: tasksTableView.insertSections(indexSet, with: .fade)
+        case .delete: tasksTableView.deleteSections(indexSet, with: .fade)
+        case .update, .move:
+            fatalError("Invalid change type in controller(_:didChange:atSectionIndex:for:). Only .insert or .delete should be possible.")
+        }
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tasksTableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tasksTableView.endUpdates()
+    }
+    
+    
 }
 
 // MARK: - TasksDataSource Delegate
 extension TasksViewController: TasksDataSourceDelegate {
     func taskListLoaded(taskList: [Task]?) {
         self.allTasks = taskList
-        self.tasksTableView.reloadData()
+        self.tasksTableView.beginUpdates()
+        self.tasksTableView.endUpdates()
     }
 }
 

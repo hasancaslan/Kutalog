@@ -14,7 +14,7 @@ class AddTaskTableViewController: UITableViewController {
 
     
     @IBOutlet var addTaskTableView: UITableView!
-    
+    var dataSource: TasksDataSource!
     var selectedRowIndex: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
