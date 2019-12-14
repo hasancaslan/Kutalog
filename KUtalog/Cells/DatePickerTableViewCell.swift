@@ -13,7 +13,6 @@ protocol DatePickerTableViewCellDelegate {
 }
 
 class DatePickerTableViewCell: UITableViewCell {
-
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
     var delegate: DatePickerTableViewCellDelegate?
@@ -27,9 +26,8 @@ class DatePickerTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
-    @IBAction func dateValueChanged(_ sender: Any) {
+    
+    @IBAction func dateChanged(_ sender: Any) {
         self.delegate?.getSelectedDate(date: datePicker.date)
     }
-    
 }

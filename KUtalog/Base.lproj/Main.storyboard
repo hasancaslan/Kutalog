@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZfN-gj-KyW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZfN-gj-KyW">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -161,73 +161,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bx1-2z-dbS">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CcH-5c-RIZ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DatePickerTableViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="250" id="9bM-Sb-fzN" customClass="DatePickerTableViewCell" customModule="KUtalog" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="250"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DatePickerTableViewCell" rowHeight="246" id="0FI-JM-Xk6" customClass="DatePickerTableViewCell" customModule="KUtalog" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="246"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9bM-Sb-fzN" id="5Wg-I6-qee">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0FI-JM-Xk6" id="L0C-Tj-kew">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="246"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaR-2G-DDM">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="50"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jm6-5c-EBk">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="AZi-5z-7Lh"/>
+                                                        <constraint firstAttribute="height" constant="30" id="fjJ-Ga-eJl"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="oho-4X-xIa">
-                                                    <rect key="frame" x="47" y="50" width="320" height="200"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="162" id="j4D-rB-B4d"/>
-                                                    </constraints>
+                                                <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="pVa-6r-Y8E">
+                                                    <rect key="frame" x="20" y="30" width="374" height="216"/>
                                                     <connections>
-                                                        <action selector="dateValueChanged:" destination="9bM-Sb-fzN" eventType="valueChanged" id="hee-6h-YKx"/>
+                                                        <action selector="dateChanged:" destination="0FI-JM-Xk6" eventType="valueChanged" id="RhK-9q-KFu"/>
                                                     </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="XaR-2G-DDM" firstAttribute="top" secondItem="5Wg-I6-qee" secondAttribute="top" id="D1Y-Bg-Ztd"/>
-                                                <constraint firstAttribute="bottom" secondItem="oho-4X-xIa" secondAttribute="bottom" id="IRn-gj-F8k"/>
-                                                <constraint firstItem="oho-4X-xIa" firstAttribute="centerX" secondItem="XaR-2G-DDM" secondAttribute="centerX" id="Nae-aP-e9C"/>
-                                                <constraint firstAttribute="trailing" secondItem="XaR-2G-DDM" secondAttribute="trailing" constant="20" id="ayd-Nz-HGd"/>
-                                                <constraint firstItem="XaR-2G-DDM" firstAttribute="leading" secondItem="5Wg-I6-qee" secondAttribute="leading" constant="20" id="gA7-QZ-0jK"/>
-                                                <constraint firstItem="oho-4X-xIa" firstAttribute="top" secondItem="XaR-2G-DDM" secondAttribute="bottom" id="pAK-cd-wy2"/>
+                                                <constraint firstItem="pVa-6r-Y8E" firstAttribute="leading" secondItem="L0C-Tj-kew" secondAttribute="leading" constant="20" id="2FI-DU-p4L"/>
+                                                <constraint firstAttribute="trailing" secondItem="pVa-6r-Y8E" secondAttribute="trailing" constant="20" id="9Vs-gS-LmL"/>
+                                                <constraint firstItem="pVa-6r-Y8E" firstAttribute="top" secondItem="jm6-5c-EBk" secondAttribute="bottom" id="AzW-od-FFP"/>
+                                                <constraint firstItem="jm6-5c-EBk" firstAttribute="leading" secondItem="L0C-Tj-kew" secondAttribute="leading" constant="20" id="DHV-0U-cPE"/>
+                                                <constraint firstAttribute="bottom" secondItem="pVa-6r-Y8E" secondAttribute="bottom" id="RRN-72-LgK"/>
+                                                <constraint firstAttribute="trailing" secondItem="jm6-5c-EBk" secondAttribute="trailing" constant="20" id="Vhe-jE-lAk"/>
+                                                <constraint firstItem="jm6-5c-EBk" firstAttribute="top" secondItem="L0C-Tj-kew" secondAttribute="top" id="jcp-vW-TpI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="dateLabel" destination="XaR-2G-DDM" id="GpU-68-kFa"/>
-                                            <outlet property="datePicker" destination="oho-4X-xIa" id="ecE-xe-LRp"/>
+                                            <outlet property="dateLabel" destination="jm6-5c-EBk" id="Xkr-3Y-wxA"/>
+                                            <outlet property="datePicker" destination="pVa-6r-Y8E" id="PYU-Zl-oar"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="o71-Gc-xPR" id="gIU-8d-qYY"/>
-                                    <outlet property="delegate" destination="o71-Gc-xPR" id="N1I-hm-NPf"/>
+                                    <outlet property="dataSource" destination="o71-Gc-xPR" id="Tha-Xg-WTM"/>
+                                    <outlet property="delegate" destination="o71-Gc-xPR" id="qJM-Lj-X7m"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="bx1-2z-dbS" firstAttribute="top" secondItem="rAU-tO-X64" secondAttribute="top" id="F0F-G9-4Gh"/>
-                            <constraint firstItem="rAU-tO-X64" firstAttribute="bottom" secondItem="bx1-2z-dbS" secondAttribute="bottom" id="IH4-HY-aYx"/>
-                            <constraint firstItem="rAU-tO-X64" firstAttribute="trailing" secondItem="bx1-2z-dbS" secondAttribute="trailing" id="S5P-5J-AJM"/>
-                            <constraint firstItem="bx1-2z-dbS" firstAttribute="leading" secondItem="rAU-tO-X64" secondAttribute="leading" id="Vzh-RX-ZHb"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rAU-tO-X64"/>
                     </view>
                     <connections>
-                        <outlet property="addTaskTableView" destination="bx1-2z-dbS" id="Wk7-UO-zL6"/>
+                        <outlet property="addTaskTableView" destination="CcH-5c-RIZ" id="Pcr-Ax-05l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5k-Fu-9P2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2129" y="708"/>
+            <point key="canvasLocation" x="2128.985507246377" y="707.8125"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="mt8-lJ-bGp">

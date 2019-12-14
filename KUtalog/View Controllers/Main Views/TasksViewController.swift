@@ -33,7 +33,7 @@ class TasksViewController: UIViewController {
     
      // MARK: - Navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? AddTaskTableViewController {
+        if let vc = segue.destination as? AddTaskViewController {
             vc.dataSource = self.dataSource
         }
      }
