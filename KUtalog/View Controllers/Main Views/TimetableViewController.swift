@@ -10,6 +10,9 @@ import UIKit
 
 class TimetableViewController: UIViewController {
 
+    @IBOutlet weak var weekdaysSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var timetableTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print()
