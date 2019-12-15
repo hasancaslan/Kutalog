@@ -172,6 +172,7 @@ class ClassSearchViewController: UIViewController {
             }
             if let vc = segue.destination as? SearchedClassDetailViewController {
                 vc.course = course
+                vc.dataSource = dataSource
             }
         }
     }

@@ -25,14 +25,14 @@ class TasksDataSource {
      */
     lazy var persistentContainer = DataController.shared.persistentContainer
     
-    func createTask(uid: String, title: String?, moduleCode: String?, description: String?, date: Date?, course: Course) {
+    func createTask(_ newTask: NewTask) {
         let task = Task(context: persistentContainer.viewContext)
-        task.uid = uid
-        task.title = title
-        task.moduleCode = moduleCode
-        task.taskDescription = description
-        task.date = date
-        task.course = course
+        task.uid = newTask.uid
+        task.title = newTask.title
+        task.moduleCode = newTask.course?.moduleCode
+        task.taskDescription = newTask.taskDescription
+        task.date = newTask.date
+        task.course = newTask.course
         try? persistentContainer.viewContext.save()
     }
     
@@ -67,6 +67,7 @@ class TasksDataSource {
         // Perform the fetch.
         do {
             try controller.performFetch()
+            
         } catch {
             fatalError("Unresolved error \(error)")
         }
@@ -80,6 +81,8 @@ class TasksDataSource {
     lazy var scheduleFetchedResultsController: NSFetchedResultsController<Schedule> = {
         let fetchRequest = NSFetchRequest<Schedule>(entityName: "Schedule")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "uid", ascending: false)]
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.relationshipKeyPathsForPrefetching = ["courses"]
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                     managedObjectContext: persistentContainer.viewContext,
                                                     sectionNameKeyPath: nil, cacheName: "scheduledCourses")
@@ -102,14 +105,14 @@ class TasksDataSource {
         }
     }
     
-    func loadScheduledCoursed(uid: String) {
+    func loadScheduledCourses(uid: String) {
         let fetchedObjects = scheduleFetchedResultsController.fetchedObjects?.filter({ schedule in
-            schedule.uid == uid
+            return schedule.uid == uid
         })
         guard let currentSchedule = fetchedObjects?.first else {
             return
         }
-        if let courseList = currentSchedule.courses?.allObjects as? [Course] {
+        if let courseList = currentSchedule.courses?.allObjects as? [Course]? {
             DispatchQueue.main.async {
                 self.delegate?.scheduledCoursesLoaded(courseList: courseList)
             }

@@ -9,8 +9,8 @@
 import UIKit
 
 protocol TextFieldTableViewCellDelegate {
-    func getTitle(title: String)
-    func getDescription(description: String)
+    func getTitle(title: String?)
+    func getDescription(description: String?)
 }
 
 class TextFieldTableViewCell: UITableViewCell {
@@ -26,15 +26,14 @@ class TextFieldTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
     @IBAction func didChangeValue(_ sender: Any) {
         if textField.placeholder == "Title" {
-            self.delegate?.getTitle(title: textField.text ?? "")
+            self.delegate?.getTitle(title: textField.text)
         } else if textField.placeholder == "Description" {
-            self.delegate?.getDescription(description: textField.text ?? "")
+            self.delegate?.getDescription(description: textField.text)
         }
     }
     

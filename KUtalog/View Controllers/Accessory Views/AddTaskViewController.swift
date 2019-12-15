@@ -7,33 +7,39 @@
 //
 
 import UIKit
+import FirebaseAuth
+
+extension AddTaskViewController: TasksDataSourceDelegate {
+    func scheduledCoursesLoaded(courseList: [Course]?) {
+        scheduledCourses = courseList
+        addTaskTableView.reloadData()
+    }
+}
 
 extension AddTaskViewController: DatePickerTableViewCellDelegate {
     func getSelectedDate(date: Date) {
-        task?.date = date
-        
+        newTask.date = date
         print(date)
     }
 }
 
 extension AddTaskViewController: PickerTableViewCellDelegate {
-    func pickedCourse(course: String) {
-        //task?.course = course
+    func pickedCourse(course: String, row: Int) {
+        if let courses = scheduledCourses {
+            newTask.course = Array(courses)[row]
+        }
         print(course)
     }
-    
-    
 }
 
 extension AddTaskViewController: TextFieldTableViewCellDelegate {
-    func getTitle(title: String) {
-        task?.title = title
+    func getTitle(title: String?) {
+        newTask.title = title
         print(title)
     }
     
-    func getDescription(description: String) {
-        // Hata veriyor, description immutablemış çünkü.
-        //task?.description = description
+    func getDescription(description: String?) {
+        newTask.taskDescription = description
         print(description)
     }
     
@@ -56,39 +62,66 @@ extension AddTaskViewController: UITableViewDataSource {
             cell.delegate = self
             return cell
         } else if indexPath.row == 1 {
-             let cell = tableView.dequeueReusableCell(withIdentifier: "PickerTableViewCell", for: indexPath) as! PickerTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PickerTableViewCell", for: indexPath) as! PickerTableViewCell
             cell.delegate = self
-              return cell
-         } else if indexPath.row == 3 {
-              let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
-              cell.textField?.placeholder = "Description"
+            print("hasan")
+            if let courses = scheduledCourses {
+                cell.pickerData = courses.map { ($0.title ?? "") }
+                print(cell.pickerData)
+            } else {
+                cell.pickerData = ["No Course"]
+            }
+            cell.coursePickerView.reloadAllComponents()
+            return cell
+        } else if indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
+            cell.textField?.placeholder = "Description"
             cell.delegate = self
-              return cell
-         }
+            return cell
+        }
         return UITableViewCell()
     }
 }
 
 class AddTaskViewController: UIViewController {
-    var task: Task?
-    var dataSource: TasksDataSource!
+    var newTask = NewTask()
+    var dataSource = TasksDataSource()
+    var scheduledCourses: [Course]?
+    
     @IBOutlet weak var addTaskTableView: UITableView!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addTaskTableView.dataSource = self
-        // Do any additional setup after loading the view.
+        dataSource.delegate = self
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            newTask.uid = uid
+            dataSource.loadScheduledCourses(uid: uid)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
-    */
-
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    @IBAction func doneTapped(_ sender: Any) {
+        dataSource.createTask(newTask)
+        print(newTask)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }

@@ -7,10 +7,11 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 
 class SearchedClassDetailViewController: UIViewController {
     var course: Course?
+    var dataSource: ClassSearchDataSource!
     @IBOutlet weak var classCodeLabel: UILabel!
     @IBOutlet weak var classNameLabel: UILabel!
     @IBOutlet weak var firstInfoLineLabel: UILabel!
@@ -70,7 +71,12 @@ class SearchedClassDetailViewController: UIViewController {
     }
     
     @IBAction func addToScheduleTapped(_ sender: Any) {
-        
+        let user = Auth.auth().currentUser
+               if let user = user {
+                   let uid = user.uid
+                dataSource.addCourseToSchedule(uid: uid, course: course)
+               }
+        self.dismiss(animated: true, completion: nil)
     }
     
 

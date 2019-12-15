@@ -72,20 +72,25 @@ class ClassSearchDataSource {
         dataTask.resume()
     }
     
-    func addCourseToSchedule(uid: String, course: Course) {
-           let fetchedObjects = scheduleFetchedResultsController.fetchedObjects?.filter({ schedule in
-               schedule.uid == uid
-           })
-           if let currentSchedule = fetchedObjects?.first {
-            course.schedules?.adding(currentSchedule)
+    func addCourseToSchedule(uid: String, course: Course?) {
+        let fetchedObjects = scheduleFetchedResultsController.fetchedObjects?.filter({ schedule in
+            schedule.uid == uid
+        })
+        if let currentSchedule = fetchedObjects?.first {
+            if let schedules = course?.schedules?.adding(currentSchedule) {
+                course?.schedules = NSSet(set: schedules)
+                print(course?.schedules)
+            }
             try? persistentContainer.viewContext.save()
-           } else {
-               let newSchedule = Schedule(context: persistentContainer.viewContext)
-               newSchedule.uid = uid
-               course.schedules?.adding(newSchedule)
-               try? persistentContainer.viewContext.save()
-           }
-       }
+        } else {
+            let newSchedule = Schedule(context: persistentContainer.viewContext)
+            newSchedule.uid = uid
+            if let schedules = course?.schedules?.adding(newSchedule) {
+                course?.schedules = NSSet(set: schedules)
+            }
+            try? persistentContainer.viewContext.save()
+        }
+    }
     
     func loadCourseList() {
         let courses = self.fetchedResultsController.fetchedObjects
@@ -147,7 +152,6 @@ class ClassSearchDataSource {
                 
                 // Create a Course managed object on the private queue context.
                 guard let course = NSEntityDescription.insertNewObject(forEntityName: "Course", into: taskContext) as? Course else {
-                    print()
                     return
                 }
                 course.update(with: moduleData)
@@ -215,7 +219,4 @@ class ClassSearchDataSource {
         }
         return controller
     }()
-    
-    
-    
 }

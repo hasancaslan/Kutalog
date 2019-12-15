@@ -9,11 +9,10 @@
 import UIKit
 
 protocol PickerTableViewCellDelegate {
-    func pickedCourse(course: String)
+    func pickedCourse(course: String, row: Int)
 }
 
-class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate {
-
+class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var coursePickerView: UIPickerView!
     @IBOutlet weak var coursePickerLabel: UILabel!
     var pickerData: [String] = [String]()
@@ -23,7 +22,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate {
         super.awakeFromNib()
         // Initialization code
         self.coursePickerView.delegate = self
-        self.coursePickerView.dataSource = self as? UIPickerViewDataSource
+        self.coursePickerView.dataSource = self
         pickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
 
     }
@@ -33,13 +32,20 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate {
 
         // Configure the view for the selected state
     }
-
-    func numberOfRows(inComponent: Int) -> Int {
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.delegate?.pickedCourse(course: pickerData[row], row: row)
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerData.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.delegate?.pickedCourse(course: pickerData[row])
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
     }
-    
 }
