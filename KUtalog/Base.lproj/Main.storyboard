@@ -655,8 +655,24 @@
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="pD2-2G-Y85">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" red="0.94509803920000002" green="0.3294117647" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNB-3r-oQO">
+                                                    <rect key="frame" x="13" y="11" width="24" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="rNB-3r-oQO" firstAttribute="centerY" secondItem="pD2-2G-Y85" secondAttribute="centerY" id="MlQ-dp-akD"/>
+                                                <constraint firstItem="rNB-3r-oQO" firstAttribute="centerX" secondItem="pD2-2G-Y85" secondAttribute="centerX" id="f1L-ze-GfU"/>
+                                                <constraint firstItem="rNB-3r-oQO" firstAttribute="top" secondItem="pD2-2G-Y85" secondAttribute="top" constant="11" id="haq-PN-6KZ"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="classCodeLabel" destination="rNB-3r-oQO" id="Cjf-Jw-g0g"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>

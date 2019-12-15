@@ -8,6 +8,31 @@
 
 import UIKit
 
+
 class LandscapeTimetableCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var classCodeLabel: UILabel!
+    
+    
+    func addClass(course: Course?, addLabel: Bool){
+        if let course = course {
+            if addLabel {
+                self.classCodeLabel.text = "COMP319" //UNCOMMENT THIS AND DELETE THE DUMMY STRING: course.moduleCode
+                self.classCodeLabel.transform = CGAffineTransform(rotationAngle: .pi/2*3)
+            } else {
+                self.classCodeLabel.text = ""
+            }
+            self.contentView.backgroundColor = .red
+        } else {
+            self.classCodeLabel.text = ""
+            self.contentView.backgroundColor = .white
+        }
+        
+    }
+    
+    func reset() {
+        self.classCodeLabel.text = ""
+        self.backgroundColor = .gray
+    }
     
 }

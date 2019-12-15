@@ -12,7 +12,6 @@ class TimetableTableViewCell: UITableViewCell {
 
     @IBOutlet weak var courseCodeLabel: UILabel!
     @IBOutlet weak var coursePlaceLabel: UILabel!
-    @IBOutlet weak var courseTimeLabel: UILabel!
     
     
     override func awakeFromNib() {
