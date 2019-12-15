@@ -10,20 +10,18 @@ import UIKit
 
 extension TimetableViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = collectionView.bounds.width / 20.1
-        let cellHeight = collectionView.bounds.height /  5.1
+        let cellWidth = (collectionView.bounds.width - 19) / 20.0
+        let cellHeight = (collectionView.bounds.height - 4) /  5.0
         let size = CGSize.init(width: cellWidth, height: cellHeight)
         return size
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        let space = collectionView.bounds.width / 402
-        return space
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        let space = collectionView.bounds.width / 402
-        return space
+        return 1
     }
 }
 
