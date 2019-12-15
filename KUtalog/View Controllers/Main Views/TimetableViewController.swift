@@ -8,15 +8,54 @@
 
 import UIKit
 
-class TimetableViewController: UIViewController {
+extension TimetableViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = collectionView.bounds.width / 3.0
+        let size = CGSize.init(width: cellWidth, height: cellWidth)
+        return size
+    }
+}
+
+extension TimetableViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LandscapeTimetableCollectionViewCell", for: indexPath)
+        return cell
+    }
+    
+    
+}
+
+
+
+class TimetableViewController: UIViewController  {
 
     @IBOutlet weak var weekdaysSegmentedControl: UISegmentedControl!
     @IBOutlet weak var timetableTableView: UITableView!
+    
+    // For Landscape
+    @IBOutlet weak var weeklyScheduleCollectionView: UICollectionView!
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print()
         // Do any additional setup after loading the view.
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIApplication.shared.statusBarOrientation.isLandscape {
+            // activate landscape changes
+            timetableTableView.endUpdates()
+        } else {
+            // activate portrait changes
+            timetableTableView.beginUpdates()
+        }
     }
     
 
