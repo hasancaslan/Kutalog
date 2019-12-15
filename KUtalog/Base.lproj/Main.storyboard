@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZfN-gj-KyW">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZfN-gj-KyW">
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4ka-bu-LaH">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <rect key="frame" x="44" y="44" width="808" height="300"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskTableViewCell" rowHeight="250" id="rhq-1m-QNR" customClass="TaskTableViewCell" customModule="KUtalog" customModuleProvider="target">
@@ -171,7 +171,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0FI-JM-Xk6" id="L0C-Tj-kew">
-                                            <rect key="frame" x="0.0" y="0.0" width="808" height="250"/>
+                                            <rect key="frame" x="44" y="0.0" width="370" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jm6-5c-EBk">
@@ -190,7 +190,7 @@
                                                     </connections>
                                                 </datePicker>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLC-Ch-JlN">
-                                                    <rect key="frame" x="20" y="0.0" width="0.0" height="50"/>
+                                                    <rect key="frame" x="20" y="0.0" width="69" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="69" id="6fg-tv-g41"/>
                                                         <constraint firstAttribute="height" constant="50" id="bVy-08-lLn"/>
@@ -222,7 +222,7 @@
                                         <rect key="frame" x="0.0" y="278" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VT4-3E-PEJ" id="DgY-ZH-D1z">
-                                            <rect key="frame" x="0.0" y="0.0" width="808" height="50"/>
+                                            <rect key="frame" x="44" y="0.0" width="370" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zf0-4B-C6H">
@@ -249,11 +249,11 @@
                                         <rect key="frame" x="0.0" y="328" width="414" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7hH-wz-xwH" id="14l-8N-peC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                            <rect key="frame" x="44" y="0.0" width="370" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kg6-8C-fQV">
-                                                    <rect key="frame" x="20" y="0.0" width="0.0" height="50"/>
+                                                    <rect key="frame" x="20" y="0.0" width="56.5" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="7TH-tr-QZG"/>
                                                     </constraints>
@@ -640,7 +640,7 @@
                                 </segments>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FRU-x8-gvN">
-                                <rect key="frame" x="44" y="44" width="808" height="300"/>
+                                <rect key="frame" x="44" y="44" width="788" height="300"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iN7-bR-lDc">
                                     <size key="itemSize" width="50" height="50"/>
@@ -670,6 +670,7 @@
                                                 <constraint firstItem="rNB-3r-oQO" firstAttribute="top" secondItem="pD2-2G-Y85" secondAttribute="top" constant="11" id="haq-PN-6KZ"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="classCodeLabel" destination="rNB-3r-oQO" id="Cjf-Jw-g0g"/>
                                         </connections>
@@ -709,9 +710,7 @@
                             <constraint firstItem="doC-86-gFC" firstAttribute="leading" secondItem="v26-aF-fJS" secondAttribute="leading" constant="87" id="nJR-MK-Pa7">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="v26-aF-fJS" firstAttribute="trailing" secondItem="FRU-x8-gvN" secondAttribute="trailing" constant="284" id="ptQ-9i-EqN">
-                                <variation key="widthClass=regular" constant="0.0"/>
-                            </constraint>
+                            <constraint firstItem="v26-aF-fJS" firstAttribute="trailing" secondItem="FRU-x8-gvN" secondAttribute="trailing" constant="20" id="ptQ-9i-EqN"/>
                             <constraint firstItem="FRU-x8-gvN" firstAttribute="top" secondItem="v26-aF-fJS" secondAttribute="top" constant="99" id="sio-Lo-O0e">
                                 <variation key="widthClass=regular" constant="0.0"/>
                             </constraint>
@@ -726,16 +725,16 @@
                             <mask key="constraints">
                                 <exclude reference="G4a-kb-qG9"/>
                                 <exclude reference="OA1-Dc-IMz"/>
-                                <exclude reference="Icj-8f-H0b"/>
-                                <exclude reference="mZt-3N-ihr"/>
-                                <exclude reference="nJR-MK-Pa7"/>
+                                <exclude reference="KVg-8i-bQ8"/>
+                                <exclude reference="sio-Lo-O0e"/>
                                 <exclude reference="Auj-l8-3NS"/>
                                 <exclude reference="GbW-6n-E1a"/>
                                 <exclude reference="LTg-dN-Y0s"/>
                                 <exclude reference="e2j-NZ-wg7"/>
                                 <exclude reference="ptQ-9i-EqN"/>
-                                <exclude reference="KVg-8i-bQ8"/>
-                                <exclude reference="sio-Lo-O0e"/>
+                                <exclude reference="Icj-8f-H0b"/>
+                                <exclude reference="mZt-3N-ihr"/>
+                                <exclude reference="nJR-MK-Pa7"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -743,10 +742,10 @@
                                 <include reference="FRU-x8-gvN"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="GbW-6n-E1a"/>
-                                <include reference="ptQ-9i-EqN"/>
                                 <include reference="KVg-8i-bQ8"/>
                                 <include reference="sio-Lo-O0e"/>
+                                <include reference="GbW-6n-E1a"/>
+                                <include reference="ptQ-9i-EqN"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -757,12 +756,12 @@
                             <mask key="constraints">
                                 <include reference="G4a-kb-qG9"/>
                                 <include reference="OA1-Dc-IMz"/>
-                                <exclude reference="Icj-8f-H0b"/>
-                                <include reference="mZt-3N-ihr"/>
-                                <include reference="nJR-MK-Pa7"/>
                                 <include reference="Auj-l8-3NS"/>
                                 <include reference="LTg-dN-Y0s"/>
                                 <include reference="e2j-NZ-wg7"/>
+                                <exclude reference="Icj-8f-H0b"/>
+                                <include reference="mZt-3N-ihr"/>
+                                <include reference="nJR-MK-Pa7"/>
                             </mask>
                         </variation>
                     </view>
@@ -1042,7 +1041,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ikp-XF-hPr">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <rect key="frame" x="44" y="44" width="808" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="16" id="2KB-y8-7fW">
                                     <size key="itemSize" width="394" height="235"/>

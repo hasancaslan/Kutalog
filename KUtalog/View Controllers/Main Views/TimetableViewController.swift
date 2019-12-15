@@ -10,20 +10,20 @@ import UIKit
 
 extension TimetableViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = collectionView.bounds.width / 20.0
-        let cellHeight = collectionView.bounds.height /  5.0
+        let cellWidth = collectionView.bounds.width / 20.1
+        let cellHeight = collectionView.bounds.height /  5.1
         let size = CGSize.init(width: cellWidth, height: cellHeight)
         return size
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        let cellWidth = collectionView.bounds.width / 72.0
-        let space = CGFloat.init(cellWidth)
-        return 0.0
+        let space = collectionView.bounds.width / 402
+        return space
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
+        let space = collectionView.bounds.width / 402
+        return space
     }
 }
 
@@ -39,9 +39,9 @@ extension TimetableViewController: UICollectionViewDataSource {
         // need to add the class code as a label. Cell decides what to do using this label
         // UNCOMMENT TWO LINES OF CODE
         //let courseStartIndex = translateStartHourToGridLocation(hour: course.startHour) * translateDaysToGridLocation(day: course.day)
-        //cell.addClass(course: grid[indexPath.row] ?? nil, addLabel: courseStartIndex)
+        //cell.addClass(course: grid[indexPath.row] ?? nil, addLabel: courseStartIndex, color: translateDayToColor(course.day))
         let courseStartIndex = translateStartHourToGridLocation(hour: "1100") + translateDaysToGridLocation(day: "Tuesday") * 20
-        cell.addClass(course: grid[indexPath.row] ?? nil, addLabel: courseStartIndex == indexPath.row)
+        cell.addClass(course: grid[indexPath.row] ?? nil, addLabel: courseStartIndex == indexPath.row, color: translateDayToColor(day: "Tuesday"))
         return cell
     }
 
@@ -223,6 +223,15 @@ class TimetableViewController: UIViewController  {
             return 19
         default:
             return -1
+        }
+    }
+    
+    func translateDayToColor(day: String) ->  UIColor {
+        if translateDaysToGridLocation(day: day)/2 == 0 {
+            return .lightGray
+        }
+        else {
+            return .white
         }
     }
 

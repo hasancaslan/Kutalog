@@ -14,7 +14,7 @@ class LandscapeTimetableCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var classCodeLabel: UILabel!
     
     
-    func addClass(course: Course?, addLabel: Bool){
+    func addClass(course: Course?, addLabel: Bool, color: UIColor){
         if let course = course {
             if addLabel {
                 self.classCodeLabel.text = "COMP319" //UNCOMMENT THIS AND DELETE THE DUMMY STRING: course.moduleCode
@@ -25,14 +25,14 @@ class LandscapeTimetableCollectionViewCell: UICollectionViewCell {
             self.contentView.backgroundColor = .red
         } else {
             self.classCodeLabel.text = ""
-            self.contentView.backgroundColor = .white
+            self.contentView.backgroundColor = color
         }
-        
     }
     
     func reset() {
         self.classCodeLabel.text = ""
         self.backgroundColor = .gray
     }
+    
     
 }
