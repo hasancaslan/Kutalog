@@ -11,10 +11,12 @@ import CoreData
 
 protocol ClassSearchDataSourceDelegate {
     func courseListLoaded(courseList: [Course]?)
+    func courseDetailLoaded()
 }
 
 extension ClassSearchDataSourceDelegate {
     func courseListLoaded(courseList: [Course]?) { }
+    func courseDetailLoaded() { }
 }
 
 class ClassSearchDataSource {
@@ -24,12 +26,14 @@ class ClassSearchDataSource {
      A persistent container to set up the Core Data stack.
      */
     lazy var persistentContainer = DataController.shared.persistentContainer
+    lazy var viewContext = DataController.shared.viewContext
     
     /**
      Fetches the module feed from the remote server, and imports it into Core Data.
      */
     var delegate: ClassSearchDataSourceDelegate?
     let baseUrl = "https://api.nusmods.com/v2/"
+    
     func fetchCourseList(completionHandler: @escaping (Error?) -> Void) {
         
         // Create a URL to load, and a URLSession to load it.
@@ -81,14 +85,14 @@ class ClassSearchDataSource {
                 course?.schedules = NSSet(set: schedules)
                 print(course?.schedules)
             }
-            try? persistentContainer.viewContext.save()
+            try? viewContext.save()
         } else {
-            let newSchedule = Schedule(context: persistentContainer.viewContext)
+            let newSchedule = Schedule(context: viewContext)
             newSchedule.uid = uid
             if let schedules = course?.schedules?.adding(newSchedule) {
                 course?.schedules = NSSet(set: schedules)
             }
-            try? persistentContainer.viewContext.save()
+            try? viewContext.save()
         }
     }
     
@@ -173,6 +177,59 @@ class ClassSearchDataSource {
         return success
     }
     
+    private func importOneModule(_ module: Module) {
+        let context = persistentContainer.newBackgroundContext()
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        guard let course = NSEntityDescription.insertNewObject(forEntityName: "Course", into: context) as? Course else {
+            return
+        }
+        course.update(with: module)
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                print("Error: \(error)\nCould not save Core Data context.")
+                return
+            }
+            context.reset()
+        }
+    }
+    
+    func loadCourseDetail(moduleCode: String, course: Course) {
+        guard let url = URL(string: "\(baseUrl)2018-2019/modules/\(moduleCode).json") else {
+            return
+        }
+        let session = URLSession.shared
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let dataTask = session.dataTask(with: request) {data, _, error in
+            guard let data = data else {
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let module = try decoder.decode(Module.self, from: data)
+                course.update(with: module)
+                if self.viewContext.hasChanges {
+                    do {
+                        try self.viewContext.save()
+                        DispatchQueue.main.async {
+                            self.delegate?.courseDetailLoaded()
+                        }
+                    } catch {
+                        print("Error: \(error)\nCould not save Core Data context.")
+                        return
+                    }
+                }
+            } catch {
+                return
+            }
+        }
+        dataTask.resume()
+    }
+    
     // MARK: - NSFetchedResultsController
     
     /**
@@ -192,7 +249,7 @@ class ClassSearchDataSource {
         
         // Create a fetched results controller and set its fetch request, context, and delegate.
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                    managedObjectContext: persistentContainer.viewContext,
+                                                    managedObjectContext: viewContext,
                                                     sectionNameKeyPath: nil, cacheName: "courses")
         controller.delegate = fetchedResultsControllerDelegate
         
@@ -209,7 +266,7 @@ class ClassSearchDataSource {
         let fetchRequest = NSFetchRequest<Schedule>(entityName: "Schedule")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "uid", ascending: true)]
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                    managedObjectContext: persistentContainer.viewContext,
+                                                    managedObjectContext: viewContext,
                                                     sectionNameKeyPath: nil, cacheName: nil)
         controller.delegate = fetchedResultsControllerDelegate
         do {

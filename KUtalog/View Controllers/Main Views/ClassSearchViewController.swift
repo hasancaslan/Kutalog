@@ -47,8 +47,7 @@ class ClassSearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-         // Add spinner to superview
+        // Add spinner to superview
         if spinner.superview == nil, allCourses?.isEmpty ?? true, let superView = classListCollectionView.superview {
             superView.addSubview(spinner)
             superView.bringSubviewToFront(spinner)
@@ -90,7 +89,7 @@ class ClassSearchViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-       dataSource.loadCourseList()
+        dataSource.loadCourseList()
     }
     
     // MARK: - Helpers
@@ -172,7 +171,7 @@ class ClassSearchViewController: UIViewController {
             }
             if let vc = segue.destination as? SearchedClassDetailViewController {
                 vc.course = course
-                vc.dataSource = dataSource
+//                vc.dataSource = dataSource
             }
         }
     }
@@ -197,6 +196,18 @@ extension ClassSearchViewController: UICollectionViewDataSource, UICollectionVie
         }
         cell.configure(with: course)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let course: Course?
+//        if isFiltering() {
+//            course = filteredCourses?[indexPath.row]
+//        } else {
+//            course = allCourses?[indexPath.row]
+//        }
+//        if let moduleCode = course?.moduleCode{
+//            dataSource.loadCourseDetail(moduleCode: moduleCode, course: C)
+//        }
     }
 }
 

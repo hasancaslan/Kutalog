@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 extension TimetableViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -50,11 +51,20 @@ extension TimetableViewController: UICollectionViewDelegate {
         
 }
 
+extension TimetableViewController: TimetableDataSourceDelegate {
+    func scheduleLoaded(schedule: Schedule?) {
+        if let courses = schedule?.courses?.allObjects as? [Course]? {
+            scheduledClassesList = courses
+        }
+    }
+}
+
 
 class TimetableViewController: UIViewController  {
     
     // The array for the scheduled classes
     var scheduledClassesList: [Course]?
+    var dataSource = TimetableDataSource()
     // The array we use to create the grid
     var grid = Array<Course?>(repeating: nil, count: 100)
 
@@ -67,6 +77,12 @@ class TimetableViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataSource.delegate = self
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+             dataSource.loadSchedule(uid: uid)
+        }
         createGrid()
     }
     

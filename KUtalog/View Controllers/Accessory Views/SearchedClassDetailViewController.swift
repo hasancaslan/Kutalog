@@ -11,7 +11,7 @@ import FirebaseAuth
 
 class SearchedClassDetailViewController: UIViewController {
     var course: Course?
-    var dataSource: ClassSearchDataSource!
+    var dataSource = ClassSearchDataSource()
     @IBOutlet weak var classCodeLabel: UILabel!
     @IBOutlet weak var classNameLabel: UILabel!
     @IBOutlet weak var firstInfoLineLabel: UILabel!
@@ -23,20 +23,22 @@ class SearchedClassDetailViewController: UIViewController {
     @IBOutlet weak var semester1ExamText: UITextView!
     @IBOutlet weak var semester2ExamLabel: UILabel!
     @IBOutlet weak var semester2ExamText: UITextView!
+    @IBOutlet weak var addButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataSource.delegate = self
         classCodeLabel.text = course?.moduleCode
         classNameLabel.text = course?.title
         firstInfoLineLabel.text = "\(course?.department ?? "") - \(course?.faculty ?? "")"
         let semesterArray = course?.semesterData?.semesterData.map { sem -> String in
             if let s = sem?.semester {
                 return "Semester " + String(s)
-                }
+            }
             else {
                 return ""
-                }
+            }
         }
         semesterLabel.text = semesterArray?.joined(separator: " - ")
         classDetailsText.text = course?.moduleDescription
@@ -63,7 +65,15 @@ class SearchedClassDetailViewController: UIViewController {
         semester2ExamText.text = semesterExamArray?[1] ?? ""
     }
     
-// MARK:- Actions
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let courseDetail = course, let moduleCode = course?.moduleCode {
+            dataSource.loadCourseDetail(moduleCode: moduleCode, course: courseDetail)
+        }
+        self.addButton.isEnabled = false
+    }
+    
+    // MARK:- Actions
     @IBAction func dismissButton(_ sender: Any) {
         self.dismiss(animated: true) {
             
@@ -72,12 +82,17 @@ class SearchedClassDetailViewController: UIViewController {
     
     @IBAction func addToScheduleTapped(_ sender: Any) {
         let user = Auth.auth().currentUser
-               if let user = user {
-                   let uid = user.uid
-                dataSource.addCourseToSchedule(uid: uid, course: course)
-               }
+        if let user = user {
+            let uid = user.uid
+            dataSource.addCourseToSchedule(uid: uid, course: course)
+        }
         self.dismiss(animated: true, completion: nil)
     }
-    
+}
 
+extension SearchedClassDetailViewController: ClassSearchDataSourceDelegate {
+    func courseDetailLoaded() {
+        self.addButton.isEnabled = true
+        print(course?.semesterData?.semesterData[0]?.timetable?[0]?.day)
+    }
 }
