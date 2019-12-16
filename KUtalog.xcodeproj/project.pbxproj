@@ -17,6 +17,7 @@
 		14D062C923A6743F00894553 /* TimetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D062C823A6743E00894553 /* TimetableTableViewCell.swift */; };
 		14D062CB23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D062CA23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift */; };
 		D981C39D1C9DAA05CC9DC713 /* Pods_KUtalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */; };
+		F30E076A23A805A400523D4C /* +String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E076923A805A400523D4C /* +String.swift */; };
 		F314183823A646EC0013DFDE /* NewTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F314183723A646EC0013DFDE /* NewTask.swift */; };
 		F3285A64239FFDB5009B0498 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3285A63239FFDB5009B0498 /* Course.swift */; };
 		F33275B423A00C3E0096609A /* TasksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33275B323A00C3E0096609A /* TasksDataSource.swift */; };
@@ -77,6 +78,7 @@
 		14D062CA23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeTimetableCollectionViewCell.swift; sourceTree = "<group>"; };
 		320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KUtalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D14C91BB5EF388AC06917CAA /* Pods-KUtalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalog.release.xcconfig"; path = "Target Support Files/Pods-KUtalog/Pods-KUtalog.release.xcconfig"; sourceTree = "<group>"; };
+		F30E076923A805A400523D4C /* +String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+String.swift"; sourceTree = "<group>"; };
 		F314183723A646EC0013DFDE /* NewTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTask.swift; sourceTree = "<group>"; };
 		F3285A63239FFDB5009B0498 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		F33275B323A00C3E0096609A /* TasksDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksDataSource.swift; sourceTree = "<group>"; };
@@ -181,6 +183,14 @@
 				320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F30E076823A8057300523D4C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F30E076923A805A400523D4C /* +String.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F3285A62239FFD89009B0498 /* Managed Object Classes */ = {
@@ -305,6 +315,7 @@
 		F3CFFFFB238BFA7800450C5D /* KUtalog */ = {
 			isa = PBXGroup;
 			children = (
+				F30E076823A8057300523D4C /* Extensions */,
 				14C6BBB423A262B4002931AB /* Cells */,
 				F38C6A0523999E6600A4AF99 /* Helpers */,
 				142AD42F23999F1500DDA179 /* Model */,
@@ -521,6 +532,7 @@
 				14B937B923A3037D00AEF26C /* DatePickerTableViewCell.swift in Sources */,
 				F3A1AC1C239AAD63009D4FD1 /* Validations.swift in Sources */,
 				F33953482399503200647058 /* EditTaskViewController.swift in Sources */,
+				F30E076A23A805A400523D4C /* +String.swift in Sources */,
 				F33953442399502000647058 /* TasksViewController.swift in Sources */,
 				F339533623994F9E00647058 /* LandingViewController.swift in Sources */,
 				F339534A2399503A00647058 /* SettingsViewController.swift in Sources */,
