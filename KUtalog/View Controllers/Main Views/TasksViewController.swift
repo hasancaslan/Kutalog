@@ -9,6 +9,20 @@
 import UIKit
 import CoreData
 
+extension TasksViewController: TaskTableViewCellDelegate {
+    func editTapped(task: Task?) {
+        
+    }
+    
+    func deleteTapped(task: Task?) {
+        if let taskToDelete = task {
+            dataSource.deleteTask(taskToDelete)
+            print(taskToDelete)
+        }
+    }
+    
+}
+
 class TasksViewController: UIViewController {
     @IBOutlet weak var tasksTableView: UITableView!
     let reuseIdentifier = "TaskTableViewCell"
@@ -48,9 +62,12 @@ class TasksViewController: UIViewController {
 extension TasksViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
-            return 250
+            if let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell {
+                return 100 + cell.descriptionLabel.frame.height
+            }
+             return 100
         }
-        return 100
+        return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -82,6 +99,7 @@ extension TasksViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? TaskTableViewCell {
             cell.configure(task: dataSource.fetchedResultsController.fetchedObjects?[indexPath.row])
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
