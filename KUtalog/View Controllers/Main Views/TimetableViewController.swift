@@ -36,25 +36,35 @@ extension TimetableViewController: UICollectionViewDataSource {
         
         // We use this variable to get the index of this class's start. If this index is equal to the current index, then we
         // need to add the class code as a label. Cell decides what to do using this label
-        // UNCOMMENT TWO LINES OF CODE
-        //let courseStartIndex = translateStartHourToGridLocation(hour: course.startHour) * translateDaysToGridLocation(day: course.day)
-        //cell.addClass(course: grid[indexPath.row] ?? nil, addLabel: courseStartIndex, color: translateDayToColor(course.day))
-        let courseStartIndex = translateStartHourToGridLocation(hour: "1100") + translateDaysToGridLocation(day: "Tuesday") * 20
-        cell.addClass(course: grid[indexPath.row] ?? nil, addLabel: courseStartIndex == indexPath.row, color: translateDayToColor(day: "Tuesday"))
+        let index = indexPath.row
+        guard let lesson = scheduledClassesList?[index].semesterData?.semesterData[0]?.timetable?[0] else { return UICollectionViewCell() }
+        guard let start = lesson.startTime else { return UICollectionViewCell() }
+        guard let lessonDay = lesson.day else { return UICollectionViewCell() }
+        let courseStartIndex = translateStartHourToGridLocation(hour: start) * translateDaysToGridLocation(day: lessonDay)
+        cell.addClass(course: grid[indexPath.row] ?? nil, addLabel: courseStartIndex == index, color: translateDayToColor(day: lessonDay))
+        
         return cell
     }
-
+    
     
 }
 
 extension TimetableViewController: UICollectionViewDelegate {
-        
+    
 }
 
 extension TimetableViewController: TimetableDataSourceDelegate {
     func scheduleLoaded(schedule: Schedule?) {
         if let courses = schedule?.courses?.allObjects as? [Course]? {
             scheduledClassesList = courses
+            timetableTableView.reloadData()
+            weeklyScheduleCollectionView.reloadData()
+            createGrid()
+            let lesson = scheduledClassesList?[0].semesterData?.semesterData[0]?.timetable?[0]
+            print(lesson?.startTime)
+            print(lesson?.endTime)
+            print(lesson?.day)
+            print(scheduledClassesList)
         }
     }
 }
@@ -67,7 +77,7 @@ class TimetableViewController: UIViewController  {
     var dataSource = TimetableDataSource()
     // The array we use to create the grid
     var grid = Array<Course?>(repeating: nil, count: 100)
-
+    
     // Outlets For Portrait
     @IBOutlet weak var weekdaysSegmentedControl: UISegmentedControl!
     @IBOutlet weak var timetableTableView: UITableView!
@@ -78,12 +88,15 @@ class TimetableViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let user = Auth.auth().currentUser
         if let user = user {
             let uid = user.uid
-             dataSource.loadSchedule(uid: uid)
+            dataSource.loadSchedule(uid: uid)
         }
-        createGrid()
     }
     
     // This function is necessary to stop timetableTableView from updating if the orientation is Landscape
@@ -99,15 +112,14 @@ class TimetableViewController: UIViewController  {
     }
     
     func createGrid(){
-        // UNCOMMENT THE FOR LOOP AND THE THREE VARIABLES AFTER YOU ADD COURSE STARTING AND ENDING HOURS
-        // (LINES: 89-92, 108)
-        //for course in scheduledClassesList ?? [] {
-            //let startHour = translateStartHourToGridLocation(hour: course.start)
-            //let endHour = translateEndHourToGridLocation(hour: course.end)
-            //let day = translateDaysToGridLocation(day: course.day)
-            let startHour = translateStartHourToGridLocation(hour: "1100")
-            let endHour = translateEndHourToGridLocation(hour: "1200")
-            let day = translateDaysToGridLocation(day: "Tuesday")
+        for course in scheduledClassesList ?? [] {
+            guard let lesson = course.semesterData?.semesterData[0]?.timetable?[0] else { return }
+            guard let start = lesson.startTime else { return }
+            guard let end = lesson.endTime else { return }
+            guard let lessonDay = lesson.day else { return }
+            let startHour = translateStartHourToGridLocation(hour: start)
+            let endHour = translateEndHourToGridLocation(hour: end)
+            let day = translateDaysToGridLocation(day: lessonDay)
             let course = Course()
             print("\(startHour) \(endHour) \(day)")
             if day != -1 && startHour != -1 && endHour != -1 {
@@ -120,8 +132,8 @@ class TimetableViewController: UIViewController  {
                     }
                 }
             }
-        //}
-    
+        }
+        
     }
     
     
@@ -248,15 +260,15 @@ class TimetableViewController: UIViewController  {
             return .white
         }
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
