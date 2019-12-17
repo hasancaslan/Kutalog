@@ -23,6 +23,7 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var descriptionLabelHeightAnchor: NSLayoutConstraint!
+    @IBOutlet weak var topView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,8 +48,10 @@ class TaskTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(task: Task?) {
+    func configure(task: Task?, background: UIColor) {
         self.task = task
+        self.contentView.backgroundColor = background
+        self.topView.backgroundColor = background
         if let title = task?.title {
             titleLabel.text = title
         }

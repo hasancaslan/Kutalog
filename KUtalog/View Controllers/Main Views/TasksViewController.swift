@@ -17,7 +17,6 @@ extension TasksViewController: TaskTableViewCellDelegate {
     func deleteTapped(task: Task?) {
         if let taskToDelete = task {
             dataSource.deleteTask(taskToDelete)
-            print(taskToDelete)
         }
     }
     
@@ -28,6 +27,7 @@ class TasksViewController: UIViewController {
     let reuseIdentifier = "TaskTableViewCell"
     var selectedRowIndex = -1
     var thereIsCellTapped = false
+    var backgrounColors = [UIColor.blue, UIColor.red,  UIColor.orange, UIColor.purple]
     var allTasks: [Task]? = [Task]()
     
     private lazy var dataSource: TasksDataSource = {
@@ -98,7 +98,11 @@ extension TasksViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? TaskTableViewCell {
-            cell.configure(task: dataSource.fetchedResultsController.fetchedObjects?[indexPath.row])
+            let fetchedObjects = dataSource.fetchedResultsController.fetchedObjects
+            let count = Int(Double(indexPath.row).truncatingRemainder(dividingBy: 4.0))
+            print(count)
+            let background = backgrounColors[count]
+            cell.configure(task: fetchedObjects?[indexPath.row], background: background)
             cell.delegate = self
             return cell
         }

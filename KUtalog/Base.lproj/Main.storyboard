@@ -127,6 +127,7 @@
                                             <outlet property="editButton" destination="O4J-N6-yne" id="BE3-rw-5YI"/>
                                             <outlet property="timeLabel" destination="tJ0-fy-mUA" id="WsK-6W-jkc"/>
                                             <outlet property="titleLabel" destination="rx4-qF-IVF" id="EC9-mv-czc"/>
+                                            <outlet property="topView" destination="RRG-Bg-wfm" id="oz8-gf-wep"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -235,7 +236,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="didChangeValue:" destination="VT4-3E-PEJ" eventType="editingDidEnd" id="okb-9M-tlA"/>
+                                                        <action selector="didChangeValue:" destination="VT4-3E-PEJ" eventType="editingChanged" id="wXB-Nv-S1R"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>

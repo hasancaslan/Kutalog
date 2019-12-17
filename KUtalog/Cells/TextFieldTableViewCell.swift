@@ -13,6 +13,10 @@ protocol TextFieldTableViewCellDelegate {
     func getDescription(description: String?)
 }
 
+extension TextFieldTableViewCell: UITextFieldDelegate {
+
+}
+
 class TextFieldTableViewCell: UITableViewCell {
 
     @IBOutlet weak var textField: UITextField!
@@ -20,7 +24,8 @@ class TextFieldTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        textField?.text =  ""
+        textField.delegate = self
+        textField?.text = nil
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
