@@ -1310,7 +1310,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCH-7t-o8a">
                                 <rect key="frame" x="36" y="754" width="342" height="54"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Txd-Yg-JT5">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Txd-Yg-JT5">
                                         <rect key="frame" x="0.0" y="0.0" width="342" height="54"/>
                                         <color key="backgroundColor" red="0.94509803920000002" green="0.3294117647" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>

@@ -29,6 +29,11 @@ class TasksViewController: UIViewController {
         self.tasksTableView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dataSource.loadListOfTasks()
+    }
+    
     // MARK:- Helpers
     
      // MARK: - Navigation
@@ -71,12 +76,12 @@ extension TasksViewController: UITableViewDelegate {
 // MARK:- TableView DataSource
 extension TasksViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allTasks?.count ?? 0
+        return dataSource.fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? TaskTableViewCell {
-            cell.configure(task: allTasks?[indexPath.row])
+            cell.configure(task: dataSource.fetchedResultsController.fetchedObjects?[indexPath.row])
             return cell
         }
         return UITableViewCell()
@@ -118,9 +123,8 @@ extension TasksViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tasksTableView.endUpdates()
+     tasksTableView.endUpdates()
     }
-    
     
 }
 
@@ -128,8 +132,7 @@ extension TasksViewController: NSFetchedResultsControllerDelegate {
 extension TasksViewController: TasksDataSourceDelegate {
     func taskListLoaded(taskList: [Task]?) {
         self.allTasks = taskList
-        self.tasksTableView.beginUpdates()
-        self.tasksTableView.endUpdates()
+        tasksTableView.reloadData()
     }
 }
 

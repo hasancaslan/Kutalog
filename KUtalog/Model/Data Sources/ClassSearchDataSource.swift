@@ -83,7 +83,6 @@ class ClassSearchDataSource {
         if let currentSchedule = fetchedObjects?.first {
             if let schedules = course?.schedules?.adding(currentSchedule) {
                 course?.schedules = NSSet(set: schedules)
-                print(course?.schedules)
             }
             try? viewContext.save()
         } else {

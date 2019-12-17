@@ -29,6 +29,7 @@ class SearchedClassDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addButton.layer.cornerRadius = 55/2
+        
         dataSource.delegate = self
         classCodeLabel.text = course?.moduleCode
         classNameLabel.text = course?.title
@@ -82,6 +83,8 @@ class SearchedClassDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.addButton.alpha = 0.6
+        self.addButton.isEnabled = false
         if let courseDetail = course, let moduleCode = course?.moduleCode {
             dataSource.loadCourseDetail(moduleCode: moduleCode, course: courseDetail)
         }
@@ -121,7 +124,11 @@ class SearchedClassDetailViewController: UIViewController {
 // MARK:- ClassSearchDataSource Delegate
 extension SearchedClassDetailViewController: ClassSearchDataSourceDelegate {
     func courseDetailLoaded() {
+        let lesson = course?.semesterData?.semesterData[0]?.timetable?[0]
+                   print(lesson?.startTime)
+                   print(lesson?.endTime)
+                   print(lesson?.day)
         self.addButton.isEnabled = true
-        print(course?.semesterData?.semesterData[0]?.timetable?[0]?.day)
+        self.addButton.alpha = 1
     }
 }

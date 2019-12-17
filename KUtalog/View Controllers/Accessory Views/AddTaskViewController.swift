@@ -28,19 +28,16 @@ extension AddTaskViewController: PickerTableViewCellDelegate {
         if let courses = scheduledCourses {
             newTask.course = Array(courses)[row]
         }
-        print(course)
     }
 }
 
 extension AddTaskViewController: TextFieldTableViewCellDelegate {
     func getTitle(title: String?) {
         newTask.title = title
-        print(title)
     }
     
     func getDescription(description: String?) {
         newTask.taskDescription = description
-        print(description)
     }
     
     
