@@ -124,10 +124,6 @@ class SearchedClassDetailViewController: UIViewController {
 // MARK:- ClassSearchDataSource Delegate
 extension SearchedClassDetailViewController: ClassSearchDataSourceDelegate {
     func courseDetailLoaded() {
-        let lesson = course?.semesterData?.semesterData[0]?.timetable?[0]
-                   print(lesson?.startTime)
-                   print(lesson?.endTime)
-                   print(lesson?.day)
         self.addButton.isEnabled = true
         self.addButton.alpha = 1
     }

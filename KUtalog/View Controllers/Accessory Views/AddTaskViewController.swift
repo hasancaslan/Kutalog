@@ -19,7 +19,6 @@ extension AddTaskViewController: TasksDataSourceDelegate {
 extension AddTaskViewController: DatePickerTableViewCellDelegate {
     func getSelectedDate(date: Date) {
         newTask.date = date
-        print(date)
     }
 }
 
