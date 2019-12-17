@@ -9,7 +9,7 @@
 import UIKit
 
 class TaskTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var courseCodeLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -20,20 +20,39 @@ class TaskTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        titleLabel.text = ""
+        courseCodeLabel.text = ""
+        timeLabel.text = ""
+        descriptionTextField.text = ""
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
     }
     
     func configure(task: Task?) {
-        titleLabel.text = task?.title
-        courseCodeLabel.text = task?.moduleCode
-        //TODO: date format adjustment
-        timeLabel.text = "\(String(describing: task?.date))"
-        descriptionTextField.text = task?.taskDescription
+        if let title = task?.title {
+            titleLabel.text = title
+        }
+        if let moduleCode = task?.moduleCode {
+            courseCodeLabel.text = moduleCode
+        }
+        if let date = task?.date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+            timeLabel.text = dateFormatter.string(from: date)
+        }
+        if let taskDescription = task?.taskDescription {
+            descriptionTextField.text = taskDescription
+        }
     }
-
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = ""
+        courseCodeLabel.text = ""
+        timeLabel.text = ""
+        descriptionTextField.text = ""
+    }
+    
 }

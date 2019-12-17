@@ -52,19 +52,22 @@ extension AddTaskViewController: UITableViewDataSource {
         if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DatePickerTableViewCell", for: indexPath) as! DatePickerTableViewCell
             cell.delegate = self
+            newTask.date = cell.datePicker.date
             return cell
         } else if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
             cell.textField?.placeholder = "Title"
             cell.delegate = self
+            newTask.title = cell.textField.text
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PickerTableViewCell", for: indexPath) as! PickerTableViewCell
             cell.delegate = self
-            print("hasan")
             if let courses = scheduledCourses {
                 cell.pickerData = courses.map { ($0.title ?? "") }
-                print(cell.pickerData)
+                if let courses = scheduledCourses {
+                    newTask.course = Array(courses)[0]
+                }
             } else {
                 cell.pickerData = ["No Course"]
             }
@@ -74,6 +77,7 @@ extension AddTaskViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
             cell.textField?.placeholder = "Description"
             cell.delegate = self
+            newTask.taskDescription = cell.textField.text
             return cell
         }
         return UITableViewCell()

@@ -20,17 +20,17 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         self.coursePickerView.delegate = self
         self.coursePickerView.dataSource = self
-        pickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
-
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        pickerData = [String]()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
