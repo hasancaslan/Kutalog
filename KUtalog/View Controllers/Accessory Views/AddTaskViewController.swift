@@ -66,7 +66,7 @@ extension AddTaskViewController: UITableViewDataSource {
             if let courses = scheduledCourses {
                 cell.pickerData = courses.map { ($0.title ?? "") }
                 if let courses = scheduledCourses {
-                    newTask.course = Array(courses)[0]
+                    newTask.course = courses.first
                 }
             } else {
                 cell.pickerData = ["No Course"]
@@ -120,9 +120,12 @@ class AddTaskViewController: UIViewController {
      }
      */
     @IBAction func doneTapped(_ sender: Any) {
-        dataSource.createTask(newTask)
-        print(newTask)
-        self.dismiss(animated: true, completion: nil)
+        if newTask.title != "" {
+            dataSource.createTask(newTask)
+        } else {
+            let alert = UIAlertController(title: "Please Enter a Title", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
-    
 }
