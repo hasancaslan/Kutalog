@@ -64,7 +64,7 @@ class SearchedClassDetailViewController: UIViewController {
             return str
         }
         
-        if let semester1Exam = semesterExamArray?[0] {
+        if let semester1Exam = semesterExamArray?.first {
             semester1ExamLabel.text =  "Semester 1 Exam"
             semester1ExamText.text = semester1Exam
         } else {
@@ -72,12 +72,14 @@ class SearchedClassDetailViewController: UIViewController {
             semester1ExamText.text = nil
         }
         
-        if let semester1Exam = semesterExamArray?[1] {
-            semester2ExamLabel.text =  "Semester 2 Exam"
-            semester2ExamText.text = semester1Exam
-        } else {
-            semester2ExamLabel.text = nil
-            semester2ExamText.text = nil
+        if semesterExamArray?.indices.contains(1) ?? false {
+            if let semester1Exam = semesterExamArray?[1] {
+                semester2ExamLabel.text =  "Semester 2 Exam"
+                semester2ExamText.text = semester1Exam
+            } else {
+                semester2ExamLabel.text = nil
+                semester2ExamText.text = nil
+            }
         }
     }
     

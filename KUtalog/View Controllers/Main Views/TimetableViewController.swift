@@ -112,10 +112,10 @@ class TimetableViewController: UIViewController  {
     
     func createGrid(){
         for course in scheduledClassesList ?? [] {
-            guard let lesson = course.semesterData?.semesterData[0]?.timetable?[0] else { return }
-            guard let start = lesson.startTime else { return }
-            guard let end = lesson.endTime else { return }
-            guard let lessonDay = lesson.day else { return }
+            guard let lesson = course.semesterData?.semesterData.first??.timetable?.first else { return }
+            guard let start = lesson?.startTime else { return }
+            guard let end = lesson?.endTime else { return }
+            guard let lessonDay = lesson?.day else { return }
             let startHour = translateStartHourToGridLocation(hour: start)
             let endHour = translateEndHourToGridLocation(hour: end)
             let day = translateDaysToGridLocation(day: lessonDay)
