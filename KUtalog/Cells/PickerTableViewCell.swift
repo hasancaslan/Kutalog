@@ -8,6 +8,12 @@
 
 import UIKit
 
+extension PickerTableViewCell: EditTaskViewControllerDelegate {
+    func preselectedCourse(row: Int) {
+        coursePickerView.selectRow(row, inComponent: 0, animated: false)
+    }
+}
+
 protocol PickerTableViewCellDelegate {
     func pickedCourse(course: String, row: Int)
 }
@@ -22,6 +28,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
         super.awakeFromNib()
         self.coursePickerView.delegate = self
         self.coursePickerView.dataSource = self
+        
     }
     
     override func prepareForReuse() {

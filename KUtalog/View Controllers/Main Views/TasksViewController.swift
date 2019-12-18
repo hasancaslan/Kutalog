@@ -51,10 +51,13 @@ class TasksViewController: UIViewController {
     
      // MARK: - Navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? AddTaskViewController {
-//            vc.dataSource = self.dataSource
+        if segue.destination is EditTaskViewController {
+                if let task = allTasks?[selectedRowIndex] {
+                    let destination = segue.destination as! EditTaskViewController
+                    destination.task = task
+                }
+            }
         }
-     }
 }
 
 // MARK:- Table View Delegate
