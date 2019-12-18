@@ -38,18 +38,28 @@ extension TimetableViewController: UICollectionViewDataSource {
         
         // We use this variable to get the index of this class's start. If this index is equal to the current index, then we
         // need to add the class code as a label. Cell decides what to do using this label
-        let index = indexPath.row
-        let lesson = scheduledClassesList?[index].semesterData?.semesterData.first??.timetable?.first
+        let course = grid[indexPath.row]
+        let lesson = course?.semesterData?.semesterData.first??.timetable?.first
         let start = lesson??.startTime
         let lessonDay = lesson??.day
         let courseStartIndex = translateStartHourToGridLocation(hour: start ?? "") * translateDaysToGridLocation(day: lessonDay ?? "")
-        cell.addClass(course: grid[indexPath.row] ?? nil, addLabel: courseStartIndex == index, color: translateDayToColor(day: lessonDay ?? ""))
+        cell.addClass(course: course ?? nil, addLabel: courseStartIndex == indexPath.row, color: translateDayToColor(day: lessonDay ?? ""))
         return cell
     }
     
 }
 
-extension TimetableViewController: UICollectionViewDelegate {
+extension TimetableViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredClassesList?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TimetableTableViewCell", for: indexPath) as! TimetableTableViewCell
+        cell.configure(course: filteredClassesList?[indexPath.row])
+        return cell
+    }
+    
     
 }
 
@@ -60,11 +70,11 @@ extension TimetableViewController: TimetableDataSourceDelegate {
             timetableTableView.reloadData()
             weeklyScheduleCollectionView.reloadData()
             createGrid()
-            let lesson = scheduledClassesList?.first?.semesterData?.semesterData.first??.timetable?.first
-            print(lesson??.startTime)
-            print(lesson??.endTime)
-            print(lesson??.day)
-            print(scheduledClassesList)
+//            let lesson = scheduledClassesList?.first?.semesterData?.semesterData.first??.timetable?.first
+//            print(lesson??.startTime)
+//            print(lesson??.endTime)
+//            print(lesson??.day)
+//            print(scheduledClassesList)
         }
     }
 }
@@ -73,6 +83,7 @@ extension TimetableViewController: TimetableDataSourceDelegate {
 class TimetableViewController: UIViewController  {
     // The array for the scheduled classes
     var scheduledClassesList: [Course]?
+    var filteredClassesList: [Course]? = [Course]()
     var dataSource = TimetableDataSource()
     // The array we use to create the grid
     var grid = Array<Course?>(repeating: nil, count: 100)
@@ -96,6 +107,34 @@ class TimetableViewController: UIViewController  {
             let uid = user.uid
             dataSource.loadSchedule(uid: uid)
         }
+    }
+    @IBAction func segmentIndexChanged(_ sender: Any) {
+        switch weekdaysSegmentedControl.selectedSegmentIndex {
+        case 0:
+            filterClassesList(byDay: "Monday")
+            timetableTableView.reloadData()
+        case 1:
+           filterClassesList(byDay: "Tuesday")
+            timetableTableView.reloadData()
+        case 2:
+           filterClassesList(byDay: "Wednesday")
+            timetableTableView.reloadData()
+        case 3:
+            filterClassesList(byDay: "Thursday")
+            timetableTableView.reloadData()
+        case 4:
+            filterClassesList(byDay: "Friday")
+            timetableTableView.reloadData()
+        default:
+            break
+        }
+        
+    }
+    
+    func filterClassesList(byDay day: String) {
+        filteredClassesList = scheduledClassesList?.filter({ course in
+            return course.semesterData?.semesterData.first??.timetable?.first??.day == day
+        })
     }
     
     // This function is necessary to stop timetableTableView from updating if the orientation is Landscape
