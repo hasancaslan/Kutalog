@@ -77,17 +77,31 @@ extension TimetableViewController: TimetableDataSourceDelegate {
             //            print(lesson??.startTime)
             //            print(lesson??.endTime)
             //            print(lesson??.day)
-            //            print(scheduledClassesList)
+            //                        print(scheduledClassesList)
         }
     }
 }
 
+extension TimetableViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            dataSource.loadSchedule(uid: uid)
+        }
+    }
+}
 
 class TimetableViewController: UIViewController  {
     // The array for the scheduled classes
     var scheduledClassesList: [Course]?
     var filteredClassesList: [Course]? = [Course]()
-    var dataSource = TimetableDataSource()
+    private lazy var dataSource: TimetableDataSource = {
+        let source = TimetableDataSource()
+        source.fetchedResultsControllerDelegate = self
+        source.delegate = self
+        return source
+    }()
     // The array we use to create the grid
     var grid = Array<Course?>(repeating: nil, count: 100)
     
@@ -100,7 +114,6 @@ class TimetableViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -138,7 +151,6 @@ class TimetableViewController: UIViewController  {
         filteredClassesList = scheduledClassesList?.filter({ course in
             return course.semesterData?.semesterData.first??.timetable?.first??.day == day
         })
-        print(filteredClassesList)
     }
     
     // This function is necessary to stop timetableTableView from updating if the orientation is Landscape
