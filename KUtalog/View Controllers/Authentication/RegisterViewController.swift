@@ -17,6 +17,7 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         self.registerButton.layer.cornerRadius = 55/2
     }
     
