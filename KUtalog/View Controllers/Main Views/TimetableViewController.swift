@@ -38,6 +38,7 @@ extension TimetableViewController: TimetableDataSourceDelegate {
 final class TimetableViewController: UIViewController {
     private var events = [Event]()
     var scheduledClassesList: [Course]?
+    var courseToSendToDetails: Course?
     private lazy var dataSource: TimetableDataSource = {
         let source = TimetableDataSource()
         source.fetchedResultsControllerDelegate = self
@@ -154,6 +155,22 @@ final class TimetableViewController: UIViewController {
             self.calendarView.reloadData()
         }
     }
+    
+      func presentInFullScreen(_ viewController: UIViewController,
+                               animated: Bool,
+                               completion: (() -> Void)? = nil) {
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: animated, completion: completion)
+      }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! Event
+
+       let destination = segue.destination as! ScheduledClassViewController
+       destination.course = courseToSendToDetails
+               
+    }
+
 }
 
 extension TimetableViewController: CalendarDelegate {
@@ -163,12 +180,21 @@ extension TimetableViewController: CalendarDelegate {
     }
     
     func didSelectEvent(_ event: Event, type: CalendarType, frame: CGRect?) {
-        print(event)
+        guard let scheduledCourses = scheduledClassesList else { return }
+        for course in scheduledCourses {
+            if course.moduleCode == (event.id as! String) {
+                self.courseToSendToDetails = course
+            }
+        }
+ 
         switch type {
         case .day:
             eventViewer.text = event.text
+            performSegue(withIdentifier: "showDetail", sender: event)
         default:
+            performSegue(withIdentifier: "showDetail", sender: event)
             break
+        
         }
     }
     
