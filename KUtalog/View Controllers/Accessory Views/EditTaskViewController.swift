@@ -68,7 +68,8 @@ extension EditTaskViewController: UITableViewDataSource {
             cell.delegate = self
             if let courses = scheduledCourses {
                 cell.pickerData = courses.map { ($0.title ?? "") }
-                self.delegate?.preselectedCourse(row: scheduledCourses?.firstIndex(of: task?.course ?? Course()) ?? 0)
+                let row = scheduledCourses?.firstIndex(of: task?.course ?? Course()) ?? 0
+                cell.coursePickerView.selectRow(row, inComponent: 0, animated: false)
             } else {
                 cell.pickerData = ["No Course"]
             }
