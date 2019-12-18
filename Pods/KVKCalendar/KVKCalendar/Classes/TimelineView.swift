@@ -294,6 +294,7 @@ final class TimelineView: UIView {
                 self.currentLineView.frame.origin.y = pointY
                 
                 let formatter = DateFormatter()
+                
                 formatter.dateFormat = self.timeHourSystem == .twentyFourHour ? "HH:mm" : "H:mm a"
                 self.currentTimeLabel.text = formatter.string(from: date)
                 

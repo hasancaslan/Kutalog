@@ -94,10 +94,8 @@ class SearchedClassDetailViewController: UIViewController {
     }
     
     // MARK:- Actions
-    @IBAction func dismissButton(_ sender: Any) {
-        self.dismiss(animated: true) {
-            
-        }
+    @IBAction func dismissTapped(_ sender: Any) {
+         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func addToScheduleTapped(_ sender: Any) {

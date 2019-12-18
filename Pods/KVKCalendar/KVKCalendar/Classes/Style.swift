@@ -98,7 +98,7 @@ public struct HeaderScrollStyle {
     
     private let formatSort: DateFormatter = {
         let format = DateFormatter()
-        format.locale = Locale(identifier: "en_EN")
+        format.locale = Locale(identifier: "en_US_POSIX")
         format.dateFormat = "LLL"
         return format
     }()
