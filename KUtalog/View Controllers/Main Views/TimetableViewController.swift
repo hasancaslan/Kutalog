@@ -39,15 +39,13 @@ extension TimetableViewController: UICollectionViewDataSource {
         // We use this variable to get the index of this class's start. If this index is equal to the current index, then we
         // need to add the class code as a label. Cell decides what to do using this label
         let index = indexPath.row
-        guard let lesson = scheduledClassesList?[index].semesterData?.semesterData[0]?.timetable?[0] else { return UICollectionViewCell() }
-        guard let start = lesson.startTime else { return UICollectionViewCell() }
-        guard let lessonDay = lesson.day else { return UICollectionViewCell() }
-        let courseStartIndex = translateStartHourToGridLocation(hour: start) * translateDaysToGridLocation(day: lessonDay)
-        cell.addClass(course: grid[indexPath.row] ?? nil, addLabel: courseStartIndex == index, color: translateDayToColor(day: lessonDay))
-        
+        let lesson = scheduledClassesList?[index].semesterData?.semesterData[0]?.timetable?[0]
+        let start = lesson?.startTime
+        let lessonDay = lesson?.day
+        let courseStartIndex = translateStartHourToGridLocation(hour: start ?? "") * translateDaysToGridLocation(day: lessonDay ?? "")
+        cell.addClass(course: grid[indexPath.row] ?? nil, addLabel: courseStartIndex == index, color: translateDayToColor(day: lessonDay ?? ""))
         return cell
     }
-    
     
 }
 
