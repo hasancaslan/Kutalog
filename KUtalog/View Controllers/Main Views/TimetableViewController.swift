@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import CoreData
 
 extension TimetableViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -32,6 +33,7 @@ extension TimetableViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LandscapeTimetableCollectionViewCell", for: indexPath) as! LandscapeTimetableCollectionViewCell
         
         // We use this variable to get the index of this class's start. If this index is equal to the current index, then we
@@ -120,7 +122,12 @@ class TimetableViewController: UIViewController  {
             let startHour = translateStartHourToGridLocation(hour: start)
             let endHour = translateEndHourToGridLocation(hour: end)
             let day = translateDaysToGridLocation(day: lessonDay)
-            let course = Course()
+            guard let appDelegate =
+                UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let course = Course.init(entity: NSEntityDescription.entity(forEntityName: "Course", in: managedContext)!, insertInto: managedContext)
             print("\(startHour) \(endHour) \(day)")
             if day != -1 && startHour != -1 && endHour != -1 {
                 let startIndex = startHour + day * 20
