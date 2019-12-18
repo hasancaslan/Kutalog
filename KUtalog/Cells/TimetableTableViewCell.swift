@@ -34,10 +34,15 @@ class TimetableTableViewCell: UITableViewCell {
         self.startTimeLabel.text = ""
     }
     
-    func configure(course: Course?) {
+    func configure(course: Course?, background: UIColor) {
+        self.contentView.backgroundColor = background
         self.courseCodeLabel.text = course?.moduleCode
         self.coursePlaceLabel.text = course?.semesterData?.semesterData.first??.timetable?.first??.venue
-        self.startTimeLabel.text = course?.semesterData?.semesterData.first??.timetable?.first??.startTime
+        if let startTime = course?.semesterData?.semesterData.first??.timetable?.first??.startTime,
+            let endTime = course?.semesterData?.semesterData.first??.timetable?.first??.endTime {
+            let index = startTime.index(startTime.startIndex, offsetBy: 2)
+            let time = startTime[..<index] + "." + startTime[index..<startTime.endIndex] + " " + endTime[..<index] + "." + endTime[index..<endTime.endIndex]
+            self.startTimeLabel.text = String(time)
+        }
     }
-    
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZfN-gj-KyW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HvV-sQ-vkL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4ka-bu-LaH">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskTableViewCell" rowHeight="94" id="rhq-1m-QNR" customClass="TaskTableViewCell" customModule="KUtalog" customModuleProvider="target">
@@ -526,23 +526,23 @@
                                 <rect key="frame" x="0.0" y="129" width="414" height="684"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TimetableTableViewCell" rowHeight="100" id="rD2-cZ-UjQ" customClass="TimetableTableViewCell" customModule="KUtalog" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TimetableTableViewCell" rowHeight="70" id="rD2-cZ-UjQ" customClass="TimetableTableViewCell" customModule="KUtalog" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rD2-cZ-UjQ" id="RWe-7B-ZVT">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WP7-VP-yhs">
-                                                    <rect key="frame" x="123" y="18" width="271" height="41"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                    <rect key="frame" x="83" y="8" width="311" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WED 00.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIa-mS-A22">
-                                                    <rect key="frame" x="15" y="40" width="100" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00 00.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIa-mS-A22">
+                                                    <rect key="frame" x="15" y="14.5" width="60" height="41"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="m1Q-ic-zgf"/>
+                                                        <constraint firstAttribute="width" constant="60" id="m1Q-ic-zgf"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -563,7 +563,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O13-ak-jyv">
-                                                    <rect key="frame" x="123" y="61" width="271" height="21"/>
+                                                    <rect key="frame" x="83" y="35" width="311" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -575,18 +575,17 @@
                                                     <variation key="heightClass=regular-widthClass=compact" constant="20"/>
                                                 </constraint>
                                                 <constraint firstItem="WIa-mS-A22" firstAttribute="centerY" secondItem="RWe-7B-ZVT" secondAttribute="centerY" id="Aq8-fu-Qza"/>
-                                                <constraint firstItem="WP7-VP-yhs" firstAttribute="top" secondItem="RWe-7B-ZVT" secondAttribute="top" constant="18" id="FtF-fK-bwK"/>
+                                                <constraint firstItem="WP7-VP-yhs" firstAttribute="top" secondItem="RWe-7B-ZVT" secondAttribute="top" constant="8" id="FtF-fK-bwK"/>
                                                 <constraint firstItem="O13-ak-jyv" firstAttribute="leading" secondItem="WP7-VP-yhs" secondAttribute="leading" id="HI9-37-Qhx"/>
                                                 <constraint firstAttribute="trailing" secondItem="O13-ak-jyv" secondAttribute="trailing" constant="243" id="Lcq-cl-Uub">
                                                     <variation key="heightClass=regular-widthClass=compact" constant="20"/>
                                                 </constraint>
-                                                <constraint firstAttribute="bottom" secondItem="O13-ak-jyv" secondAttribute="bottom" constant="29" id="O5C-ks-GUt">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="18"/>
-                                                </constraint>
+                                                <constraint firstAttribute="bottom" secondItem="O13-ak-jyv" secondAttribute="bottom" constant="8" id="O5C-ks-GUt"/>
                                                 <constraint firstAttribute="bottom" secondItem="WIa-mS-A22" secondAttribute="bottom" constant="31" id="UsJ-qw-eus"/>
                                                 <constraint firstItem="WP7-VP-yhs" firstAttribute="leading" secondItem="WIa-mS-A22" secondAttribute="trailing" constant="8" id="WXh-5H-ZdF"/>
+                                                <constraint firstItem="WP7-VP-yhs" firstAttribute="bottom" secondItem="RWe-7B-ZVT" secondAttribute="centerY" id="crP-uz-1P8"/>
                                                 <constraint firstItem="WIa-mS-A22" firstAttribute="leading" secondItem="RWe-7B-ZVT" secondAttribute="leading" constant="15" id="edt-7P-tse"/>
-                                                <constraint firstItem="O13-ak-jyv" firstAttribute="top" secondItem="WP7-VP-yhs" secondAttribute="bottom" constant="2" id="q8f-3n-mfw"/>
+                                                <constraint firstItem="O13-ak-jyv" firstAttribute="top" secondItem="WP7-VP-yhs" secondAttribute="bottom" id="q8f-3n-mfw"/>
                                                 <constraint firstItem="WIa-mS-A22" firstAttribute="top" secondItem="RWe-7B-ZVT" secondAttribute="top" constant="19" id="wNY-FS-A1X"/>
                                             </constraints>
                                             <variation key="default">
@@ -743,14 +742,14 @@
                                 <exclude reference="OA1-Dc-IMz"/>
                                 <exclude reference="KVg-8i-bQ8"/>
                                 <exclude reference="sio-Lo-O0e"/>
+                                <exclude reference="Icj-8f-H0b"/>
+                                <exclude reference="mZt-3N-ihr"/>
+                                <exclude reference="nJR-MK-Pa7"/>
                                 <exclude reference="Auj-l8-3NS"/>
                                 <exclude reference="GbW-6n-E1a"/>
                                 <exclude reference="LTg-dN-Y0s"/>
                                 <exclude reference="e2j-NZ-wg7"/>
                                 <exclude reference="ptQ-9i-EqN"/>
-                                <exclude reference="Icj-8f-H0b"/>
-                                <exclude reference="mZt-3N-ihr"/>
-                                <exclude reference="nJR-MK-Pa7"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -772,12 +771,12 @@
                             <mask key="constraints">
                                 <include reference="G4a-kb-qG9"/>
                                 <include reference="OA1-Dc-IMz"/>
-                                <include reference="Auj-l8-3NS"/>
-                                <include reference="LTg-dN-Y0s"/>
-                                <include reference="e2j-NZ-wg7"/>
                                 <exclude reference="Icj-8f-H0b"/>
                                 <include reference="mZt-3N-ihr"/>
                                 <include reference="nJR-MK-Pa7"/>
+                                <include reference="Auj-l8-3NS"/>
+                                <include reference="LTg-dN-Y0s"/>
+                                <include reference="e2j-NZ-wg7"/>
                             </mask>
                         </variation>
                     </view>
@@ -793,7 +792,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYE-Kh-z4L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250.2232142857142" y="-688.40579710144937"/>
+            <point key="canvasLocation" x="1249.2753623188407" y="-689.0625"/>
         </scene>
         <!--Scheduled Class View Controller-->
         <scene sceneID="Lpg-sI-CwA">
@@ -1064,7 +1063,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ikp-XF-hPr">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="16" id="2KB-y8-7fW">
                                     <size key="itemSize" width="394" height="235"/>

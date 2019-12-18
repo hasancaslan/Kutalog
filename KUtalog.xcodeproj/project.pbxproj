@@ -37,6 +37,7 @@
 		F38C6A0723999E7800A4AF99 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C6A0623999E7800A4AF99 /* Alerts.swift */; };
 		F393588423A1B8CC0004DCE4 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F393588323A1B8CC0004DCE4 /* Debouncer.swift */; };
 		F39B6DB023AA477800E74B20 /* +UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39B6DAF23AA477800E74B20 /* +UIViewController.swift */; };
+		F39B6DB223AA71F600E74B20 /* CellColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39B6DB123AA71F600E74B20 /* CellColors.swift */; };
 		F3A1AC1C239AAD63009D4FD1 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1AC1B239AAD63009D4FD1 /* Validations.swift */; };
 		F3B84CA5239FD70300C02626 /* Semesters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B84CA4239FD70300C02626 /* Semesters.swift */; };
 		F3C863FD23A00E9200071A17 /* KUtalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3C863FB23A00E9200071A17 /* KUtalog.xcdatamodeld */; };
@@ -99,6 +100,7 @@
 		F38C6A0623999E7800A4AF99 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		F393588323A1B8CC0004DCE4 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		F39B6DAF23AA477800E74B20 /* +UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+UIViewController.swift"; sourceTree = "<group>"; };
+		F39B6DB123AA71F600E74B20 /* CellColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellColors.swift; sourceTree = "<group>"; };
 		F3A1AC1B239AAD63009D4FD1 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		F3B84CA4239FD70300C02626 /* Semesters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Semesters.swift; sourceTree = "<group>"; };
 		F3C863FC23A00E9200071A17 /* KUtalog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KUtalog.xcdatamodel; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				F30E076923A805A400523D4C /* +String.swift */,
 				F39B6DAF23AA477800E74B20 /* +UIViewController.swift */,
+				F39B6DB123AA71F600E74B20 /* CellColors.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				F3285A64239FFDB5009B0498 /* Course.swift in Sources */,
 				F339534023994FE900647058 /* ClassSearchViewController.swift in Sources */,
 				F339533C23994FC900647058 /* TimetableViewController.swift in Sources */,
+				F39B6DB223AA71F600E74B20 /* CellColors.swift in Sources */,
 				14D062CB23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift in Sources */,
 				F33275B423A00C3E0096609A /* TasksDataSource.swift in Sources */,
 				14B937BD23A303E200AEF26C /* PickerTableViewCell.swift in Sources */,
