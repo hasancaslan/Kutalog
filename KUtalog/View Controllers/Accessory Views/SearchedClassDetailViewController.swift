@@ -45,7 +45,7 @@ class SearchedClassDetailViewController: UIViewController {
         semesterLabel.text = semesterArray?.joined(separator: " - ")
         let detailText = course?.moduleDescription
         classDetailsText.text = detailText
-        configureDetailTFHeight(detailText)
+//        configureDetailTFHeight(detailText)
         preclusionText.text = course?.preclusion
         
         let semesterExamArray = course?.semesterData?.semesterData.map { semester -> String in
