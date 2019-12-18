@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double ExpandableCellVersionNumber;
-FOUNDATION_EXPORT const unsigned char ExpandableCellVersionString[];
+FOUNDATION_EXPORT double KVKCalendarVersionNumber;
+FOUNDATION_EXPORT const unsigned char KVKCalendarVersionString[];
 

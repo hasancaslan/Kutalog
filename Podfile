@@ -8,5 +8,5 @@ target 'KUtalog' do
   # Pods for KUtalog
   pod 'Firebase/Auth'
   pod 'TextFieldEffects'
-  pod 'ExpandableCell', '~> 1.3'
+  pod 'KVKCalendar'
 end
