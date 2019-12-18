@@ -498,7 +498,7 @@ final class TimelineView: UIView {
             }
         }
         setOffsetScrollView()
-        scrollToCurrentTime(startHour: start)
+//        scrollToCurrentTime(startHour: start)
         showCurrentLineHour()
     }
 }

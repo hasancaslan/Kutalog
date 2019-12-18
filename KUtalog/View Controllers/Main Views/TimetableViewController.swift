@@ -8,14 +8,46 @@
 
 import UIKit
 import KVKCalendar
+import CoreData
+import FirebaseAuth
+
+extension TimetableViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            dataSource.loadSchedule(uid: uid)
+        }
+    }
+}
+
+extension TimetableViewController: TimetableDataSourceDelegate {
+    func scheduleLoaded(schedule: Schedule?) {
+        if let courses = schedule?.courses?.allObjects as? [Course]? {
+            scheduledClassesList = courses
+            loadEvents { [unowned self] (events) in
+                self.events = events
+            }
+            DispatchQueue.main.async {
+                self.calendarView.reloadData()
+            }
+        }
+    }
+}
 
 final class TimetableViewController: UIViewController {
     private var events = [Event]()
-    
+    var scheduledClassesList: [Course]?
+    private lazy var dataSource: TimetableDataSource = {
+        let source = TimetableDataSource()
+        source.fetchedResultsControllerDelegate = self
+        source.delegate = self
+        return source
+    }()
     private var selectDate: Date = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        return formatter.date(from: "14.12.2018") ?? Date()
+        return formatter.date(from: "16.09.2019") ?? Date()
     }()
     
     private lazy var todayButton: UIBarButtonItem = {
@@ -39,7 +71,7 @@ final class TimetableViewController: UIViewController {
         style.timelineStyle.offsetEvent = 3
         style.timelineStyle.currentLineHourWidth = 40
         style.allDayStyle.isPinned = true
-        style.startWeekDay = .sunday
+        style.startWeekDay = .monday
         style.timeHourSystem = .twelveHour
         
         let calendar = CalendarView(frame: view.frame, date: selectDate, style: style)
@@ -69,7 +101,6 @@ final class TimetableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view")
         if #available(iOS 13.0, *) {
             view.backgroundColor = .systemBackground
         } else {
@@ -78,12 +109,16 @@ final class TimetableViewController: UIViewController {
         view.addSubview(calendarView)
         navigationItem.titleView = segmentedControl
         navigationItem.rightBarButtonItem = todayButton
-        
         calendarView.addEventViewToDay(view: eventViewer)
         
-        loadEvents { [unowned self] (events) in
-            self.events = events
-            self.calendarView.reloadData()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            dataSource.loadSchedule(uid: uid)
         }
     }
     
@@ -150,121 +185,81 @@ extension TimetableViewController: CalendarDataSource {
 extension TimetableViewController {
     func loadEvents(completion: ([Event]) -> Void) {
         var events = [Event]()
-        
-        
-        let path = Bundle.main.path(forResource: "events", ofType: "json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-        let decoder = JSONDecoder()
-        let result = try! decoder.decode(ItemData.self, from: data)
-        
-        for (idx, item) in result.data.enumerated() {
-            let startDate = self.formatter(date: item.start)
-            let endDate = self.formatter(date: item.end)
-            let startTime = self.timeFormatter(date: startDate)
-            let endTime = self.timeFormatter(date: endDate)
+        guard let scheduledCourses = scheduledClassesList else { return }
+        for course in scheduledCourses {
+            let index = Double(scheduledCourses.firstIndex(of: course) ?? 0)
+            let colorCount = Double(CellColors.backgrounColors.count)
+            let colorIndex = Int(index.truncatingRemainder(dividingBy: colorCount))
+            let color = CellColors.backgrounColors[colorIndex]
+            let weekday = course.semesterData?.semesterData.first??.timetable?.first??.day
+            var startDateString = "15.09.2019"
+            var endDateString = "15.09.2019"
             
-            var event = Event()
-            event.id = idx
-            event.start = startDate
-            event.end = endDate
-            event.color = EventColor(item.color)
-            event.isAllDay = item.allDay
-            event.isContainsFile = !item.files.isEmpty
-            event.textForMonth = item.title
-            
-            if item.allDay {
-                event.text = "\(item.title)"
+            if let startTime = course.semesterData?.semesterData.first??.timetable?.first??.startTime,
+                let endTime = course.semesterData?.semesterData.first??.timetable?.first??.endTime {
+                startDateString = "15.09.2019\(startTime)00"
+                endDateString = "15.09.2019\(endTime)00"
             } else {
-                event.text = "\(startTime) - \(endTime)\n\(item.title)"
+                startDateString += "000000"
+                endDateString += "000000"
             }
+        
+            let start = self.formatter(date: startDateString)
+            let end = self.formatter(date: endDateString)
+//
+//            let startHour = self.timeFormatter(date: start)
+//            let endHour = self.timeFormatter(date: end)
+          
+            var event = Event()
+            switch weekday {
+            case "Monday":
+                event.start = start.next(.monday)
+                event.end = end.next(.monday)
+                break
+            case "Tuesday":
+                event.start = start.next(.tuesday)
+                event.end = end.next(.tuesday)
+                break
+            case "Wednesday":
+                event.start = start.next(.wednesday)
+                event.end = end.next(.wednesday)
+                break
+            case "Thursday":
+                event.start = start.next(.thursday)
+                event.end = end.next(.thursday)
+                break
+            case "Friday":
+                event.start = start.next(.friday)
+                event.end = end.next(.friday)
+                break
+            default:
+                event.start = start
+                event.end = end
+                break
+            }
+
+            event.id = course.moduleCode as Any
+            event.color = EventColor(color)
+            event.isAllDay = false
+            event.textForMonth = "\(course.moduleCode ?? "")"
+//            event.text = "\(course.moduleCode ?? "")\n\(startHour) - \(endHour)"
+            event.text = "\(course.moduleCode ?? "")"
             events.append(event)
         }
         completion(events)
     }
     
-    func timeFormatter(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        return formatter.string(from: date)
-    }
+//    func timeFormatter(date: Date) -> String {
+//           let formatter = DateFormatter()
+//           formatter.dateFormat = "HH:mm"
+//           return formatter.string(from: date)
+//       }
     
     func formatter(date: String) -> Date {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.dateFormat = "dd.MM.yyyyHHmmss"
+        formatter.locale = Locale.init(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
         return formatter.date(from: date) ?? Date()
-    }
-}
-
-extension TimetableViewController: UIPopoverPresentationControllerDelegate {
-    
-}
-
-struct ItemData: Decodable {
-    let data: [Item]
-    
-    enum CodingKeys: String, CodingKey {
-        case data
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode([Item].self, forKey: CodingKeys.data)
-    }
-}
-struct Item: Decodable {
-    let id: String
-    let title: String
-    let start: String
-    let end: String
-    let color: UIColor
-    let colorText: UIColor
-    let files: [String]
-    let allDay: Bool
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case title
-        case start
-        case end
-        case color
-        case colorText = "text_color"
-        case files
-        case allDay = "all_day"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: CodingKeys.id)
-        title = try container.decode(String.self, forKey: CodingKeys.title)
-        start = try container.decode(String.self, forKey: CodingKeys.start)
-        end = try container.decode(String.self, forKey: CodingKeys.end)
-        allDay = try container.decode(Int.self, forKey: CodingKeys.allDay) != 0
-        files = try container.decode([String].self, forKey: CodingKeys.files)
-        let strColor = try container.decode(String.self, forKey: CodingKeys.color)
-        color = UIColor.hexStringToColor(hex: strColor)
-        let strColorText = try container.decode(String.self, forKey: CodingKeys.colorText)
-        colorText = UIColor.hexStringToColor(hex: strColorText)
-    }
-}
-
-extension UIColor {
-    static func hexStringToColor(hex: String) -> UIColor {
-        var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
-        if cString.hasPrefix("#") {
-            cString.remove(at: cString.startIndex)
-        }
-        
-        if cString.count != 6 {
-            return UIColor.gray
-        }
-        var rgbValue: UInt32 = 0
-        Scanner(string: cString).scanHexInt32(&rgbValue)
-        
-        return UIColor(red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-                       green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-                       blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-                       alpha: CGFloat(1.0)
-        )
     }
 }
