@@ -12,8 +12,8 @@ import CoreData
 
 extension TimetableViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (collectionView.bounds.width - 19) / 20.0
-        let cellHeight = (collectionView.bounds.height - 4) /  5.0
+        let cellWidth = 120
+        let cellHeight = 40
         let size = CGSize.init(width: cellWidth, height: cellHeight)
         return size
     }
@@ -39,6 +39,7 @@ extension TimetableViewController: UICollectionViewDataSource {
         // We use this variable to get the index of this class's start. If this index is equal to the current index, then we
         // need to add the class code as a label. Cell decides what to do using this label
         let course = grid[indexPath.row]
+        print(course)
         let lesson = course?.semesterData?.semesterData.first??.timetable?.first
         let start = lesson??.startTime
         let lessonDay = lesson??.day
@@ -56,7 +57,7 @@ extension TimetableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimetableTableViewCell", for: indexPath) as! TimetableTableViewCell
-        let count = Int(Double(indexPath.row).truncatingRemainder(dividingBy: 4.0))
+        let count = Int(Double(indexPath.row).truncatingRemainder(dividingBy: Double(CellColors.backgrounColors.count - 1)))
         let background = CellColors.backgrounColors[count]
         cell.configure(course: filteredClassesList?[indexPath.row], background: background)
         return cell

@@ -98,7 +98,7 @@ extension TasksViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? TaskTableViewCell {
             let fetchedObjects = dataSource.fetchedResultsController.fetchedObjects
-            let count = Int(Double(indexPath.row).truncatingRemainder(dividingBy: 4.0))
+            let count = Int(Double(indexPath.row).truncatingRemainder(dividingBy: Double(CellColors.backgrounColors.count)))
             let background = CellColors.backgrounColors[count]
             cell.configure(task: fetchedObjects?[indexPath.row], background: background)
             cell.delegate = self
