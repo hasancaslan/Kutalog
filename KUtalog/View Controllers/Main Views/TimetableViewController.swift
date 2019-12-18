@@ -71,7 +71,6 @@ extension TimetableViewController: TimetableDataSourceDelegate {
 
 
 class TimetableViewController: UIViewController  {
-    
     // The array for the scheduled classes
     var scheduledClassesList: [Course]?
     var dataSource = TimetableDataSource()
