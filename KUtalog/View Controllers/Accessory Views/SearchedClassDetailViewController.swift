@@ -83,6 +83,7 @@ class SearchedClassDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(course?.semesterData?.semesterData.first??.timetable?.first??.day)
         self.addButton.alpha = 0.6
         self.addButton.isEnabled = false
         if let courseDetail = course, let moduleCode = course?.moduleCode {

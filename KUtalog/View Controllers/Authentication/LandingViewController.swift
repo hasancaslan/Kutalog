@@ -20,6 +20,7 @@ class LandingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         self.registerButton.layer.cornerRadius = 55/2
         self.loginButton.layer.cornerRadius = 55/2
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -28,8 +29,6 @@ class LandingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         self.navigationController?.navigationBar.isHidden = true
-        
-        // Save user information to UserDefaults for auto-login
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         guard let email = UserDefaults.standard.string(forKey: "email"),
             let password = UserDefaults.standard.string(forKey: "password") else {

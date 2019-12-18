@@ -70,26 +70,6 @@ class ClassSearchViewController: UIViewController {
         super.viewDidLoad()
         setupSearchController()
         dataSource.loadCourseList()
-        if allCourses?.isEmpty ?? true {
-            spinner.startAnimating()
-        }
-        dataSource.fetchCourseList { error in
-            DispatchQueue.main.async {
-                
-                // Update the spinner and refresh button states.
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                self.spinner.stopAnimating()
-                
-                // Show an alert if there was an error.
-                guard let error = error else { return }
-                let alert = UIAlertController(title: "Fetch classes error!",
-                                              message: error.localizedDescription,
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-        }
-        dataSource.loadCourseList()
     }
     
     // MARK: - Helpers
@@ -171,7 +151,7 @@ class ClassSearchViewController: UIViewController {
             }
             if let vc = segue.destination as? SearchedClassDetailViewController {
                 vc.course = course
-//                vc.dataSource = dataSource
+                //                vc.dataSource = dataSource
             }
         }
     }
@@ -199,15 +179,15 @@ extension ClassSearchViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let course: Course?
-//        if isFiltering() {
-//            course = filteredCourses?[indexPath.row]
-//        } else {
-//            course = allCourses?[indexPath.row]
-//        }
-//        if let moduleCode = course?.moduleCode{
-//            dataSource.loadCourseDetail(moduleCode: moduleCode, course: C)
-//        }
+        //        let course: Course?
+        //        if isFiltering() {
+        //            course = filteredCourses?[indexPath.row]
+        //        } else {
+        //            course = allCourses?[indexPath.row]
+        //        }
+        //        if let moduleCode = course?.moduleCode{
+        //            dataSource.loadCourseDetail(moduleCode: moduleCode, course: C)
+        //        }
     }
 }
 
@@ -267,6 +247,27 @@ extension ClassSearchViewController: UISearchResultsUpdating {
 extension ClassSearchViewController: ClassSearchDataSourceDelegate {
     func courseListLoaded(courseList: [Course]?) {
         self.allCourses = courseList
-        self.classListCollectionView.reloadData()
+        if allCourses?.isEmpty ?? true {
+            spinner.startAnimating()
+            dataSource.fetchCourseList { error in
+                DispatchQueue.main.async {
+
+                    // Update the spinner and refresh button states.
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    self.spinner.stopAnimating()
+
+                    // Show an alert if there was an error.
+                    guard let error = error else { return }
+                    let alert = UIAlertController(title: "Fetch classes error!",
+                                                  message: error.localizedDescription,
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+        DispatchQueue.main.async {
+             self.classListCollectionView.reloadData()
+        }
     }
 }

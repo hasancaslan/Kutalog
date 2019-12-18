@@ -39,9 +39,9 @@ extension TimetableViewController: UICollectionViewDataSource {
         // We use this variable to get the index of this class's start. If this index is equal to the current index, then we
         // need to add the class code as a label. Cell decides what to do using this label
         let index = indexPath.row
-        let lesson = scheduledClassesList?[index].semesterData?.semesterData[0]?.timetable?[0]
-        let start = lesson?.startTime
-        let lessonDay = lesson?.day
+        let lesson = scheduledClassesList?[index].semesterData?.semesterData.first??.timetable?.first
+        let start = lesson??.startTime
+        let lessonDay = lesson??.day
         let courseStartIndex = translateStartHourToGridLocation(hour: start ?? "") * translateDaysToGridLocation(day: lessonDay ?? "")
         cell.addClass(course: grid[indexPath.row] ?? nil, addLabel: courseStartIndex == index, color: translateDayToColor(day: lessonDay ?? ""))
         return cell
@@ -60,10 +60,10 @@ extension TimetableViewController: TimetableDataSourceDelegate {
             timetableTableView.reloadData()
             weeklyScheduleCollectionView.reloadData()
             createGrid()
-            let lesson = scheduledClassesList?[0].semesterData?.semesterData[0]?.timetable?[0]
-            print(lesson?.startTime)
-            print(lesson?.endTime)
-            print(lesson?.day)
+            let lesson = scheduledClassesList?.first?.semesterData?.semesterData.first??.timetable?.first
+            print(lesson??.startTime)
+            print(lesson??.endTime)
+            print(lesson??.day)
             print(scheduledClassesList)
         }
     }
@@ -120,13 +120,13 @@ class TimetableViewController: UIViewController  {
             let startHour = translateStartHourToGridLocation(hour: start)
             let endHour = translateEndHourToGridLocation(hour: end)
             let day = translateDaysToGridLocation(day: lessonDay)
-            guard let appDelegate =
-                UIApplication.shared.delegate as? AppDelegate else {
-                return
-            }
-            let managedContext = appDelegate.persistentContainer.viewContext
-            let course = Course.init(entity: NSEntityDescription.entity(forEntityName: "Course", in: managedContext)!, insertInto: managedContext)
-            print("\(startHour) \(endHour) \(day)")
+//            guard let appDelegate =
+//                UIApplication.shared.delegate as? AppDelegate else {
+//                return
+//            }
+//            let managedContext = appDelegate.persistentContainer.viewContext
+//            let course = Course.init(entity: NSEntityDescription.entity(forEntityName: "Course", in: managedContext)!, insertInto: managedContext)
+//            print("\(startHour) \(endHour) \(day)")
             if day != -1 && startHour != -1 && endHour != -1 {
                 let startIndex = startHour + day * 20
                 let endIndex = endHour + day * 20
