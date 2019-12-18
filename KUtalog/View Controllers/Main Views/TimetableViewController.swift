@@ -163,6 +163,7 @@ extension TimetableViewController: CalendarDelegate {
     }
     
     func didSelectEvent(_ event: Event, type: CalendarType, frame: CGRect?) {
+        print(event)
         switch type {
         case .day:
             eventViewer.text = event.text
@@ -206,10 +207,7 @@ extension TimetableViewController {
         
             let start = self.formatter(date: startDateString)
             let end = self.formatter(date: endDateString)
-//
-//            let startHour = self.timeFormatter(date: start)
-//            let endHour = self.timeFormatter(date: end)
-          
+            
             var event = Event()
             switch weekday {
             case "Monday":
@@ -242,18 +240,11 @@ extension TimetableViewController {
             event.color = EventColor(color)
             event.isAllDay = false
             event.textForMonth = "\(course.moduleCode ?? "")"
-//            event.text = "\(course.moduleCode ?? "")\n\(startHour) - \(endHour)"
             event.text = "\(course.moduleCode ?? "")"
             events.append(event)
         }
         completion(events)
     }
-    
-//    func timeFormatter(date: Date) -> String {
-//           let formatter = DateFormatter()
-//           formatter.dateFormat = "HH:mm"
-//           return formatter.string(from: date)
-//       }
     
     func formatter(date: String) -> Date {
         let formatter = DateFormatter()
