@@ -19,6 +19,11 @@ extension AddTaskViewController: TasksDataSourceDelegate {
 extension AddTaskViewController: DatePickerTableViewCellDelegate {
     func getSelectedDate(date: Date) {
         newTask.date = date
+        if NSDate().earlierDate(date) == date {
+            doneButton.isEnabled = false
+        } else {
+            doneButton.isEnabled = true
+        }
     }
 }
 

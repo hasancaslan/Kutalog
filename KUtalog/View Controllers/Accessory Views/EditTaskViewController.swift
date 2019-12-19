@@ -23,6 +23,11 @@ extension EditTaskViewController: TasksDataSourceDelegate {
 extension EditTaskViewController: DatePickerTableViewCellDelegate {
     func getSelectedDate(date: Date) {
         task?.date = date
+        if NSDate().earlierDate(date) == date {
+            doneButton.isEnabled = false
+        } else {
+            doneButton.isEnabled = true
+        }
     }
 }
 
@@ -87,7 +92,6 @@ extension EditTaskViewController: UITableViewDataSource {
 }
 
 class EditTaskViewController: UIViewController {
-
     var task: Task?
     var dataSource = TasksDataSource()
     var scheduledCourses: [Course]?
@@ -126,6 +130,7 @@ class EditTaskViewController: UIViewController {
     @IBAction func doneTapped(_ sender: Any) {
         if task?.title != "" {
             //dataSource.createTask(task?)
+            self.navigationController?.popViewController(animated: true)
         } else {
             let alert = UIAlertController(title: "Please Enter a Title", message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
