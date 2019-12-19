@@ -37,8 +37,8 @@ public struct Style {
             newStyle.headerScrollStyle.colorDate = UIColor.useForStyle(dark: .systemGray, white: .black)
             newStyle.headerScrollStyle.colorNameDay = UIColor.useForStyle(dark: .systemGray, white: .black)
             newStyle.headerScrollStyle.colorCurrentDate = .systemGray6
-            newStyle.headerScrollStyle.colorBackgroundCurrentDate = .systemRed
-            newStyle.headerScrollStyle.colorBackgroundSelectDate = UIColor.useForStyle(dark: .systemGray, white: .black)
+            newStyle.headerScrollStyle.colorBackgroundCurrentDate = .black
+            newStyle.headerScrollStyle.colorBackgroundSelectDate = UIColor.useForStyle(dark: .systemGray, white: .red)
             newStyle.headerScrollStyle.colorSelectDate = .systemGray6
             newStyle.headerScrollStyle.colorWeekendDate = .systemGray2
             
@@ -51,8 +51,8 @@ public struct Style {
             newStyle.weekStyle.colorDate = UIColor.useForStyle(dark: .systemGray, white: .black)
             newStyle.weekStyle.colorNameDay = UIColor.useForStyle(dark: .systemGray, white: .black)
             newStyle.weekStyle.colorCurrentDate = UIColor.useForStyle(dark: .systemGray, white: .white)
-            newStyle.weekStyle.colorBackgroundSelectDate = UIColor.useForStyle(dark: .systemGray, white: .black)
-            newStyle.weekStyle.colorBackgroundCurrentDate = .systemRed
+            newStyle.weekStyle.colorBackgroundSelectDate = UIColor.useForStyle(dark: .systemGray, white: .red)
+            newStyle.weekStyle.colorBackgroundCurrentDate = .black
             newStyle.weekStyle.colorSelectDate = .white
             newStyle.weekStyle.colorWeekendDate = .systemGray2
             newStyle.weekStyle.colorBackgroundWeekendDate = UIColor.useForStyle(dark: .systemGray, white: gainsboro.withAlphaComponent(0.4))
@@ -60,8 +60,8 @@ public struct Style {
             newStyle.monthStyle.colorDate = UIColor.useForStyle(dark: .systemGray, white: .black)
             newStyle.monthStyle.colorNameDay = UIColor.useForStyle(dark: .systemGray, white: .black)
             newStyle.monthStyle.colorCurrentDate = .white
-            newStyle.monthStyle.colorBackgroundCurrentDate = .systemRed
-            newStyle.monthStyle.colorBackgroundSelectDate = UIColor.useForStyle(dark: .systemGray, white: .black)
+            newStyle.monthStyle.colorBackgroundCurrentDate = .black
+            newStyle.monthStyle.colorBackgroundSelectDate = UIColor.useForStyle(dark: .systemGray, white: .red)
             newStyle.monthStyle.colorSelectDate = UIColor.useForStyle(dark: .black, white: .white)
             newStyle.monthStyle.colorWeekendDate = .systemGray2
             newStyle.monthStyle.colorMoreTitle = UIColor.useForStyle(dark: .systemGray3, white: .gray)
@@ -71,8 +71,8 @@ public struct Style {
             newStyle.monthStyle.colorBackgroundDate = UIColor.useForStyle(dark: .black, white: .white)
             
             newStyle.yearStyle.colorCurrentDate = .white
-            newStyle.yearStyle.colorBackgroundCurrentDate = .systemRed
-            newStyle.yearStyle.colorBackgroundSelectDate = UIColor.useForStyle(dark: .systemGray, white: .black)
+            newStyle.yearStyle.colorBackgroundCurrentDate = .black
+            newStyle.yearStyle.colorBackgroundSelectDate = UIColor.useForStyle(dark: .systemGray, white: .red)
             newStyle.yearStyle.colorSelectDate = .white
             newStyle.yearStyle.colorWeekendDate = .systemGray2
             newStyle.yearStyle.colorBackgroundWeekendDate = UIColor.useForStyle(dark: .systemGray5, white: gainsboro.withAlphaComponent(0.4))
