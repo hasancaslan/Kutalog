@@ -120,14 +120,21 @@ class AddTaskViewController: UIViewController {
      */
     @IBAction func doneTapped(_ sender: Any) {
         var alertTitle = ""
+        var success = false
         if newTask.title != "" {
             dataSource.createTask(newTask)
             alertTitle = "Your task is succesfully created!"
+            success = true
         } else {
             alertTitle = "Please Enter a Title"
+            success = false
         }
         let alert = UIAlertController(title: alertTitle, message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {_ in
+            if success {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }))
         self.present(alert, animated: true)
     }
 }
