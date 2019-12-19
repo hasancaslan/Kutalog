@@ -116,8 +116,8 @@ public struct HeaderScrollStyle {
     public var colorDate: UIColor = .black
     public var colorNameDay: UIColor = .black
     public var colorCurrentDate: UIColor = .white
-    public var colorBackgroundCurrentDate: UIColor = .red
-    public var colorBackgroundSelectDate: UIColor = .black
+    public var colorBackgroundCurrentDate: UIColor = .black
+    public var colorBackgroundSelectDate: UIColor = .red
     public var colorSelectDate: UIColor = .white
     public var colorWeekendDate: UIColor = .gray
     public var isScrollEnabled: Bool = true
@@ -152,8 +152,8 @@ public struct WeekStyle {
     public var colorDate: UIColor = .black
     public var colorNameDay: UIColor = .black
     public var colorCurrentDate: UIColor = .white
-    public var colorBackgroundCurrentDate: UIColor = .red
-    public var colorBackgroundSelectDate: UIColor = .black
+    public var colorBackgroundCurrentDate: UIColor = .black
+    public var colorBackgroundSelectDate: UIColor = .red
     public var colorSelectDate: UIColor = .white
     public var colorWeekendDate: UIColor = .gray
     public var colorBackgroundWeekendDate: UIColor = gainsboro.withAlphaComponent(0.4)
@@ -176,8 +176,8 @@ public struct MonthStyle {
     public var colorNameDay: UIColor = .black
     public var fontNameDate: UIFont = .boldSystemFont(ofSize: 16)
     public var colorCurrentDate: UIColor = .white
-    public var colorBackgroundCurrentDate: UIColor = .red
-    public var colorBackgroundSelectDate: UIColor = .black
+    public var colorBackgroundCurrentDate: UIColor = .black
+    public var colorBackgroundSelectDate: UIColor = .red
     public var colorSelectDate: UIColor = .white
     public var colorWeekendDate: UIColor = .gray
     public var moreTitle: String = "more"
@@ -204,8 +204,8 @@ public struct YearStyle {
     
     public lazy var formatter: DateFormatter = format
     public var colorCurrentDate: UIColor = .white
-    public var colorBackgroundCurrentDate: UIColor = .red
-    public var colorBackgroundSelectDate: UIColor = .black
+    public var colorBackgroundCurrentDate: UIColor = .black
+    public var colorBackgroundSelectDate: UIColor = .red
     public var colorSelectDate: UIColor = .white
     public var colorWeekendDate: UIColor = .gray
     public var colorBackgroundWeekendDate: UIColor = gainsboro.withAlphaComponent(0.4)
