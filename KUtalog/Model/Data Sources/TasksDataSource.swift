@@ -56,7 +56,7 @@ class TasksDataSource {
         
         // Create a fetch request for the Course entity sorted by time.
         let fetchRequest = NSFetchRequest<Task>(entityName: "Task")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         
         // Create a fetched results controller and set its fetch request, context, and delegate.
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
