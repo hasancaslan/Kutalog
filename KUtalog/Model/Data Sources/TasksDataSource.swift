@@ -41,6 +41,10 @@ class TasksDataSource {
         try? persistentContainer.viewContext.save()
     }
     
+    func save() {
+        try? persistentContainer.viewContext.save()
+    }
+    
     // MARK: - NSFetchedResultsController
     
     /**

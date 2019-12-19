@@ -69,13 +69,12 @@ extension AddTaskViewController: UITableViewDataSource {
             cell.delegate = self
             if let courses = scheduledCourses {
                 cell.pickerData = courses.map { ($0.title ?? "") }
-                if let courses = scheduledCourses {
-                    newTask.course = courses.first
-                }
+                newTask.course = courses.first
+                cell.coursePickerView.reloadAllComponents()
             } else {
+                print("picker cell")
                 cell.pickerData = ["No Course"]
             }
-            cell.coursePickerView.reloadAllComponents()
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
@@ -110,7 +109,12 @@ class AddTaskViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        let user = Auth.auth().currentUser
+               if let user = user {
+                   let uid = user.uid
+                   newTask.uid = uid
+                   dataSource.loadScheduledCourses(uid: uid)
+               }
     }
     
     

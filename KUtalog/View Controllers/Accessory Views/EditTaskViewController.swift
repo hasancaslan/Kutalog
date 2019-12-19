@@ -131,7 +131,7 @@ class EditTaskViewController: UIViewController {
      */
     @IBAction func doneTapped(_ sender: Any) {
         if task?.title != "" {
-            //dataSource.createTask(task?)
+            dataSource.save()
             self.navigationController?.popViewController(animated: true)
         } else {
             let alert = UIAlertController(title: "Please Enter a Title", message: nil, preferredStyle: .alert)

@@ -17,6 +17,7 @@
 		14D062C923A6743F00894553 /* TimetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D062C823A6743E00894553 /* TimetableTableViewCell.swift */; };
 		14D062CB23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D062CA23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift */; };
 		D981C39D1C9DAA05CC9DC713 /* Pods_KUtalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */; };
+		F301F31423ABBA3700F6922E /* +Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301F31323ABBA3700F6922E /* +Task.swift */; };
 		F30E076A23A805A400523D4C /* +String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E076923A805A400523D4C /* +String.swift */; };
 		F314183823A646EC0013DFDE /* NewTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F314183723A646EC0013DFDE /* NewTask.swift */; };
 		F3285A64239FFDB5009B0498 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3285A63239FFDB5009B0498 /* Course.swift */; };
@@ -82,6 +83,7 @@
 		14D062CA23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeTimetableCollectionViewCell.swift; sourceTree = "<group>"; };
 		320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KUtalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D14C91BB5EF388AC06917CAA /* Pods-KUtalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalog.release.xcconfig"; path = "Target Support Files/Pods-KUtalog/Pods-KUtalog.release.xcconfig"; sourceTree = "<group>"; };
+		F301F31323ABBA3700F6922E /* +Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Task.swift"; sourceTree = "<group>"; };
 		F30E076923A805A400523D4C /* +String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+String.swift"; sourceTree = "<group>"; };
 		F314183723A646EC0013DFDE /* NewTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTask.swift; sourceTree = "<group>"; };
 		F3285A63239FFDB5009B0498 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				F3285A63239FFDB5009B0498 /* Course.swift */,
+				F301F31323ABBA3700F6922E /* +Task.swift */,
 			);
 			path = "Managed Object Classes";
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				F339533823994FAD00647058 /* LoginViewController.swift in Sources */,
 				F3C863FD23A00E9200071A17 /* KUtalog.xcdatamodeld in Sources */,
 				F39B6DB423AA7DA800E74B20 /* +UIColor.swift in Sources */,
+				F301F31423ABBA3700F6922E /* +Task.swift in Sources */,
 				F339533A23994FB700647058 /* RegisterViewController.swift in Sources */,
 				F3B84CA5239FD70300C02626 /* Semesters.swift in Sources */,
 				F33275B623A00C550096609A /* TimetableDataSource.swift in Sources */,
