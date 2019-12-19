@@ -59,14 +59,10 @@ final class TimetableViewController: UIViewController {
     
     private lazy var calendarView: CalendarView = {
         var style = Style()
-        if UIDevice.current.userInterfaceIdiom == .phone {
             style.monthStyle.isHiddenSeporator = true
             style.timelineStyle.widthTime = 40
             style.timelineStyle.offsetTimeX = 2
             style.timelineStyle.offsetLineLeft = 2
-        } else {
-            style.timelineStyle.widthEventViewer = 500
-        }
         style.followInInterfaceStyle = true
         style.timelineStyle.offsetTimeY = 80
         style.timelineStyle.offsetEvent = 3
@@ -95,11 +91,6 @@ final class TimetableViewController: UIViewController {
         return control
     }()
     
-    private lazy var eventViewer: EventViewer = {
-        let view = EventViewer(frame: CGRect(x: 0, y: 0, width: 500, height: calendarView.frame.height))
-        return view
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -110,9 +101,6 @@ final class TimetableViewController: UIViewController {
         view.addSubview(calendarView)
         navigationItem.titleView = segmentedControl
         navigationItem.rightBarButtonItem = todayButton
-        calendarView.addEventViewToDay(view: eventViewer)
-        
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -156,21 +144,17 @@ final class TimetableViewController: UIViewController {
         }
     }
     
-      func presentInFullScreen(_ viewController: UIViewController,
-                               animated: Bool,
-                               completion: (() -> Void)? = nil) {
+    func presentInFullScreen(_ viewController: UIViewController,
+                             animated: Bool,
+                             completion: (() -> Void)? = nil) {
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: animated, completion: completion)
-      }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! Event
-
-       let destination = segue.destination as! ScheduledClassViewController
-       destination.course = courseToSendToDetails
-               
+        let destination = segue.destination as! ScheduledClassViewController
+        destination.course = courseToSendToDetails
     }
-
 }
 
 extension TimetableViewController: CalendarDelegate {
@@ -186,20 +170,7 @@ extension TimetableViewController: CalendarDelegate {
                 self.courseToSendToDetails = course
             }
         }
- 
-        switch type {
-        case .day:
-            eventViewer.text = event.text
-            performSegue(withIdentifier: "showDetail", sender: event)
-        default:
-            performSegue(withIdentifier: "showDetail", sender: event)
-            break
-        
-        }
-    }
-    
-    func eventViewerFrame(_ frame: CGRect) {
-        eventViewer.reloadFrame(frame: frame)
+        performSegue(withIdentifier: "showDetail", sender: event)
     }
 }
 
@@ -230,7 +201,7 @@ extension TimetableViewController {
                 startDateString += "000000"
                 endDateString += "000000"
             }
-        
+            
             let start = self.formatter(date: startDateString)
             let end = self.formatter(date: endDateString)
             
@@ -261,7 +232,7 @@ extension TimetableViewController {
                 event.end = end
                 break
             }
-
+            
             event.id = course.moduleCode as Any
             event.color = EventColor(color)
             event.isAllDay = false
