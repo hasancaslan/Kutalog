@@ -119,12 +119,15 @@ class AddTaskViewController: UIViewController {
      }
      */
     @IBAction func doneTapped(_ sender: Any) {
+        var alertTitle = ""
         if newTask.title != "" {
             dataSource.createTask(newTask)
+            alertTitle = "Your task is succesfully created!"
         } else {
-            let alert = UIAlertController(title: "Please Enter a Title", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
+            alertTitle = "Please Enter a Title"
         }
+        let alert = UIAlertController(title: alertTitle, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }
