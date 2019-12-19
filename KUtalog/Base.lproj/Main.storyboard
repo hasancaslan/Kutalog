@@ -251,15 +251,15 @@
                                             <outlet property="textField" destination="Zf0-4B-C6H" id="2nk-QG-nnF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickerTableViewCell" rowHeight="200" id="7hH-wz-xwH" customClass="PickerTableViewCell" customModule="KUtalog" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="328" width="414" height="200"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickerTableViewCell" rowHeight="180" id="7hH-wz-xwH" customClass="PickerTableViewCell" customModule="KUtalog" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="328" width="414" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7hH-wz-xwH" id="14l-8N-peC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kg6-8C-fQV">
-                                                    <rect key="frame" x="20" y="0.0" width="56.5" height="30"/>
+                                                    <rect key="frame" x="20" y="8" width="56.5" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="7TH-tr-QZG"/>
                                                     </constraints>
@@ -268,11 +268,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDb-cg-0JI">
-                                                    <rect key="frame" x="20" y="30" width="374" height="170"/>
+                                                    <rect key="frame" x="20" y="38" width="374" height="142"/>
                                                 </pickerView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Kg6-8C-fQV" firstAttribute="top" secondItem="14l-8N-peC" secondAttribute="top" id="8aj-LX-YMV"/>
+                                                <constraint firstItem="Kg6-8C-fQV" firstAttribute="top" secondItem="14l-8N-peC" secondAttribute="top" constant="8" id="8aj-LX-YMV"/>
                                                 <constraint firstItem="MDb-cg-0JI" firstAttribute="leading" secondItem="14l-8N-peC" secondAttribute="leading" constant="20" id="DTS-r5-j9u"/>
                                                 <constraint firstItem="Kg6-8C-fQV" firstAttribute="leading" secondItem="14l-8N-peC" secondAttribute="leading" constant="20" id="Ku7-68-Qql"/>
                                                 <constraint firstAttribute="bottom" secondItem="MDb-cg-0JI" secondAttribute="bottom" id="LKr-2n-kTl"/>
