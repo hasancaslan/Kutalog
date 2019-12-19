@@ -40,7 +40,6 @@
 		F39B6DB223AA71F600E74B20 /* CellColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39B6DB123AA71F600E74B20 /* CellColors.swift */; };
 		F39B6DB423AA7DA800E74B20 /* +UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39B6DB323AA7DA800E74B20 /* +UIColor.swift */; };
 		F39B6DB623AA93BF00E74B20 /* EventViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39B6DB523AA93BF00E74B20 /* EventViewer.swift */; };
-		F39B6DB823AA93DB00E74B20 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = F39B6DB723AA93DA00E74B20 /* events.json */; };
 		F3A1AC1C239AAD63009D4FD1 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1AC1B239AAD63009D4FD1 /* Validations.swift */; };
 		F3B84CA5239FD70300C02626 /* Semesters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B84CA4239FD70300C02626 /* Semesters.swift */; };
 		F3C863FD23A00E9200071A17 /* KUtalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3C863FB23A00E9200071A17 /* KUtalog.xcdatamodeld */; };
@@ -107,7 +106,6 @@
 		F39B6DB123AA71F600E74B20 /* CellColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellColors.swift; sourceTree = "<group>"; };
 		F39B6DB323AA7DA800E74B20 /* +UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+UIColor.swift"; sourceTree = "<group>"; };
 		F39B6DB523AA93BF00E74B20 /* EventViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewer.swift; sourceTree = "<group>"; };
-		F39B6DB723AA93DA00E74B20 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
 		F3A1AC1B239AAD63009D4FD1 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		F3B84CA4239FD70300C02626 /* Semesters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Semesters.swift; sourceTree = "<group>"; };
 		F3C863FC23A00E9200071A17 /* KUtalog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KUtalog.xcdatamodel; sourceTree = "<group>"; };
@@ -339,7 +337,6 @@
 				F339533323994F6F00647058 /* View Controllers */,
 				F33275B023A00BD70096609A /* Resources */,
 				F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */,
-				F39B6DB723AA93DA00E74B20 /* events.json */,
 				F3CF0002238BFA7800450C5D /* Main.storyboard */,
 				F3CF000A238BFA7E00450C5D /* LaunchScreen.storyboard */,
 				F3CF000D238BFA7E00450C5D /* Info.plist */,
@@ -470,7 +467,6 @@
 			files = (
 				F3CF000C238BFA7E00450C5D /* LaunchScreen.storyboard in Resources */,
 				F33652EE23995B7100384E30 /* GoogleService-Info.plist in Resources */,
-				F39B6DB823AA93DB00E74B20 /* events.json in Resources */,
 				F3CF0009238BFA7E00450C5D /* Assets.xcassets in Resources */,
 				F3CF0004238BFA7800450C5D /* Main.storyboard in Resources */,
 			);
