@@ -46,7 +46,14 @@ class SearchedClassDetailViewController: UIViewController {
         let detailText = course?.moduleDescription
         classDetailsText.text = detailText
 //        configureDetailTFHeight(detailText)
-        preclusionText.text = course?.preclusion
+        if let preclusion = course?.preclusion {
+           preclusionText.text = preclusion
+            preclusionLabel.text = "Preclusion"
+        } else {
+            preclusionText.text = nil
+            preclusionLabel.text = nil
+        }
+        
         
         let semesterExamArray = course?.semesterData?.semesterData.map { semester -> String in
             var str = ""
