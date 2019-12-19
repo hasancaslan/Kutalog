@@ -76,10 +76,10 @@ class SearchedClassDetailViewController: UIViewController {
             if let semester1Exam = semesterExamArray?[1] {
                 semester2ExamLabel.text =  "Semester 2 Exam"
                 semester2ExamText.text = semester1Exam
-            } else {
-                semester2ExamLabel.text = nil
-                semester2ExamText.text = nil
             }
+        } else {
+            semester2ExamLabel.text = nil
+            semester2ExamText.text = nil
         }
     }
     
