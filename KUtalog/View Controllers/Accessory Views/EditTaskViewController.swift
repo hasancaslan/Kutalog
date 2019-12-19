@@ -75,8 +75,10 @@ extension EditTaskViewController: UITableViewDataSource {
                 cell.pickerData = courses.map { ($0.title ?? "") }
                 let row = scheduledCourses?.firstIndex(of: task?.course ?? Course()) ?? 0
                 cell.coursePickerView.selectRow(row, inComponent: 0, animated: false)
+                doneButton.isEnabled = true
             } else {
                 cell.pickerData = ["No Course"]
+                doneButton.isEnabled = false
             }
             cell.coursePickerView.reloadAllComponents()
             return cell
