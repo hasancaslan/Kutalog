@@ -75,6 +75,6 @@ class TaskTableViewCell: UITableViewCell {
     }
     
     @IBAction func editTap(_ sender: Any) {
-        self.delegate?.editTapped(task: task)
+        
     }
 }
