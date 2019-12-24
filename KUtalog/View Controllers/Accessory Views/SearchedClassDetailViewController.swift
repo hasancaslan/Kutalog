@@ -132,15 +132,16 @@ class SearchedClassDetailViewController: UIViewController {
                         }
                     })
                 }
-            } else {
-                
+            } else if button.titleLabel?.text == "Delete from Schedule" {
+                print("button")
+                dataSource.deleteCourseFromSchedule(course: course)
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
     
     // MARK:- Helpers
     func isAddedToSchedule() -> Bool {
-        print(self.course?.schedules?.allObjects.isEmpty)
         if let schedulesOfCourse = self.course?.schedules?.allObjects {
             return !schedulesOfCourse.isEmpty
         }

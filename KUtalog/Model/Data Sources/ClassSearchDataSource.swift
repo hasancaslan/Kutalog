@@ -89,7 +89,7 @@ class ClassSearchDataSource {
                     conflictingCourses.append(scheduledCourse)
                 }
             }
-            if conflictingCourses.isEmpty{
+            if conflictingCourses.isEmpty {
                 if let schedules = course?.schedules?.adding(currentSchedule) {
                     course?.schedules = NSSet(set: schedules)
                 }
@@ -109,20 +109,25 @@ class ClassSearchDataSource {
         }
     }
     
+    func deleteCourseFromSchedule(course: Course?) {
+        course?.schedules? = NSSet()
+        try? self.viewContext.save()
+    }
+    
     func courseTimeExistanceCheck(existingCourse: Course, newCourse: Course?) -> Bool {
-        guard let start1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.startTime else {
+        guard (existingCourse.semesterData?.semesterData.first??.timetable?.first??.startTime) != nil else {
             print("no start1")
             return false
         }
-        guard let end1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.endTime else {
+        guard (existingCourse.semesterData?.semesterData.first??.timetable?.first??.endTime) != nil else {
             print("no end1")
             return false
         }
-        guard let start2 = newCourse?.semesterData?.semesterData.first??.timetable?.first??.startTime else {
+        guard (newCourse?.semesterData?.semesterData.first??.timetable?.first??.startTime) != nil else {
             print("no start2")
             return false
         }
-        guard let end2 = newCourse?.semesterData?.semesterData.first??.timetable?.first??.endTime else {
+        guard (newCourse?.semesterData?.semesterData.first??.timetable?.first??.endTime) != nil else {
             print("no end2")
             return false
         }
