@@ -186,51 +186,63 @@ extension TimetableViewController {
             let colorIndex = Int(index.truncatingRemainder(dividingBy: colorCount))
             let color = CellColors.backgrounColors[colorIndex]
             let weekday = course.semesterData?.semesterData.first??.timetable?.first??.day
-            var startDateString = "15.09.2019"
-            var endDateString = "15.09.2019"
+            var startDateString = "13.09.2019"
+            var endDateString = "13.09.2019"
             if let startTime = course.semesterData?.semesterData.first??.timetable?.first??.startTime,
                 let endTime = course.semesterData?.semesterData.first??.timetable?.first??.endTime {
-                startDateString = "15.09.2019\(startTime)00"
-                endDateString = "15.09.2019\(endTime)00"
+                startDateString = "13.09.2019\(startTime)00"
+                endDateString = "13.09.2019\(endTime)00"
             } else {
                 startDateString += "000000"
                 endDateString += "000000"
             }
-            let start = self.formatter(date: startDateString)
-            let end = self.formatter(date: endDateString)
-            var event = Event()
-            switch weekday {
-            case "Monday":
-                event.start = start.next(.monday)
-                event.end = end.next(.monday)
-                break
-            case "Tuesday":
-                event.start = start.next(.tuesday)
-                event.end = end.next(.tuesday)
-                break
-            case "Wednesday":
-                event.start = start.next(.wednesday)
-                event.end = end.next(.wednesday)
-                break
-            case "Thursday":
-                event.start = start.next(.thursday)
-                event.end = end.next(.thursday)
-                break
-            case "Friday":
-                event.start = start.next(.friday)
-                event.end = end.next(.friday)
-                break
-            default:
-                event.start = start
-                event.end = end
-                break
+            var start = self.formatter(date: startDateString)
+            var end = self.formatter(date: endDateString)
+            for _ in 0...13 {
+                var event = Event()
+                switch weekday {
+                case "Monday":
+                    start = start.next(.monday)
+                    end = end.next(.monday)
+                    event.start = start
+                    event.end = end
+                    break
+                case "Tuesday":
+                   start = start.next(.tuesday)
+                    end = end.next(.tuesday)
+                    event.start = start
+                    event.end = end
+                    break
+                case "Wednesday":
+                    start = start.next(.wednesday)
+                    end = end.next(.wednesday)
+                    event.start = start
+                    event.end = end
+                    break
+                case "Thursday":
+                    start = start.next(.thursday)
+                    end = end.next(.thursday)
+                    event.start = start
+                    event.end = end
+                    break
+                case "Friday":
+                   start = start.next(.friday)
+                    end = end.next(.friday)
+                    event.start = start
+                    event.end = end
+                    break
+                default:
+                    event.start = start
+                    event.end = end
+                    break
+                }
+                event.id = course.moduleCode as Any
+                event.color = EventColor(color)
+                event.isAllDay = false
+                event.textForMonth = "\(course.moduleCode ?? "")"
+                event.text = "\(course.moduleCode ?? "")"
+                events.append(event)
             }
-            event.id = course.moduleCode as Any
-            event.color = EventColor(color)
-            event.isAllDay = false
-            event.textForMonth = "\(course.moduleCode ?? "")"
-            event.text = "\(course.moduleCode ?? "")"
-            events.append(event)
         }
         completion(events)
     }
