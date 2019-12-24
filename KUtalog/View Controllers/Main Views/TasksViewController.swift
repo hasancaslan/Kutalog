@@ -41,6 +41,10 @@ class TasksViewController: UIViewController {
         dataSource.loadListOfTasks()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        selectedRowIndex = -1
+    }
+    
     // MARK:- Helpers
     
     // MARK: - Navigation
