@@ -24,7 +24,6 @@ class SearchedClassDetailViewController: UIViewController {
     @IBOutlet weak var semester2ExamLabel: UILabel!
     @IBOutlet weak var semester2ExamText: UITextView!
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var detailTextFieldHeightAnchor: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,18 +144,6 @@ class SearchedClassDetailViewController: UIViewController {
             return !schedulesOfCourse.isEmpty
         }
         return false
-    }
-    
-    func configureDetailTFHeight(_ detailText: String?) {
-        let textFieldWidth = view.frame.width - 40
-        let textFieldFont = classDetailsText.font ?? UIFont.systemFont(ofSize: 14)
-        if let text = detailText {
-            detailTextFieldHeightAnchor.constant = text.height(withConstrainedWidth: textFieldWidth,
-                                                               font: textFieldFont) + 16
-        } else {
-            detailTextFieldHeightAnchor.constant = 16
-        }
-        view.layoutIfNeeded()
     }
 }
 

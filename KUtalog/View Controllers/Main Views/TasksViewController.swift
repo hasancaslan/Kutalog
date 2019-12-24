@@ -149,6 +149,8 @@ extension TasksViewController: TasksDataSourceDelegate {
     func taskListLoaded(taskList: [Task]?) {
         self.allTasks = taskList
         tasksTableView.reloadData()
+        tasksTableView.beginUpdates()
+        tasksTableView.endUpdates()
     }
 }
 

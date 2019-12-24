@@ -284,11 +284,6 @@ class ClassSearchDataSource {
         dataTask.resume()
     }
     
-    func deleteCourseFromSchedule(_ courseToDelete: Course) {
-        persistentContainer.viewContext.delete(courseToDelete)
-        try? persistentContainer.viewContext.save()
-    }
-    
     // MARK: - NSFetchedResultsController
     
     /**

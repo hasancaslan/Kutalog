@@ -52,4 +52,9 @@ class TimetableDataSource {
             }
         }
     }
+    
+    func deleteCourse(course: Course?) {
+        course?.schedules? = NSSet()
+        try? self.persistentContainer.viewContext.save()
+    }
 }

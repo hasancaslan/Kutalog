@@ -20,10 +20,13 @@ class ScheduledClassViewController: UIViewController {
     @IBOutlet weak var semester1ExamText: UITextView!
     @IBOutlet weak var semester2ExamLabel: UILabel!
     @IBOutlet weak var semester2ExamText: UITextView!
+    @IBOutlet weak var deleteButton: UIButton!
     var course: Course?
+    private var dataSource = TimetableDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        deleteButton.layer.cornerRadius = 55/2
         classCodeLabel.text = course?.moduleCode
         classNameLabel.text = course?.title
         firstInfoLineLabel.text = "\(course?.department ?? "") - \(course?.faculty ?? "")"
@@ -78,6 +81,11 @@ class ScheduledClassViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        print("something")
+        dataSource.deleteCourse(course: self.course)
+         self.dismiss(animated: true, completion: nil)
+    }
 }
 
 

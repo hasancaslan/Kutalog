@@ -73,8 +73,4 @@ class TaskTableViewCell: UITableViewCell {
     @IBAction func deleteTap(_ sender: Any) {
         self.delegate?.deleteTapped(task: task)
     }
-    
-    @IBAction func editTap(_ sender: Any) {
-        
-    }
 }
