@@ -29,7 +29,8 @@ class SearchedClassDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addButton.layer.cornerRadius = 55/2
-        
+        addButton.titleLabel?.minimumScaleFactor = 0.5;
+        addButton.titleLabel?.adjustsFontSizeToFitWidth = true;
         dataSource.delegate = self
         classCodeLabel.text = course?.moduleCode
         classNameLabel.text = course?.title
@@ -53,7 +54,6 @@ class SearchedClassDetailViewController: UIViewController {
             preclusionText.text = nil
             preclusionLabel.text = nil
         }
-        
         
         let semesterExamArray = course?.semesterData?.semesterData.map { semester -> String in
             var str = ""
@@ -104,7 +104,6 @@ class SearchedClassDetailViewController: UIViewController {
         if let courseDetail = course, let moduleCode = course?.moduleCode {
             dataSource.loadCourseDetail(moduleCode: moduleCode, course: courseDetail)
         }
-        //        self.addButton.isEnabled = false
     }
     
     // MARK:- Actions
@@ -131,8 +130,11 @@ class SearchedClassDetailViewController: UIViewController {
     
     // MARK:- Helpers
     func isAddedToSchedule() -> Bool {
-        print(self.course?.schedules)
-        return self.course?.schedules != nil
+        print(self.course?.schedules?.allObjects.isEmpty)
+        if let schedulesOfCourse = self.course?.schedules?.allObjects {
+            return !schedulesOfCourse.isEmpty
+        }
+        return false
     }
     
     func configureDetailTFHeight(_ detailText: String?) {
