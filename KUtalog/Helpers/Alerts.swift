@@ -43,6 +43,7 @@ enum ClassError: Error {
     case missingData
     case creationError
     case conflictCourseError
+    case courseTimeDoesNotExistError
 }
 
 extension ClassError: LocalizedError {
@@ -60,6 +61,8 @@ extension ClassError: LocalizedError {
             return NSLocalizedString("Failed to create a new Quake object.", comment: "")
         case .conflictCourseError:
             return NSLocalizedString("There is conflict with another course in your schedule.", comment: "")
+        case .courseTimeDoesNotExistError:
+            return NSLocalizedString("Course time does not exist in the API.", comment: "")
         }
     }
 }

@@ -80,10 +80,26 @@ class ClassSearchDataSource {
             schedule.uid == uid
         })
         if let currentSchedule = fetchedObjects?.first {
-            if let schedules = course?.schedules?.adding(currentSchedule) {
-                course?.schedules = NSSet(set: schedules)
+            let scheduledCoursesArray = currentSchedule.courses?.allObjects as! [Course]
+            var conflictingCourses:[Course] = []
+            for scheduledCourse in scheduledCoursesArray {
+                if !courseTimeExistanceCheck(existingCourse: scheduledCourse, newCourse: course) {
+                    completionHandler(ClassError.courseTimeDoesNotExistError)
+                    return
+                }
+                if courseConflictCheck(existingCourse: scheduledCourse, newCourse: course) {
+                    conflictingCourses.append(scheduledCourse)
+                }
             }
-            try? viewContext.save()
+            if conflictingCourses.isEmpty{
+                if let schedules = course?.schedules?.adding(currentSchedule) {
+                    course?.schedules = NSSet(set: schedules)
+                }
+                try? viewContext.save()
+                completionHandler(nil)
+            } else {
+                completionHandler(ClassError.conflictCourseError)
+            }
         } else {
             let newSchedule = Schedule(context: viewContext)
             newSchedule.uid = uid
@@ -91,9 +107,57 @@ class ClassSearchDataSource {
                 course?.schedules = NSSet(set: schedules)
             }
             try? viewContext.save()
+            completionHandler(nil)
         }
-        
-        completionHandler(ClassError.conflictCourseError)
+    }
+    
+    func courseTimeExistanceCheck(existingCourse: Course, newCourse: Course?) -> Bool {
+        guard let start1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.startTime else {
+            print("no start1")
+            return false
+        }
+        guard let end1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.endTime else {
+            print("no end1")
+            return false
+        }
+        guard let start2 = newCourse?.semesterData?.semesterData.first??.timetable?.first??.startTime else {
+            print("no start2")
+            return false
+        }
+        guard let end2 = newCourse?.semesterData?.semesterData.first??.timetable?.first??.endTime else {
+            print("no end2")
+            return false
+        }
+        return true
+    }
+    
+    func courseConflictCheck(existingCourse: Course, newCourse: Course?) -> Bool {
+        if let newCourse = newCourse {
+            let day1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.day ?? "Friday"
+            guard let start1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.startTime else {
+                print("no start1")
+                return false
+            }
+            guard let end1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.endTime else {
+                print("no end1")
+                return false
+            }
+            let day2 = newCourse.semesterData?.semesterData.first??.timetable?.first??.day ?? "Friday"
+            guard let start2 = newCourse.semesterData?.semesterData.first??.timetable?.first??.startTime else {
+                print("no start2")
+                return false
+            }
+            guard let end2 = newCourse.semesterData?.semesterData.first??.timetable?.first??.endTime else {
+                print("no end2")
+                return false
+            }
+            if day1 == day2 && Int(start1) ?? Int.max <= Int(end2) ?? Int.min && Int(start2) ?? Int.max <= Int(end1) ?? Int.min {
+                print("\(day1) \(start1) \(end1) \(day2) \(start2) \(end2)")
+                return true
+            }
+            return false
+        }
+        return true
     }
     
     func loadCourseList() {

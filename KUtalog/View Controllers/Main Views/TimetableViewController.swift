@@ -70,7 +70,6 @@ final class TimetableViewController: UIViewController {
         style.allDayStyle.isPinned = true
         style.startWeekDay = .monday
         style.timeHourSystem = .twelveHour
-        
         let calendar = CalendarView(frame: view.frame, date: selectDate, style: style)
         calendar.delegate = self
         calendar.dataSource = self
@@ -192,7 +191,6 @@ extension TimetableViewController {
             let weekday = course.semesterData?.semesterData.first??.timetable?.first??.day
             var startDateString = "15.09.2019"
             var endDateString = "15.09.2019"
-            
             if let startTime = course.semesterData?.semesterData.first??.timetable?.first??.startTime,
                 let endTime = course.semesterData?.semesterData.first??.timetable?.first??.endTime {
                 startDateString = "15.09.2019\(startTime)00"
@@ -201,10 +199,8 @@ extension TimetableViewController {
                 startDateString += "000000"
                 endDateString += "000000"
             }
-            
             let start = self.formatter(date: startDateString)
             let end = self.formatter(date: endDateString)
-            
             var event = Event()
             switch weekday {
             case "Monday":
@@ -232,7 +228,6 @@ extension TimetableViewController {
                 event.end = end
                 break
             }
-            
             event.id = course.moduleCode as Any
             event.color = EventColor(color)
             event.isAllDay = false

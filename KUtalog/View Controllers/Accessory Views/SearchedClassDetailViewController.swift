@@ -118,10 +118,20 @@ class SearchedClassDetailViewController: UIViewController {
                 if let user = user {
                     let uid = user.uid
                     dataSource.addCourseToSchedule(uid: uid, course: course, completionHandler: {error in
-                        
+                        DispatchQueue.main.async {
+                            // Show an alert if there was an error.
+                            guard let error = error else {
+                                self.dismiss(animated: true, completion: nil)
+                                return
+                            }
+                            let alert = UIAlertController(title: error.localizedDescription,
+                                                              message: "",
+                                                              preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            }
                     })
                 }
-                self.dismiss(animated: true, completion: nil)
             } else {
                 
             }

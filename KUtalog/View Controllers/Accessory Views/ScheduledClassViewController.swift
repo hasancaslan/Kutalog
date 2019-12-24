@@ -27,7 +27,6 @@ class ScheduledClassViewController: UIViewController {
     
     override func viewDidLoad() {
             super.viewDidLoad()
-        
             classCodeLabel.text = course?.moduleCode
             classNameLabel.text = course?.title
             firstInfoLineLabel.text = "\(course?.department ?? "") - \(course?.faculty ?? "")"
@@ -42,9 +41,7 @@ class ScheduledClassViewController: UIViewController {
             semesterLabel.text = semesterArray?.joined(separator: " - ")
             let detailText = course?.moduleDescription
             classDetailsText.text = detailText
-
             preclusionText.text = course?.preclusion
-            
             let semesterExamArray = course?.semesterData?.semesterData.map { semester -> String in
                 var str = ""
                 if let isoDate = semester?.examDate {
@@ -60,7 +57,6 @@ class ScheduledClassViewController: UIViewController {
                 }
                 return str
             }
-            
             if let semester1Exam = semesterExamArray?.first {
                 semester1ExamLabel.text =  "Semester 1 Exam"
                 semester1ExamText.text = semester1Exam
@@ -68,7 +64,6 @@ class ScheduledClassViewController: UIViewController {
                 semester1ExamLabel.text = nil
                 semester1ExamText.text = nil
             }
-            
             if semesterExamArray?.indices.contains(1) ?? false {
                 if let semester1Exam = semesterExamArray?[1] {
                     semester2ExamLabel.text =  "Semester 2 Exam"

@@ -55,7 +55,6 @@ class ClassSearchViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: superView.centerXAnchor).isActive = true
             spinner.centerYAnchor.constraint(equalTo: superView.centerYAnchor).isActive = true
         }
-        
         // Add "No Results" label to superview
         if let superView = classListCollectionView.superview {
             superView.addSubview(noResultsLabel)
@@ -74,14 +73,12 @@ class ClassSearchViewController: UIViewController {
     
     // MARK: - Helpers
     func setupSearchController() {
-        
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Courses"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
         // Setup the Scope Bar
         searchController.searchBar.scopeButtonTitles = ["All", "Code", "Name", "Description"]
         searchController.searchBar.delegate = self
@@ -116,7 +113,6 @@ class ClassSearchViewController: UIViewController {
                     return doesCategoryMatch
                 }
             })
-            
             DispatchQueue.main.async {
                 self.classListCollectionView.reloadData()
                 if self.filteredCourses?.isEmpty ?? true {
@@ -141,7 +137,6 @@ class ClassSearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! ClassCollectionViewCell
         let indexPath = classListCollectionView.indexPath(for: cell)
-        
         if let indexPath = indexPath {
             let course: Course?
             if isFiltering() {
@@ -151,7 +146,7 @@ class ClassSearchViewController: UIViewController {
             }
             if let vc = segue.destination as? SearchedClassDetailViewController {
                 vc.course = course
-                //                vc.dataSource = dataSource
+                //vc.dataSource = dataSource
             }
         }
     }
@@ -200,7 +195,6 @@ extension ClassSearchViewController: UICollectionViewDelegateFlowLayout {
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-        
         return CGSize(width: widthPerItem, height: 2 * widthPerItem / 3)
     }
     
@@ -251,11 +245,9 @@ extension ClassSearchViewController: ClassSearchDataSourceDelegate {
             spinner.startAnimating()
             dataSource.fetchCourseList { error in
                 DispatchQueue.main.async {
-
                     // Update the spinner and refresh button states.
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     self.spinner.stopAnimating()
-
                     // Show an alert if there was an error.
                     guard let error = error else { return }
                     let alert = UIAlertController(title: "Fetch classes error!",
