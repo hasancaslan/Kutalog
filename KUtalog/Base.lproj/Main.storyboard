@@ -626,6 +626,7 @@
                         <segue destination="mfG-FB-lxM" kind="relationship" relationship="viewControllers" id="Tbt-Y8-x71"/>
                         <segue destination="tYg-hY-yas" kind="relationship" relationship="viewControllers" id="qfj-ZV-TXv"/>
                         <segue destination="FPG-nm-c8f" kind="relationship" relationship="viewControllers" id="259-Ho-Ax9"/>
+                        <segue destination="jIZ-vs-1dk" kind="relationship" relationship="viewControllers" id="8mL-W8-Hre"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDi-7e-CTH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -649,7 +650,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6zH-wv-M2W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="445" y="-688"/>
+            <point key="canvasLocation" x="490" y="-708"/>
         </scene>
         <!--Timetable View Controller-->
         <scene sceneID="yQK-BI-0c2">
@@ -668,7 +669,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYE-Kh-z4L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1249.2753623188407" y="-689.0625"/>
+            <point key="canvasLocation" x="1251" y="-708"/>
         </scene>
         <!--Scheduled Class View Controller-->
         <scene sceneID="Lpg-sI-CwA">
@@ -848,7 +849,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JHU-pf-woj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2128.985507246377" y="-688.39285714285711"/>
+            <point key="canvasLocation" x="2129" y="-708"/>
         </scene>
         <!--Class Search-->
         <scene sceneID="lcG-aY-YHd">
@@ -1434,9 +1435,132 @@
             </objects>
             <point key="canvasLocation" x="2128.985507246377" y="-10.044642857142856"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="It9-CU-bLd">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="lf5-I7-SVO" customClass="SettingsViewController" customModule="KUtalog" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jYp-M3-BHb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DtW-Gx-7oR">
+                                <rect key="frame" x="0.0" y="88" width="414" height="288"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="288" id="bxF-8n-2PW"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" rowHeight="48" id="B9H-6g-sSl" customClass="SettingsCell" customModule="KUtalog">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B9H-6g-sSl" id="4qq-EN-d08">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="48"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXp-dX-2Ga">
+                                                    <rect key="frame" x="20" y="16" width="395.5" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vXp-dX-2Ga" firstAttribute="centerY" secondItem="4qq-EN-d08" secondAttribute="centerY" id="UTx-dQ-fcS"/>
+                                                <constraint firstAttribute="bottom" secondItem="vXp-dX-2Ga" secondAttribute="bottom" constant="16" id="ZXn-n5-EJl"/>
+                                                <constraint firstAttribute="trailing" secondItem="vXp-dX-2Ga" secondAttribute="trailing" constant="-32.5" id="usX-eX-oDd"/>
+                                                <constraint firstItem="vXp-dX-2Ga" firstAttribute="leading" secondItem="4qq-EN-d08" secondAttribute="leading" constant="20" id="yVQ-ZA-cYP"/>
+                                                <constraint firstItem="vXp-dX-2Ga" firstAttribute="top" secondItem="4qq-EN-d08" secondAttribute="top" constant="16" id="z7T-9p-fMz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="settingsCellLabel" destination="vXp-dX-2Ga" id="XAZ-9x-4g5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffy-dF-5z0">
+                                <rect key="frame" x="16" y="376" width="378" height="50"/>
+                                <color key="backgroundColor" red="0.8980392157" green="0.1450980392" blue="0.08235294118" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4la-lL-1Ax"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Share App">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareTapped:" destination="lf5-I7-SVO" eventType="touchUpInside" id="PTc-Ac-YDb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIa-e4-ZO7">
+                                <rect key="frame" x="16" y="446" width="378" height="50"/>
+                                <color key="backgroundColor" red="0.8980392157" green="0.1450980392" blue="0.08235294118" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ek1-sS-NGh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutTapped:" destination="lf5-I7-SVO" eventType="touchUpInside" id="KCl-RA-brb"/>
+                                    <action selector="shareTapped:" destination="lf5-I7-SVO" eventType="touchUpInside" id="yWa-p8-KXV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ffy-dF-5z0" firstAttribute="top" secondItem="DtW-Gx-7oR" secondAttribute="bottom" id="0kT-5i-ywM"/>
+                            <constraint firstItem="hZM-fg-8nr" firstAttribute="trailing" secondItem="ffy-dF-5z0" secondAttribute="trailing" constant="20" id="0tE-hp-qWB"/>
+                            <constraint firstItem="hZM-fg-8nr" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NIa-e4-ZO7" secondAttribute="bottom" constant="20" id="2j6-Kd-VhF"/>
+                            <constraint firstItem="hZM-fg-8nr" firstAttribute="trailing" secondItem="DtW-Gx-7oR" secondAttribute="trailing" id="5br-Q8-Gm3"/>
+                            <constraint firstItem="NIa-e4-ZO7" firstAttribute="top" secondItem="ffy-dF-5z0" secondAttribute="bottom" constant="20" id="T45-ro-89f"/>
+                            <constraint firstItem="NIa-e4-ZO7" firstAttribute="leading" secondItem="ffy-dF-5z0" secondAttribute="leading" id="TjW-97-S27"/>
+                            <constraint firstItem="DtW-Gx-7oR" firstAttribute="top" secondItem="hZM-fg-8nr" secondAttribute="top" id="mhf-QY-Mok"/>
+                            <constraint firstItem="ffy-dF-5z0" firstAttribute="leading" secondItem="hZM-fg-8nr" secondAttribute="leading" constant="16" id="q2p-JW-a2A"/>
+                            <constraint firstItem="NIa-e4-ZO7" firstAttribute="trailing" secondItem="ffy-dF-5z0" secondAttribute="trailing" id="rPd-ZR-PCZ"/>
+                            <constraint firstItem="DtW-Gx-7oR" firstAttribute="leading" secondItem="hZM-fg-8nr" secondAttribute="leading" id="u6e-Be-X56"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hZM-fg-8nr"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" largeTitleDisplayMode="always" id="TCc-Uk-iGt">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="7j5-Wa-gW8"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="logOutButton" destination="NIa-e4-ZO7" id="EgT-7K-Aob"/>
+                        <outlet property="settingsTableView" destination="DtW-Gx-7oR" id="GTX-BT-dER"/>
+                        <outlet property="shareApp" destination="ffy-dF-5z0" id="gTf-cR-SR6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0OH-sV-hK2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1251" y="-1476"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="guk-3l-gmY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jIZ-vs-1dk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="Fk2-jf-Rxp"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="mMK-zw-PTc">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lf5-I7-SVO" kind="relationship" relationship="rootViewController" id="fDt-sj-xSt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QHj-Fl-XXC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="490" y="-1476"/>
+        </scene>
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="64" height="52"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
         <image name="logo" width="94" height="84"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
         <image name="pencil" catalog="system" width="64" height="56"/>

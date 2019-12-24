@@ -51,6 +51,7 @@
 		F3CFFFFD238BFA7800450C5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */; };
 		F3E240CE23AAAA400017848D /* +NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E240CD23AAAA400017848D /* +NSDate.swift */; };
 		F3E2B36223A3100F00CF8CC0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E2B36123A3100F00CF8CC0 /* DataController.swift */; };
+		F3F5D09923B265C900974080 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5D09823B265C900974080 /* SettingsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 		F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3E240CD23AAAA400017848D /* +NSDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+NSDate.swift"; sourceTree = "<group>"; };
 		F3E2B36123A3100F00CF8CC0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		F3F5D09823B265C900974080 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				14B937BC23A303E200AEF26C /* PickerTableViewCell.swift */,
 				14D062C823A6743E00894553 /* TimetableTableViewCell.swift */,
 				14D062CA23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift */,
+				F3F5D09823B265C900974080 /* SettingsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				F3E240CE23AAAA400017848D /* +NSDate.swift in Sources */,
 				142AD43123999F5100DDA179 /* ClassSearchDataSource.swift in Sources */,
 				F33953422399500E00647058 /* SearchedClassDetailViewController.swift in Sources */,
+				F3F5D09923B265C900974080 /* SettingsCell.swift in Sources */,
 				14B937BB23A303C300AEF26C /* TextFieldTableViewCell.swift in Sources */,
 				F3E2B36223A3100F00CF8CC0 /* DataController.swift in Sources */,
 				F39B6DB023AA477800E74B20 /* +UIViewController.swift in Sources */,
