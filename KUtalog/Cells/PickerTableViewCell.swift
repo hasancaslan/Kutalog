@@ -28,7 +28,6 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDa
         super.awakeFromNib()
         self.coursePickerView.delegate = self
         self.coursePickerView.dataSource = self
-        
     }
     
     override func prepareForReuse() {

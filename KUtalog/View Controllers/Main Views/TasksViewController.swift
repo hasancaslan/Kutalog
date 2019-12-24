@@ -10,16 +10,11 @@ import UIKit
 import CoreData
 
 extension TasksViewController: TaskTableViewCellDelegate {
-    func editTapped(task: Task?) {
-        
-    }
-    
     func deleteTapped(task: Task?) {
         if let taskToDelete = task {
             dataSource.deleteTask(taskToDelete)
         }
     }
-    
 }
 
 class TasksViewController: UIViewController {
@@ -28,7 +23,6 @@ class TasksViewController: UIViewController {
     var selectedRowIndex = -1
     var thereIsCellTapped = false
     var allTasks: [Task]? = [Task]()
-    
     private lazy var dataSource: TasksDataSource = {
         let source = TasksDataSource()
         source.fetchedResultsControllerDelegate = self
@@ -49,15 +43,15 @@ class TasksViewController: UIViewController {
     
     // MARK:- Helpers
     
-     // MARK: - Navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is EditTaskViewController {
-                if let task = allTasks?[selectedRowIndex] {
-                    let destination = segue.destination as! EditTaskViewController
-                    destination.task = task
-                }
+            if let task = allTasks?[selectedRowIndex] {
+                let destination = segue.destination as! EditTaskViewController
+                destination.task = task
             }
         }
+    }
 }
 
 // MARK:- Table View Delegate
@@ -67,14 +61,13 @@ extension TasksViewController: UITableViewDelegate {
             if let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell {
                 return 100 + cell.descriptionLabel.frame.height
             }
-             return 100
+            return 100
         }
         return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tasksTableView.cellForRow(at: indexPath)?.backgroundColor = .gray
-        
         if self.selectedRowIndex != -1 {
             tasksTableView.cellForRow(at: IndexPath(row: selectedRowIndex, section: 0))?.backgroundColor = .white
         }
@@ -146,7 +139,7 @@ extension TasksViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-     tasksTableView.endUpdates()
+        tasksTableView.endUpdates()
     }
     
 }

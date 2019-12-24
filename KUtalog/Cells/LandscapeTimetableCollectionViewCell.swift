@@ -10,7 +10,6 @@ import UIKit
 
 
 class LandscapeTimetableCollectionViewCell: UICollectionViewCell {
-    
     @IBOutlet weak var classCodeLabel: UILabel!
     
     func addClass(course: Course?, addLabel: Bool, color: UIColor){

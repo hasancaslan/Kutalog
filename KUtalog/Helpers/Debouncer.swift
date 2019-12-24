@@ -10,17 +10,16 @@ import UIKit
 import Foundation
 
 class Debouncer {
-
     // MARK: - Properties
     private let queue = DispatchQueue.main
     private var workItem = DispatchWorkItem(block: {})
     private var interval: TimeInterval
-
+    
     // MARK: - Initializer
     init(seconds: TimeInterval) {
         self.interval = seconds
     }
-
+    
     // MARK: - Debouncing function
     func debounce(action: @escaping (() -> Void)) {
         workItem.cancel()
@@ -30,12 +29,11 @@ class Debouncer {
 }
 
 class DebounceSearchBar: UISearchBar, UISearchBarDelegate {
-
     // MARK: - Properties
-
+    
     /// Debounce engine
     private var debouncer: Debouncer?
-
+    
     /// Debounce interval
     var debounceInterval: TimeInterval = 0 {
         didSet {
@@ -46,49 +44,49 @@ class DebounceSearchBar: UISearchBar, UISearchBarDelegate {
             self.debouncer = Debouncer(seconds: debounceInterval)
         }
     }
-
+    
     /// Event received when the search textField began editing
     var onSearchTextDidBeginEditing: (() -> Void)?
-
+    
     /// Event received when the search textField content changes
     var onSearchTextUpdate: ((String) -> Void)?
-
+    
     /// Event received when the search button is clicked
     var onSearchClicked: (() -> Void)?
-
+    
     /// Event received when cancel is pressed
     var onCancel: (() -> Void)?
-
+    
     // MARK: - Initializers
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         delegate = self
     }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         delegate = self
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         delegate = self
     }
-
+    
     // MARK: - UISearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         onCancel?()
     }
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         onSearchClicked?()
     }
-
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         onSearchTextDidBeginEditing?()
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let debouncer = self.debouncer else {
             onSearchTextUpdate?(searchText)

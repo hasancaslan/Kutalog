@@ -25,8 +25,8 @@ func createErrorAlert(message: AlertMessages, error: Error?) -> UIAlertControlle
         return alert
     } else {
         let alert = UIAlertController(title: "Aw, Snap!", message: message.rawValue, preferredStyle: .alert)
-           alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-           return alert
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        return alert
     }
 }
 

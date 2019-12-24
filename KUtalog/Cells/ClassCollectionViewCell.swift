@@ -24,5 +24,5 @@ class ClassCollectionViewCell: UICollectionViewCell {
         captionLabel.text = course?.moduleCode
         titleLabel.text = course?.title
         infoTextView.text = course?.moduleDescription
-       }
+    }
 }

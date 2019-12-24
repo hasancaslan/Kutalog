@@ -50,13 +50,11 @@ final class TimetableViewController: UIViewController {
         formatter.dateFormat = "dd.MM.yyyy"
         return formatter.date(from: "16.09.2019") ?? Date()
     }()
-    
     private lazy var todayButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Today", style: .done, target: self, action: #selector(today))
         button.tintColor = .red
         return button
     }()
-    
     private lazy var calendarView: CalendarView = {
         var style = Style()
         style.monthStyle.isHiddenSeporator = true
@@ -75,7 +73,6 @@ final class TimetableViewController: UIViewController {
         calendar.dataSource = self
         return calendar
     }()
-    
     private lazy var segmentedControl: UISegmentedControl = {
         let array: [CalendarType]
         if UIDevice.current.userInterfaceIdiom == .pad {

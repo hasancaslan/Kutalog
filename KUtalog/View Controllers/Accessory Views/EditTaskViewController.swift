@@ -47,8 +47,6 @@ extension EditTaskViewController: TextFieldTableViewCellDelegate {
     func getDescription(description: String?) {
         task?.taskDescription = description
     }
-    
-    
 }
 
 extension EditTaskViewController: UITableViewDataSource {
@@ -98,7 +96,6 @@ class EditTaskViewController: UIViewController {
     var dataSource = TasksDataSource()
     var scheduledCourses: [Course]?
     var delegate: EditTaskViewControllerDelegate?
-    
     @IBOutlet weak var editTaskTableView: UITableView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
@@ -116,19 +113,8 @@ class EditTaskViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     @IBAction func doneTapped(_ sender: Any) {
         if task?.title != "" {
             dataSource.save()

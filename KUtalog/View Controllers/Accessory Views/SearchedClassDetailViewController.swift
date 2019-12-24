@@ -125,11 +125,11 @@ class SearchedClassDetailViewController: UIViewController {
                                 return
                             }
                             let alert = UIAlertController(title: error.localizedDescription,
-                                                              message: "",
-                                                              preferredStyle: .alert)
-                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                                self.present(alert, animated: true, completion: nil)
-                            }
+                                                          message: "",
+                                                          preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
                     })
                 }
             } else {

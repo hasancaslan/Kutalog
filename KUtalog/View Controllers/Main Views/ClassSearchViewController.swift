@@ -15,25 +15,21 @@ class ClassSearchViewController: UIViewController {
     var filteredCourses: [Course]? = [Course]()
     let searchController = UISearchController(searchResultsController: nil)
     private let debouncer = Debouncer(seconds: 0.3)
-    
     private lazy var dataSource: ClassSearchDataSource = {
         let source = ClassSearchDataSource()
         source.fetchedResultsControllerDelegate = self
         source.delegate = self
         return source
     }()
-    
     // MARK: - View
     private let sectionInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 50.0, right: 20.0)
     private let itemsPerRow: CGFloat = 1
-    
     private lazy var spinner: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .whiteLarge)
         indicator.color = .gray
         indicator.hidesWhenStopped = true
         return indicator
     }()
-    
     private lazy var noResultsLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -259,7 +255,7 @@ extension ClassSearchViewController: ClassSearchDataSourceDelegate {
             }
         }
         DispatchQueue.main.async {
-             self.classListCollectionView.reloadData()
+            self.classListCollectionView.reloadData()
         }
     }
 }

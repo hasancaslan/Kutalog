@@ -43,8 +43,6 @@ extension AddTaskViewController: TextFieldTableViewCellDelegate {
     func getDescription(description: String?) {
         newTask.taskDescription = description
     }
-    
-    
 }
 
 extension AddTaskViewController: UITableViewDataSource {
@@ -91,7 +89,6 @@ class AddTaskViewController: UIViewController {
     var newTask = NewTask()
     var dataSource = TasksDataSource()
     var scheduledCourses: [Course]?
-    
     @IBOutlet weak var addTaskTableView: UITableView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
@@ -110,23 +107,13 @@ class AddTaskViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let user = Auth.auth().currentUser
-               if let user = user {
-                   let uid = user.uid
-                   newTask.uid = uid
-                   dataSource.loadScheduledCourses(uid: uid)
-               }
+        if let user = user {
+            let uid = user.uid
+            newTask.uid = uid
+            dataSource.loadScheduledCourses(uid: uid)
+        }
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     @IBAction func doneTapped(_ sender: Any) {
         var alertTitle = ""
         var success = false

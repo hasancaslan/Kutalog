@@ -15,7 +15,6 @@ protocol TimetableDataSourceDelegate {
 class TimetableDataSource {
     // MARK: - Core Data
     lazy var persistentContainer = DataController.shared.persistentContainer
-    
     // MARK: - NSFetchedResultsController
     weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
     lazy var fetchedResultsController: NSFetchedResultsController<Schedule> = {

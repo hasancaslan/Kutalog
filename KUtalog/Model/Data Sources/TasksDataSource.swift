@@ -52,22 +52,18 @@ class TasksDataSource {
      the user interface when content changes.
      */
     weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
-    
     /**
      A fetched results controller to fetch Course records sorted by time.
      */
     lazy var fetchedResultsController: NSFetchedResultsController<Task> = {
-        
         // Create a fetch request for the Course entity sorted by time.
         let fetchRequest = NSFetchRequest<Task>(entityName: "Task")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-        
         // Create a fetched results controller and set its fetch request, context, and delegate.
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                     managedObjectContext: persistentContainer.viewContext,
                                                     sectionNameKeyPath: nil, cacheName: "tasks")
         controller.delegate = fetchedResultsControllerDelegate
-        
         // Perform the fetch.
         do {
             try controller.performFetch()
@@ -75,7 +71,6 @@ class TasksDataSource {
         } catch {
             fatalError("Unresolved error \(error)")
         }
-        
         return controller
     }()
     
@@ -96,7 +91,6 @@ class TasksDataSource {
         } catch {
             fatalError("Unresolved error \(error)")
         }
-        
         return controller
     }()
     

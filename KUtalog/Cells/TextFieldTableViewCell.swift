@@ -14,11 +14,10 @@ protocol TextFieldTableViewCellDelegate {
 }
 
 extension TextFieldTableViewCell: UITextFieldDelegate {
-
+    
 }
 
 class TextFieldTableViewCell: UITableViewCell {
-
     @IBOutlet weak var textField: UITextField!
     var delegate: TextFieldTableViewCellDelegate?
     
@@ -27,7 +26,7 @@ class TextFieldTableViewCell: UITableViewCell {
         textField.delegate = self
         textField?.text = nil
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -39,6 +38,4 @@ class TextFieldTableViewCell: UITableViewCell {
             self.delegate?.getDescription(description: textField.text)
         }
     }
-    
-
 }

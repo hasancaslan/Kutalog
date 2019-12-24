@@ -20,14 +20,12 @@ extension ClassSearchDataSourceDelegate {
 }
 
 class ClassSearchDataSource {
-    
     // MARK: - Core Data
     /**
      A persistent container to set up the Core Data stack.
      */
     lazy var persistentContainer = DataController.shared.persistentContainer
     lazy var viewContext = DataController.shared.viewContext
-    
     /**
      Fetches the module feed from the remote server, and imports it into Core Data.
      */
@@ -162,7 +160,7 @@ class ClassSearchDataSource {
     
     func loadCourseList() {
         let courses = self.fetchedResultsController.fetchedObjects
-            self.delegate?.courseListLoaded(courseList: courses)
+        self.delegate?.courseListLoaded(courseList: courses)
     }
     
     private func importClasses(from moduleList: [Module]) {
@@ -274,15 +272,15 @@ class ClassSearchDataSource {
                 let decoder = JSONDecoder()
                 let module = try decoder.decode(Module.self, from: data)
                 course.update(with: module)
-                    do {
-                        try self.viewContext.save()
-                        DispatchQueue.main.async {
-                            self.delegate?.courseDetailLoaded()
-                        }
-                    } catch {
-                        print("Error: \(error)\nCould not save Core Data context.")
-                        return
+                do {
+                    try self.viewContext.save()
+                    DispatchQueue.main.async {
+                        self.delegate?.courseDetailLoaded()
                     }
+                } catch {
+                    print("Error: \(error)\nCould not save Core Data context.")
+                    return
+                }
             } catch {
                 return
             }
@@ -291,9 +289,9 @@ class ClassSearchDataSource {
     }
     
     func deleteCourseFromSchedule(_ courseToDelete: Course) {
-           persistentContainer.viewContext.delete(courseToDelete)
-           try? persistentContainer.viewContext.save()
-       }
+        persistentContainer.viewContext.delete(courseToDelete)
+        try? persistentContainer.viewContext.save()
+    }
     
     // MARK: - NSFetchedResultsController
     

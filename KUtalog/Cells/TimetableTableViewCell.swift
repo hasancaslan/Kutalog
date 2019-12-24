@@ -9,7 +9,6 @@
 import UIKit
 
 class TimetableTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var courseCodeLabel: UILabel!
     @IBOutlet weak var coursePlaceLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!

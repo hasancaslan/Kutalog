@@ -27,7 +27,7 @@ class DatePickerTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.dateLabel.text = dateFormatter.string(from: self.datePicker.date)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
