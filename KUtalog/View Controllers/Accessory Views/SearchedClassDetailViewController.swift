@@ -118,7 +118,9 @@ class SearchedClassDetailViewController: UIViewController {
                 let user = Auth.auth().currentUser
                 if let user = user {
                     let uid = user.uid
-                    dataSource.addCourseToSchedule(uid: uid, course: course)
+                    dataSource.addCourseToSchedule(uid: uid, course: course, completionHandler: {error in
+                        
+                    })
                 }
                 self.dismiss(animated: true, completion: nil)
             } else {
@@ -129,11 +131,8 @@ class SearchedClassDetailViewController: UIViewController {
     
     // MARK:- Helpers
     func isAddedToSchedule() -> Bool {
-        if (self.course?.schedules) != nil {
-            return true
-        } else {
-            return false
-        }
+        print(self.course?.schedules)
+        return self.course?.schedules != nil
     }
     
     func configureDetailTFHeight(_ detailText: String?) {

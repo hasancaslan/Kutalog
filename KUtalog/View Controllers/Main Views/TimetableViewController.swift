@@ -59,10 +59,10 @@ final class TimetableViewController: UIViewController {
     
     private lazy var calendarView: CalendarView = {
         var style = Style()
-            style.monthStyle.isHiddenSeporator = true
-            style.timelineStyle.widthTime = 40
-            style.timelineStyle.offsetTimeX = 2
-            style.timelineStyle.offsetLineLeft = 2
+        style.monthStyle.isHiddenSeporator = true
+        style.timelineStyle.widthTime = 40
+        style.timelineStyle.offsetTimeX = 2
+        style.timelineStyle.offsetLineLeft = 2
         style.followInInterfaceStyle = true
         style.timelineStyle.offsetTimeY = 80
         style.timelineStyle.offsetEvent = 3

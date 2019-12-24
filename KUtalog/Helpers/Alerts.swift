@@ -42,6 +42,7 @@ enum ClassError: Error {
     case wrongDataFormat
     case missingData
     case creationError
+    case conflictCourseError
 }
 
 extension ClassError: LocalizedError {
@@ -57,6 +58,8 @@ extension ClassError: LocalizedError {
             return NSLocalizedString("Found and will discard a module missing a valid data.", comment: "")
         case .creationError:
             return NSLocalizedString("Failed to create a new Quake object.", comment: "")
+        case .conflictCourseError:
+            return NSLocalizedString("There is conflict with another course in your schedule.", comment: "")
         }
     }
 }

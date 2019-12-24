@@ -35,7 +35,6 @@ class ClassSearchDataSource {
     let baseUrl = "https://api.nusmods.com/v2/"
     
     func fetchCourseList(completionHandler: @escaping (Error?) -> Void) {
-        print("fetched course list")
         // Create a URL to load, and a URLSession to load it.
         guard let url = URL(string: "\(baseUrl)2018-2019/moduleInfo.json") else {
             completionHandler(ClassError.urlError)
@@ -76,7 +75,7 @@ class ClassSearchDataSource {
         dataTask.resume()
     }
     
-    func addCourseToSchedule(uid: String, course: Course?) {
+    func addCourseToSchedule(uid: String, course: Course?, completionHandler: @escaping (Error?) -> Void) {
         let fetchedObjects = scheduleFetchedResultsController.fetchedObjects?.filter({ schedule in
             schedule.uid == uid
         })
@@ -93,6 +92,8 @@ class ClassSearchDataSource {
             }
             try? viewContext.save()
         }
+        
+        completionHandler(ClassError.conflictCourseError)
     }
     
     func loadCourseList() {
@@ -209,7 +210,6 @@ class ClassSearchDataSource {
                 let decoder = JSONDecoder()
                 let module = try decoder.decode(Module.self, from: data)
                 course.update(with: module)
-                print(module)
                     do {
                         try self.viewContext.save()
                         DispatchQueue.main.async {
@@ -257,7 +257,6 @@ class ClassSearchDataSource {
         // Perform the fetch.
         do {
             try controller.performFetch()
-            print("fetched results controller")
         } catch {
             fatalError("Unresolved error \(error)")
         }
