@@ -45,13 +45,11 @@ class TasksViewController: UIViewController {
         selectedRowIndex = -1
     }
 
-    // MARK: - Helpers
-
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is EditTaskViewController {
-            if let task = allTasks?[selectedRowIndex] {
-                let destination = segue.destination as! EditTaskViewController
+            if let task = allTasks?[selectedRowIndex],
+                let destination = segue.destination as? EditTaskViewController {
                 destination.task = task
             }
         }
@@ -116,24 +114,29 @@ extension TasksViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             tasksTableView.insertRows(at: [newIndexPath!], with: .fade)
-            break
         case .delete:
             tasksTableView.deleteRows(at: [indexPath!], with: .fade)
-            break
         case .update:
             tasksTableView.reloadRows(at: [indexPath!], with: .fade)
         case .move:
             tasksTableView.moveRow(at: indexPath!, to: newIndexPath!)
+        @unknown default:
+            return
         }
     }
 
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange sectionInfo: NSFetchedResultsSectionInfo,
+                    atSectionIndex sectionIndex: Int,
+                    for type: NSFetchedResultsChangeType) {
         let indexSet = IndexSet(integer: sectionIndex)
         switch type {
         case .insert: tasksTableView.insertSections(indexSet, with: .fade)
         case .delete: tasksTableView.deleteSections(indexSet, with: .fade)
         case .update, .move:
             fatalError("Invalid change type in controller(_:didChange:atSectionIndex:for:). Only .insert or .delete should be possible.")
+        @unknown default:
+            return
         }
     }
 

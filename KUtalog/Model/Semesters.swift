@@ -12,7 +12,7 @@ public class Semesters: NSObject, NSCoding {
     var semesterData: [SemesterData?] = []
 
     enum Key: String {
-        case semesterData = "semesterData"
+        case semesterData
     }
 
     init(semesterData: [SemesterData?]) {

@@ -65,7 +65,8 @@ class TaskTableViewCell: UITableViewCell {
         if let taskDescription = task?.taskDescription {
             descriptionLabel.text = taskDescription
             if taskDescription != "" {
-                descriptionLabelHeightAnchor.constant = taskDescription.height(withConstrainedWidth: self.contentView.frame.width - 40, font: .systemFont(ofSize: 12))
+                descriptionLabelHeightAnchor.constant = taskDescription.height(withConstrainedWidth:
+                    self.contentView.frame.width - 40, font: .systemFont(ofSize: 12))
             }
         }
     }

@@ -148,8 +148,9 @@ final class TimetableViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! ScheduledClassViewController
-        destination.course = courseToSendToDetails
+        if let destination = segue.destination as? ScheduledClassViewController {
+            destination.course = courseToSendToDetails
+        }
     }
 }
 
@@ -206,35 +207,29 @@ extension TimetableViewController {
                     end = end.next(.monday)
                     event.start = start
                     event.end = end
-                    break
                 case "Tuesday":
                    start = start.next(.tuesday)
                     end = end.next(.tuesday)
                     event.start = start
                     event.end = end
-                    break
                 case "Wednesday":
                     start = start.next(.wednesday)
                     end = end.next(.wednesday)
                     event.start = start
                     event.end = end
-                    break
                 case "Thursday":
                     start = start.next(.thursday)
                     end = end.next(.thursday)
                     event.start = start
                     event.end = end
-                    break
                 case "Friday":
                    start = start.next(.friday)
                     end = end.next(.friday)
                     event.start = start
                     event.end = end
-                    break
                 default:
                     event.start = start
                     event.end = end
-                    break
                 }
                 event.id = course.moduleCode as Any
                 event.color = EventColor(color)

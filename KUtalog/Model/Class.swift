@@ -15,10 +15,10 @@ class SemesterData: NSObject, Codable, NSCoding {
     let timetable: [Lesson?]?
 
     enum Key: String {
-        case semester = "semester"
-        case examDate = "examDate"
-        case examDuration = "examDuration"
-        case timetable = "timetable"
+        case semester
+        case examDate
+        case examDuration
+        case timetable
     }
 
     init(semester: Int?, examDate: String?, examDuration: Int?, timetable: [Lesson?]?) {
@@ -54,13 +54,13 @@ class Lesson: NSObject, Codable, NSCoding {
     let size: Int?
 
     enum Key: String {
-        case classNo = "classNo"
-        case startTime = "startTime"
-        case endTime = "endTime"
-        case venue = "venue"
-        case day = "day"
-        case lessonType = "lessonType"
-        case size = "size"
+        case classNo
+        case startTime
+        case endTime
+        case venue
+        case day
+        case lessonType
+        case size
     }
 
     init(classNo: String?, startTime: String?, endTime: String?, venue: String?, day: String?, lessonType: String?, size: Int?) {
@@ -114,7 +114,7 @@ struct Module: Codable {
         case department
         case faculty
         case preclusion
-        case workload = "workload"
+        case workload
         case semesterData
     }
 }

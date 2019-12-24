@@ -25,7 +25,7 @@ class ClassSearchViewController: UIViewController {
     private let sectionInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 50.0, right: 20.0)
     private let itemsPerRow: CGFloat = 1
     private lazy var spinner: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .whiteLarge)
+        let indicator = UIActivityIndicatorView(style: .large)
         indicator.color = .gray
         indicator.hidesWhenStopped = true
         return indicator
@@ -90,16 +90,12 @@ class ClassSearchViewController: UIViewController {
                 switch scope {
                 case "All":
                     doesCategoryMatch = course.title?.lowercased().contains(query.lowercased()) ?? false || course.moduleCode?.lowercased().contains(query.lowercased()) ?? false
-                    break
                 case "Code":
                     doesCategoryMatch = course.moduleCode?.lowercased().contains(query.lowercased()) ?? false
-                    break
                 case "Name":
                     doesCategoryMatch = course.title?.lowercased().contains(query.lowercased()) ?? false
-                    break
                 case "Description":
                     doesCategoryMatch = course.moduleDescription?.lowercased().contains(query.lowercased()) ?? false
-                    break
                 default:
                     break
                 }
@@ -131,7 +127,7 @@ class ClassSearchViewController: UIViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! ClassCollectionViewCell
+        guard let cell = sender as? ClassCollectionViewCell else { return }
         let indexPath = classListCollectionView.indexPath(for: cell)
         if let indexPath = indexPath {
             let course: Course?

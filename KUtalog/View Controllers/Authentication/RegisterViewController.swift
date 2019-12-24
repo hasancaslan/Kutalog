@@ -23,7 +23,7 @@ class RegisterViewController: UIViewController {
 
     @IBAction func registerTapped(_ sender: Any) {
         let activityIndicator: UIActivityIndicatorView = {
-            let activity = UIActivityIndicatorView(style: .gray)
+            let activity = UIActivityIndicatorView(style: .medium)
             activity.translatesAutoresizingMaskIntoConstraints = false
             activity.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
             activity.startAnimating()

@@ -39,7 +39,7 @@ extension AddTaskViewController: TextFieldTableViewCellDelegate {
     func getTitle(title: String?) {
         newTask.title = title
     }
-
+    
     func getDescription(description: String?) {
         newTask.taskDescription = description
     }
@@ -49,36 +49,40 @@ extension AddTaskViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DatePickerTableViewCell", for: indexPath) as! DatePickerTableViewCell
-            cell.delegate = self
-            newTask.date = cell.datePicker.date
-            return cell
-        } else if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
-            cell.textField?.placeholder = "Title"
-            cell.delegate = self
-            newTask.title = cell.textField.text
-            return cell
-        } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PickerTableViewCell", for: indexPath) as! PickerTableViewCell
-            cell.delegate = self
-            if let courses = scheduledCourses {
-                cell.pickerData = courses.map { ($0.title ?? "") }
-                newTask.course = courses.first
-                cell.coursePickerView.reloadAllComponents()
-            } else {
-                cell.pickerData = ["No Course"]
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "DatePickerTableViewCell", for: indexPath) as? DatePickerTableViewCell {
+                cell.delegate = self
+                newTask.date = cell.datePicker.date
+                return cell
             }
-            return cell
+        } else if indexPath.row == 0 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as? TextFieldTableViewCell {
+                cell.textField?.placeholder = "Title"
+                cell.delegate = self
+                newTask.title = cell.textField.text
+                return cell
+            }
+        } else if indexPath.row == 1 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PickerTableViewCell", for: indexPath) as? PickerTableViewCell {
+                cell.delegate = self
+                if let courses = scheduledCourses {
+                    cell.pickerData = courses.map { ($0.title ?? "") }
+                    newTask.course = courses.first
+                    cell.coursePickerView.reloadAllComponents()
+                } else {
+                    cell.pickerData = ["No Course"]
+                }
+                return cell
+            }
         } else if indexPath.row == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as! TextFieldTableViewCell
-            cell.textField?.placeholder = "Description"
-            cell.delegate = self
-            newTask.taskDescription = cell.textField.text
-            return cell
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "TextFieldTableViewCell", for: indexPath) as? TextFieldTableViewCell {
+                cell.textField?.placeholder = "Description"
+                cell.delegate = self
+                newTask.taskDescription = cell.textField.text
+                return cell
+            }
         }
         return UITableViewCell()
     }
@@ -90,7 +94,7 @@ class AddTaskViewController: UIViewController {
     var scheduledCourses: [Course]?
     @IBOutlet weak var addTaskTableView: UITableView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addTaskTableView.dataSource = self
@@ -102,7 +106,7 @@ class AddTaskViewController: UIViewController {
             dataSource.loadScheduledCourses(uid: uid)
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let user = Auth.auth().currentUser
@@ -112,7 +116,7 @@ class AddTaskViewController: UIViewController {
             dataSource.loadScheduledCourses(uid: uid)
         }
     }
-
+    
     @IBAction func doneTapped(_ sender: Any) {
         var alertTitle = ""
         var success = false
