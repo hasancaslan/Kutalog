@@ -116,19 +116,15 @@ class ClassSearchDataSource {
     
     func courseTimeExistanceCheck(existingCourse: Course, newCourse: Course?) -> Bool {
         guard (existingCourse.semesterData?.semesterData.first??.timetable?.first??.startTime) != nil else {
-            print("no start1")
             return false
         }
         guard (existingCourse.semesterData?.semesterData.first??.timetable?.first??.endTime) != nil else {
-            print("no end1")
             return false
         }
         guard (newCourse?.semesterData?.semesterData.first??.timetable?.first??.startTime) != nil else {
-            print("no start2")
             return false
         }
         guard (newCourse?.semesterData?.semesterData.first??.timetable?.first??.endTime) != nil else {
-            print("no end2")
             return false
         }
         return true
@@ -138,24 +134,19 @@ class ClassSearchDataSource {
         if let newCourse = newCourse {
             let day1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.day ?? "Friday"
             guard let start1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.startTime else {
-                print("no start1")
                 return false
             }
             guard let end1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.endTime else {
-                print("no end1")
                 return false
             }
             let day2 = newCourse.semesterData?.semesterData.first??.timetable?.first??.day ?? "Friday"
             guard let start2 = newCourse.semesterData?.semesterData.first??.timetable?.first??.startTime else {
-                print("no start2")
                 return false
             }
             guard let end2 = newCourse.semesterData?.semesterData.first??.timetable?.first??.endTime else {
-                print("no end2")
                 return false
             }
             if day1 == day2 && Int(start1) ?? Int.max <= Int(end2) ?? Int.min && Int(start2) ?? Int.max <= Int(end1) ?? Int.min {
-                print("\(day1) \(start1) \(end1) \(day2) \(start2) \(end2)")
                 return true
             }
             return false

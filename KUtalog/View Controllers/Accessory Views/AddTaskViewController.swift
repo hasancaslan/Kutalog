@@ -70,7 +70,6 @@ extension AddTaskViewController: UITableViewDataSource {
                 newTask.course = courses.first
                 cell.coursePickerView.reloadAllComponents()
             } else {
-                print("picker cell")
                 cell.pickerData = ["No Course"]
             }
             return cell

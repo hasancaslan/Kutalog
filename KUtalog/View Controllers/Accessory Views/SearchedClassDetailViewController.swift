@@ -133,7 +133,6 @@ class SearchedClassDetailViewController: UIViewController {
                     })
                 }
             } else if button.titleLabel?.text == "Delete from Schedule" {
-                print("button")
                 dataSource.deleteCourseFromSchedule(course: course)
                 self.dismiss(animated: true, completion: nil)
             }
