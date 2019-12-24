@@ -40,7 +40,7 @@ class ClassSearchViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Add spinner to superview
@@ -60,13 +60,13 @@ class ClassSearchViewController: UIViewController {
             noResultsLabel.isHidden = true
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
         dataSource.loadCourseList()
     }
-    
+
     // MARK: - Helpers
     func setupSearchController() {
         // Setup the Search Controller
@@ -79,7 +79,7 @@ class ClassSearchViewController: UIViewController {
         searchController.searchBar.scopeButtonTitles = ["All", "Code", "Name", "Description"]
         searchController.searchBar.delegate = self
     }
-    
+
     func filterContentForSearchText(_ searchText: String?, scope: String = "All") {
         guard let query = searchText else {
             return
@@ -119,16 +119,16 @@ class ClassSearchViewController: UIViewController {
             }
         }
     }
-    
+
     func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    
+
     func isFiltering() -> Bool {
         let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
         return searchController.isActive && (!searchBarIsEmpty() || searchBarScopeIsFiltering)
     }
-    
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! ClassCollectionViewCell
@@ -156,7 +156,7 @@ extension ClassSearchViewController: UICollectionViewDataSource, UICollectionVie
         }
         return allCourses?.count ?? 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClassCell", for: indexPath) as? ClassCollectionViewCell else { return UICollectionViewCell() }
         let course: Course?
@@ -168,7 +168,7 @@ extension ClassSearchViewController: UICollectionViewDataSource, UICollectionVie
         cell.configure(with: course)
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //        let course: Course?
         //        if isFiltering() {
@@ -187,19 +187,19 @@ extension ClassSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         return CGSize(width: widthPerItem, height: 2 * widthPerItem / 3)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets
     }
-    
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {

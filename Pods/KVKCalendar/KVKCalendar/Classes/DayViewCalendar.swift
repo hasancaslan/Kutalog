@@ -10,9 +10,9 @@ import UIKit
 final class DayViewCalendar: UIView {
     private var style: Style
     private var data: DayData
-    
+
     weak var delegate: CalendarPrivateDelegate?
-    
+
     private lazy var scrollHeaderDay: ScrollDayHeaderView = {
         let heightView: CGFloat
         if style.headerScrollStyle.isHiddenTitleDate {
@@ -29,7 +29,7 @@ final class DayViewCalendar: UIView {
         view.delegate = self
         return view
     }()
-    
+
     private lazy var timelineView: TimelineView = {
         var timelineFrame = frame
         timelineFrame.origin.y = scrollHeaderDay.frame.height
@@ -45,7 +45,7 @@ final class DayViewCalendar: UIView {
         view.delegate = self
         return view
     }()
-    
+
     private lazy var topBackgroundView: UIView = {
         let heightView: CGFloat
         if style.headerScrollStyle.isHiddenTitleDate {
@@ -57,21 +57,21 @@ final class DayViewCalendar: UIView {
         view.backgroundColor = style.headerScrollStyle.backgroundColor
         return view
     }()
-    
+
     init(data: DayData, frame: CGRect, style: Style) {
         self.style = style
         self.data = data
         super.init(frame: frame)
         setUI()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func addEventView(view: UIView) {
         guard UIDevice.current.userInterfaceIdiom == .pad else { return }
-        
+
         var eventFrame = timelineView.frame
         eventFrame.origin.x = eventFrame.width
         if UIDevice.current.orientation.isPortrait {
@@ -84,13 +84,13 @@ final class DayViewCalendar: UIView {
         addSubview(view)
         delegate?.getEventViewerFrame(frame: eventFrame)
     }
-    
+
     func setDate(_ date: Date) {
         data.date = date
         scrollHeaderDay.setDate(date)
         reloadData(events: data.events)
     }
-    
+
     func reloadData(events: [Event]) {
         data.events = events
         timelineView.createTimelinePage(dates: [data.date], events: events, selectedDate: data.date)
@@ -109,15 +109,15 @@ extension DayViewCalendar: TimelineDelegate {
     func didSelectEventInTimeline(_ event: Event, frame: CGRect?) {
         delegate?.didSelectCalendarEvent(event, frame: frame)
     }
-    
+
     func nextDate() {
         scrollHeaderDay.selectDate(offset: 1)
     }
-    
+
     func previousDate() {
         scrollHeaderDay.selectDate(offset: -1)
     }
-    
+
     func swipeX(transform: CGAffineTransform, stop: Bool) {
         scrollHeaderDay.scrollHeaderTitleByTransform(transform)
     }
@@ -128,7 +128,7 @@ extension DayViewCalendar: CalendarSettingProtocol {
         self.frame = frame
         topBackgroundView.frame.size.width = frame.width
         scrollHeaderDay.reloadFrame(frame)
-        
+
         var timelineFrame = timelineView.frame
         timelineFrame.size.height = frame.height - scrollHeaderDay.frame.height
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -136,7 +136,7 @@ extension DayViewCalendar: CalendarSettingProtocol {
             if let idx = subviews.firstIndex(where: { $0.tag == -1 }) {
                 let eventView = subviews[idx]
                 var eventFrame = timelineFrame
-                
+
                 let pointX: CGFloat
                 let width: CGFloat
                 if UIDevice.current.orientation.isPortrait {
@@ -147,7 +147,7 @@ extension DayViewCalendar: CalendarSettingProtocol {
                     pointX = eventFrame.width
                     width = style.timelineStyle.widthEventViewer
                 }
-                
+
                 eventFrame.origin.x = pointX
                 eventFrame.size.width = width
                 eventView.frame = eventFrame
@@ -159,13 +159,13 @@ extension DayViewCalendar: CalendarSettingProtocol {
         timelineView.reloadFrame(timelineFrame)
         timelineView.createTimelinePage(dates: [data.date], events: data.events, selectedDate: data.date)
     }
-    
+
     func updateStyle(_ style: Style) {
         self.style = style
         setUI()
         setDate(data.date)
     }
-    
+
     func setUI() {
         subviews.forEach({ $0.removeFromSuperview() })
         addSubview(topBackgroundView)

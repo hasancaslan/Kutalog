@@ -12,7 +12,7 @@ private let heightTitle: CGFloat = 25
 
 final class ScrollHeaderDayCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = #file
-    
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -20,7 +20,7 @@ final class ScrollHeaderDayCollectionViewCell: UICollectionViewCell {
         label.textColor = style.colorNameDay
         return label
     }()
-    
+
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -28,9 +28,9 @@ final class ScrollHeaderDayCollectionViewCell: UICollectionViewCell {
         label.textColor = style.colorDate
         return label
     }()
-    
+
     var style = HeaderScrollStyle()
-    
+
     var day: Day = Day(day: "", type: .empty, date: nil, data: []) {
         didSet {
             guard let number = day.date?.day else {
@@ -38,7 +38,7 @@ final class ScrollHeaderDayCollectionViewCell: UICollectionViewCell {
                 dateLabel.text = nil
                 return
             }
-            
+
             if !style.titleDays.isEmpty, let title = style.titleDays[safe: day.type.shiftDay] {
                 titleLabel.text = title
             } else {
@@ -48,7 +48,7 @@ final class ScrollHeaderDayCollectionViewCell: UICollectionViewCell {
             weekendsDays(day: day)
         }
     }
-    
+
     var selectDate: Date = Date() {
         didSet {
             let nowDate = Date()
@@ -67,7 +67,7 @@ final class ScrollHeaderDayCollectionViewCell: UICollectionViewCell {
                 }
                 return
             }
-            
+
             // select date not in the current month
             guard day.date?.month == selectDate.month, day.date?.day == selectDate.day else {
                 weekendsDays(day: day)
@@ -79,31 +79,31 @@ final class ScrollHeaderDayCollectionViewCell: UICollectionViewCell {
             dateLabel.clipsToBounds = true
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         var titleFrame = frame
         titleFrame.origin.x = 0
         titleFrame.origin.y = 0
         titleFrame.size.height = titleFrame.height > heightTitle ? heightTitle : titleFrame.height / 2 - 10
         titleLabel.frame = titleFrame
-        
+
         var dateFrame = frame
         dateFrame.size.height = frame.height > heightDate ? heightDate : frame.height / 2
         dateFrame.size.width = heightDate
         dateFrame.origin.y = titleFrame.height
         dateFrame.origin.x = (frame.width / 2) - (dateFrame.width / 2)
         dateLabel.frame = dateFrame
-        
+
         addSubview(titleLabel)
         addSubview(dateLabel)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func weekendsDays(day: Day) {
         guard day.type == .saturday || day.type == .sunday else {
             isNowDate(date: day.date, colorText: style.colorDate)
@@ -113,7 +113,7 @@ final class ScrollHeaderDayCollectionViewCell: UICollectionViewCell {
         isNowDate(date: day.date, colorText: style.colorWeekendDate)
         titleLabel.textColor = style.colorWeekendDate
     }
-    
+
     private func isNowDate(date: Date?, colorText: UIColor) {
         let nowDate = Date()
         if date?.month == nowDate.month, date?.day == nowDate.day, date?.year == nowDate.year {

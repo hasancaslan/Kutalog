@@ -30,7 +30,7 @@ func createErrorAlert(message: AlertMessages, error: Error?) -> UIAlertControlle
     }
 }
 
-func createSuccessAlert(message: AlertMessages) -> UIAlertController{
+func createSuccessAlert(message: AlertMessages) -> UIAlertController {
     let alert = UIAlertController(title: "Success!", message: message.rawValue, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
     return alert

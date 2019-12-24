@@ -10,19 +10,19 @@ import Foundation
 struct MonthData {
     var days: [Day]
     var date: Date
-    
+
     private let cachedDays: [Day]
-    
+
     init(yearData: YearData, startDay: StartDayType) {
         self.days = yearData.months.reduce([], { $0 + $1.days })
         self.date = yearData.date
         self.cachedDays = days
     }
-    
+
     private func compareDate(day: Day, date: Date?) -> Bool {
         return day.date?.year == date?.year && day.date?.month == date?.month
     }
-    
+
     mutating func reloadEventsInDays(events: [Event]) {
         let startDate = date.startOfMonth
         let endDate = date.endOfMonth?.startOfDay

@@ -9,13 +9,13 @@ import UIKit
 
 final class YearHeaderView: UIView {
     static let identifier = #file
-    
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .clear
         return label
     }()
-    
+
     var date: Date? {
         didSet {
             if let date = date {
@@ -23,23 +23,23 @@ final class YearHeaderView: UIView {
             }
         }
     }
-    
+
     var style: Style = Style() {
         didSet {
             titleLabel.textColor = style.yearStyle.colorTitleHeader
             titleLabel.font = style.yearStyle.fontTitleHeader
             titleLabel.textAlignment = style.yearStyle.aligmentTitleHeader
-            
+
             backgroundColor = style.yearStyle.colorBackgroundHeader
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         titleLabel.frame = frame
         addSubview(titleLabel)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -50,7 +50,7 @@ extension YearHeaderView: CalendarSettingProtocol {
         self.frame.size.width = frame.width
         titleLabel.frame.size.width = frame.width
     }
-    
+
     func updateStyle(_ style: Style) {
         self.style = style
     }

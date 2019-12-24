@@ -23,7 +23,7 @@ class ScheduledClassViewController: UIViewController {
     @IBOutlet weak var deleteButton: UIButton!
     var course: Course?
     private var dataSource = TimetableDataSource()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         deleteButton.layer.cornerRadius = 55/2
@@ -33,8 +33,7 @@ class ScheduledClassViewController: UIViewController {
         let semesterArray = course?.semesterData?.semesterData.map { sem -> String in
             if let s = sem?.semester {
                 return "Semester " + String(s)
-            }
-            else {
+            } else {
                 return ""
             }
         }
@@ -74,19 +73,15 @@ class ScheduledClassViewController: UIViewController {
             }
         }
     }
-    
-    
-    // MARK:- Actions
+
+    // MARK: - Actions
     @IBAction func dismissTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @IBAction func deleteButtonTapped(_ sender: Any) {
         print("something")
         dataSource.deleteCourse(course: self.course)
          self.dismiss(animated: true, completion: nil)
     }
 }
-
-
-

@@ -23,12 +23,12 @@ public struct Style {
     public var timeHourSystem: TimeHourSystem = .twentyFourHour
     public var startWeekDay: StartDayType = .monday
     public var followInInterfaceStyle: Bool = false
-    
+
     public init() {}
-    
+
     var checkStyle: Style {
         guard followInInterfaceStyle else { return self }
-        
+
         var newStyle = self
         if #available(iOS 13.0, *) {
             newStyle.headerScrollStyle.backgroundColor = UIColor.useForStyle(dark: .black, white: UIColor(red: 246 / 255, green: 246 / 255, blue: 246 / 255, alpha: 1))
@@ -41,12 +41,12 @@ public struct Style {
             newStyle.headerScrollStyle.colorBackgroundSelectDate = UIColor.useForStyle(dark: .systemGray, white: .red)
             newStyle.headerScrollStyle.colorSelectDate = .systemGray6
             newStyle.headerScrollStyle.colorWeekendDate = .systemGray2
-            
+
             newStyle.timelineStyle.backgroundColor = UIColor.useForStyle(dark: .black, white: .white)
             newStyle.timelineStyle.timeColor = .systemGray
             newStyle.timelineStyle.colorIconFile = UIColor.useForStyle(dark: .systemGray, white: .black)
             newStyle.timelineStyle.currentLineHourColor = UIColor.useForStyle(dark: .systemRed, white: .red)
-            
+
             newStyle.weekStyle.colorBackground = UIColor.useForStyle(dark: .black, white: gainsboro.withAlphaComponent(0.4))
             newStyle.weekStyle.colorDate = UIColor.useForStyle(dark: .systemGray, white: .black)
             newStyle.weekStyle.colorNameDay = UIColor.useForStyle(dark: .systemGray, white: .black)
@@ -56,7 +56,7 @@ public struct Style {
             newStyle.weekStyle.colorSelectDate = .white
             newStyle.weekStyle.colorWeekendDate = .systemGray2
             newStyle.weekStyle.colorBackgroundWeekendDate = UIColor.useForStyle(dark: .systemGray, white: gainsboro.withAlphaComponent(0.4))
-            
+
             newStyle.monthStyle.colorDate = UIColor.useForStyle(dark: .systemGray, white: .black)
             newStyle.monthStyle.colorNameDay = UIColor.useForStyle(dark: .systemGray, white: .black)
             newStyle.monthStyle.colorCurrentDate = .white
@@ -69,7 +69,7 @@ public struct Style {
             newStyle.monthStyle.colorSeporator = UIColor.useForStyle(dark: .systemGray, white: gainsboro.withAlphaComponent(0.9))
             newStyle.monthStyle.colorBackgroundWeekendDate = UIColor.useForStyle(dark: .systemGray5, white: gainsboro.withAlphaComponent(0.4))
             newStyle.monthStyle.colorBackgroundDate = UIColor.useForStyle(dark: .black, white: .white)
-            
+
             newStyle.yearStyle.colorCurrentDate = .white
             newStyle.yearStyle.colorBackgroundCurrentDate = .black
             newStyle.yearStyle.colorBackgroundSelectDate = UIColor.useForStyle(dark: .systemGray, white: .red)
@@ -80,7 +80,7 @@ public struct Style {
             newStyle.yearStyle.colorBackgroundHeader = UIColor.useForStyle(dark: .black, white: gainsboro.withAlphaComponent(0.4))
             newStyle.yearStyle.colorTitleHeader = UIColor.useForStyle(dark: .white, white: .black)
             newStyle.yearStyle.colorDayTitle = UIColor.useForStyle(dark: .systemGray, white: .black)
-            
+
             newStyle.allDayStyle.backgroundColor = .systemGray
             newStyle.allDayStyle.titleColor = UIColor.useForStyle(dark: .white, white: .black)
             newStyle.allDayStyle.textColor = UIColor.useForStyle(dark: .white, white: .black)
@@ -95,14 +95,14 @@ public struct HeaderScrollStyle {
         format.dateStyle = .full
         return format
     }()
-    
+
     private let formatSort: DateFormatter = {
         let format = DateFormatter()
         format.locale = Locale(identifier: "en_US_POSIX")
         format.dateFormat = "LLL"
         return format
     }()
-    
+
     public var titleDays: [String] = []
     public var heightHeaderWeek: CGFloat = 70
     public var heightTitleDate: CGFloat = 30
@@ -139,7 +139,7 @@ public struct TimelineStyle {
     public var timeFont: UIFont = .systemFont(ofSize: 12)
     public var scrollToCurrentHour: Bool = true
     public var widthEventViewer: CGFloat = 0
-    public var iconFile: UIImage? = nil
+    public var iconFile: UIImage?
     public var colorIconFile: UIColor = .black
     public var showCurrentLineHour: Bool = true
     public var currentLineHourFont: UIFont = .systemFont(ofSize: 12)
@@ -167,7 +167,7 @@ public struct MonthStyle {
         format.dateStyle = .full
         return format
     }()
-    
+
     public lazy var formatter: DateFormatter = format
     public var heightHeaderWeek: CGFloat = 50
     public var heightTitleDate: CGFloat = 30
@@ -201,7 +201,7 @@ public struct YearStyle {
         format.dateStyle = .full
         return format
     }()
-    
+
     public lazy var formatter: DateFormatter = format
     public var colorCurrentDate: UIColor = .white
     public var colorBackgroundCurrentDate: UIColor = .black

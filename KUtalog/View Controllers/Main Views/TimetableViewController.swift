@@ -86,7 +86,7 @@ final class TimetableViewController: UIViewController {
         control.addTarget(self, action: #selector(switchCalendar), for: .valueChanged)
         return control
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 13.0, *) {
@@ -106,18 +106,18 @@ final class TimetableViewController: UIViewController {
             dataSource.loadSchedule(uid: uid)
         }
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         var frame = view.frame
         frame.origin.y = 0
         calendarView.reloadFrame(frame)
     }
-    
+
     @objc func today(sender: UIBarButtonItem) {
         calendarView.scrollToDate(date: Date())
     }
-    
+
     @objc func switchCalendar(sender: UISegmentedControl) {
         guard let type = CalendarType(rawValue: CalendarType.allCases[sender.selectedSegmentIndex].rawValue) else { return }
         switch type {
@@ -132,21 +132,21 @@ final class TimetableViewController: UIViewController {
         }
         calendarView.reloadData()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         loadEvents { [unowned self] (events) in
             self.events = events
             self.calendarView.reloadData()
         }
     }
-    
+
     func presentInFullScreen(_ viewController: UIViewController,
                              animated: Bool,
                              completion: (() -> Void)? = nil) {
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: animated, completion: completion)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! ScheduledClassViewController
         destination.course = courseToSendToDetails
@@ -158,7 +158,7 @@ extension TimetableViewController: CalendarDelegate {
         selectDate = date ?? Date()
         calendarView.reloadData()
     }
-    
+
     func didSelectEvent(_ event: Event, type: CalendarType, frame: CGRect?) {
         guard let scheduledCourses = scheduledClassesList else { return }
         for course in scheduledCourses {
@@ -246,7 +246,7 @@ extension TimetableViewController {
         }
         completion(events)
     }
-    
+
     func formatter(date: String) -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyyHHmmss"

@@ -18,7 +18,7 @@ protocol MonthCellDelegate: AnyObject {
 final class MonthCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = #file
     static let titlesCount = 3
-    
+
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.tag = -1
@@ -28,18 +28,18 @@ final class MonthCollectionViewCell: UICollectionViewCell {
         label.clipsToBounds = true
         return label
     }()
-    
+
     var style = MonthStyle()
     weak var delegate: MonthCellDelegate?
-    
+
     var events: [Event] = [] {
         willSet {
             subviews.filter({ $0.tag != -1 }).forEach({ $0.removeFromSuperview() })
-            
+
             if UIDevice.current.userInterfaceIdiom == .phone, UIDevice.current.orientation.isLandscape {
                 return
             }
-            
+
             let height = (frame.height - dateLabel.bounds.height - offset) / countInCell
             for (idx, event) in newValue.enumerated() {
                 let count = idx + 1
@@ -74,7 +74,7 @@ final class MonthCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
+
     var day: Day = Day.empty() {
         willSet {
             dateLabel.text = newValue.day
@@ -85,9 +85,9 @@ final class MonthCollectionViewCell: UICollectionViewCell {
             weekendsDays(day: newValue, label: dateLabel, view: self)
         }
     }
-    
+
     var selectDate: Date = Date()
-    
+
     @objc private func tapOneEvent(gesture: UITapGestureRecognizer) {
         if let idx = events.firstIndex(where: { "\($0.id)".hashValue == gesture.view?.tag }) {
             let location = gesture.location(in: superview)
@@ -95,7 +95,7 @@ final class MonthCollectionViewCell: UICollectionViewCell {
             delegate?.didSelectEvent(events[idx], frame: newFrame)
         }
     }
-    
+
     @objc private func tapOnMore(gesture: UITapGestureRecognizer) {
         if let idx = events.firstIndex(where: { $0.start.day == gesture.view?.tag }) {
             let location = gesture.location(in: superview)
@@ -103,10 +103,10 @@ final class MonthCollectionViewCell: UICollectionViewCell {
             delegate?.didSelectMore(events[idx].start, frame: newFrame)
         }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         var dateFrame = frame
         dateFrame.size = CGSize(width: 35, height: 35)
         dateFrame.origin.y = offset
@@ -114,19 +114,19 @@ final class MonthCollectionViewCell: UICollectionViewCell {
         dateLabel.frame = dateFrame
         addSubview(dateLabel)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func weekendsDays(day: Day, label: UILabel, view: UIView) {
         isNowDate(date: day.date, weekend: day.type == .saturday || day.type == .sunday, label: label, view: view)
     }
-    
+
     private func isNowDate(date: Date?, weekend: Bool, label: UILabel, view: UIView) {
         let nowDate = Date()
         label.backgroundColor = .clear
-        
+
         if weekend {
             label.textColor = style.colorWeekendDate
             view.backgroundColor = style.colorBackgroundWeekendDate
@@ -134,7 +134,7 @@ final class MonthCollectionViewCell: UICollectionViewCell {
             view.backgroundColor = style.colorBackgroundDate
             label.textColor = style.colorDate
         }
-        
+
         guard date?.year == nowDate.year else {
             if date?.year == selectDate.year && date?.month == selectDate.month && date?.day == selectDate.day {
                 label.textColor = style.colorSelectDate
@@ -178,7 +178,7 @@ final class MonthCollectionViewCell: UICollectionViewCell {
         label.layer.cornerRadius = label.frame.height / 2
         label.clipsToBounds = true
     }
-    
+
     private func addIconBeforeLabel(stringList: [String], font: UIFont, bullet: String = "\u{2022}", indentation: CGFloat = 10, lineSpacing: CGFloat = 2, paragraphSpacing: CGFloat = 10, textColor: UIColor, bulletColor: UIColor) -> NSAttributedString {
         let textAttributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: textColor]
         let bulletAttributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: bulletColor]
@@ -193,8 +193,8 @@ final class MonthCollectionViewCell: UICollectionViewCell {
         for string in stringList {
             let formattedString = "\(bullet)\t\(string)\n"
             let attributedString = NSMutableAttributedString(string: formattedString)
-            attributedString.addAttributes([NSAttributedString.Key.paragraphStyle: paragraphStyle], range: NSMakeRange(0, attributedString.length))
-            attributedString.addAttributes(textAttributes, range: NSMakeRange(0, attributedString.length))
+            attributedString.addAttributes([NSAttributedString.Key.paragraphStyle: paragraphStyle], range: NSRange(location: 0, length: attributedString.length))
+            attributedString.addAttributes(textAttributes, range: NSRange(location: 0, length: attributedString.length))
             let string: NSString = NSString(string: formattedString)
             let rangeForBullet: NSRange = string.range(of: bullet)
             attributedString.addAttributes(bulletAttributes, range: rangeForBullet)

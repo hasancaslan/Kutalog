@@ -24,12 +24,12 @@ class SearchedClassDetailViewController: UIViewController {
     @IBOutlet weak var semester2ExamLabel: UILabel!
     @IBOutlet weak var semester2ExamText: UITextView!
     @IBOutlet weak var addButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addButton.layer.cornerRadius = 55/2
-        addButton.titleLabel?.minimumScaleFactor = 0.5;
-        addButton.titleLabel?.adjustsFontSizeToFitWidth = true;
+        addButton.titleLabel?.minimumScaleFactor = 0.5
+        addButton.titleLabel?.adjustsFontSizeToFitWidth = true
         dataSource.delegate = self
         classCodeLabel.text = course?.moduleCode
         classNameLabel.text = course?.title
@@ -37,8 +37,7 @@ class SearchedClassDetailViewController: UIViewController {
         let semesterArray = course?.semesterData?.semesterData.map { sem -> String in
             if let s = sem?.semester {
                 return "Semester " + String(s)
-            }
-            else {
+            } else {
                 return ""
             }
         }
@@ -53,7 +52,7 @@ class SearchedClassDetailViewController: UIViewController {
             preclusionText.text = nil
             preclusionLabel.text = nil
         }
-        
+
         let semesterExamArray = course?.semesterData?.semesterData.map { semester -> String in
             var str = ""
             if let isoDate = semester?.examDate {
@@ -69,7 +68,7 @@ class SearchedClassDetailViewController: UIViewController {
             }
             return str
         }
-        
+
         if let semester1Exam = semesterExamArray?.first {
             semester1ExamLabel.text =  "Semester 1 Exam"
             semester1ExamText.text = semester1Exam
@@ -77,7 +76,7 @@ class SearchedClassDetailViewController: UIViewController {
             semester1ExamLabel.text = nil
             semester1ExamText.text = nil
         }
-        
+
         if semesterExamArray?.indices.contains(1) ?? false {
             if let semester1Exam = semesterExamArray?[1] {
                 semester2ExamLabel.text =  "Semester 2 Exam"
@@ -88,7 +87,7 @@ class SearchedClassDetailViewController: UIViewController {
             semester2ExamText.text = nil
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isAddedToSchedule() {
@@ -104,12 +103,12 @@ class SearchedClassDetailViewController: UIViewController {
             dataSource.loadCourseDetail(moduleCode: moduleCode, course: courseDetail)
         }
     }
-    
-    // MARK:- Actions
+
+    // MARK: - Actions
     @IBAction func dismissTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @IBAction func addToScheduleTapped(_ sender: Any) {
         if let button = sender as? UIButton {
             if button.titleLabel?.text == "Add to Schedule" {
@@ -137,8 +136,8 @@ class SearchedClassDetailViewController: UIViewController {
             }
         }
     }
-    
-    // MARK:- Helpers
+
+    // MARK: - Helpers
     func isAddedToSchedule() -> Bool {
         if let schedulesOfCourse = self.course?.schedules?.allObjects {
             return !schedulesOfCourse.isEmpty
@@ -147,7 +146,7 @@ class SearchedClassDetailViewController: UIViewController {
     }
 }
 
-// MARK:- ClassSearchDataSource Delegate
+// MARK: - ClassSearchDataSource Delegate
 extension SearchedClassDetailViewController: ClassSearchDataSourceDelegate {
     func courseDetailLoaded() {
         if isAddedToSchedule() {

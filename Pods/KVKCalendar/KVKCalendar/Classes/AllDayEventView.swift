@@ -11,7 +11,7 @@ final class AllDayTitleView: UIView {
     init(frame: CGRect, style: AllDayStyle) {
         super.init(frame: frame)
         backgroundColor = style.backgroundColor
-        
+
         let label = UILabel(frame: frame)
         label.frame.size.width = frame.width - 4
         label.frame.origin.x = 2
@@ -23,7 +23,7 @@ final class AllDayTitleView: UIView {
         label.text = style.titleText
         addSubview(label)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,12 +36,12 @@ protocol AllDayEventDelegate: AnyObject {
 final class AllDayEventView: UIView {
     private let events: [Event]
     weak var delegate: AllDayEventDelegate?
-    
+
     init(events: [Event], frame: CGRect, style: AllDayStyle, date: Date?) {
         self.events = events
         super.init(frame: frame)
         backgroundColor = style.backgroundColor
-        
+
         let startEvents = events.map({ AllDayEvent(id: $0.id, text: $0.text, date: $0.start, color: EventColor($0.color?.value ?? $0.backgroundColor).value) })
         let endEvents = events.map({ AllDayEvent(id: $0.id, text: $0.text, date: $0.end, color: EventColor($0.color?.value ?? $0.backgroundColor).value) })
         let result = startEvents + endEvents
@@ -52,7 +52,7 @@ final class AllDayEventView: UIView {
             return acc
         }
         let filtered = distinct.filter({ $0.date.day == date?.day })
-        
+
         let eventWidth = frame.width / CGFloat(filtered.count)
         for (idx, event) in filtered.enumerated() {
             let label = UILabel(frame: CGRect(x: (CGFloat(idx) * eventWidth) + style.offset,
@@ -70,7 +70,7 @@ final class AllDayEventView: UIView {
             addSubview(label)
         }
     }
-    
+
     @objc private func tapOnEvent(gesture: UITapGestureRecognizer) {
         guard let hashValue = gesture.view?.tag else { return }
         if let idx = events.firstIndex(where: { "\($0.id)".hashValue == hashValue }) {
@@ -78,7 +78,7 @@ final class AllDayEventView: UIView {
             delegate?.didSelectAllDayEvent(event, frame: gesture.view?.frame)
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

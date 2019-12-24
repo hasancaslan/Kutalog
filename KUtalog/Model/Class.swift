@@ -13,28 +13,28 @@ class SemesterData: NSObject, Codable, NSCoding {
     let examDate: String?
     let examDuration: Int?
     let timetable: [Lesson?]?
-    
+
     enum Key: String {
         case semester = "semester"
         case examDate = "examDate"
         case examDuration = "examDuration"
         case timetable = "timetable"
     }
-    
+
     init(semester: Int?, examDate: String?, examDuration: Int?, timetable: [Lesson?]?) {
         self.semester = semester
         self.examDate = examDate
         self.examDuration = examDuration
         self.timetable = timetable
     }
-    
+
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(semester, forKey: Key.semester.rawValue)
         aCoder.encode(examDate, forKey: Key.examDate.rawValue)
         aCoder.encode(examDuration, forKey: Key.examDuration.rawValue)
         aCoder.encode(timetable, forKey: Key.timetable.rawValue)
     }
-    
+
     public required convenience init?(coder aDecoder: NSCoder) {
         let mSemester = aDecoder.decodeObject(forKey: Key.semester.rawValue) as? Int
         let mExamDate = aDecoder.decodeObject(forKey: Key.examDate.rawValue) as? String
@@ -52,7 +52,7 @@ class Lesson: NSObject, Codable, NSCoding {
     let day: String?
     let lessonType: String?
     let size: Int?
-    
+
     enum Key: String {
         case classNo = "classNo"
         case startTime = "startTime"
@@ -62,7 +62,7 @@ class Lesson: NSObject, Codable, NSCoding {
         case lessonType = "lessonType"
         case size = "size"
     }
-    
+
     init(classNo: String?, startTime: String?, endTime: String?, venue: String?, day: String?, lessonType: String?, size: Int?) {
         self.classNo = classNo
         self.startTime = startTime
@@ -72,7 +72,7 @@ class Lesson: NSObject, Codable, NSCoding {
         self.lessonType = lessonType
         self.size = size
     }
-    
+
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(classNo, forKey: Key.classNo.rawValue)
         aCoder.encode(startTime, forKey: Key.startTime.rawValue)
@@ -82,7 +82,7 @@ class Lesson: NSObject, Codable, NSCoding {
         aCoder.encode(lessonType, forKey: Key.lessonType.rawValue)
         aCoder.encode(size, forKey: Key.size.rawValue)
     }
-    
+
     public required convenience init?(coder aDecoder: NSCoder) {
         let classNo = aDecoder.decodeObject(forKey: Key.classNo.rawValue) as? String
         let startTime = aDecoder.decodeObject(forKey: Key.startTime.rawValue) as? String
@@ -105,7 +105,7 @@ struct Module: Codable {
     let preclusion: String?
     let workload: Workload?
     let semesterData: [SemesterData?]
-    
+
     enum CodingKeys: String, CodingKey {
         case moduleCode
         case title
@@ -120,9 +120,9 @@ struct Module: Codable {
 }
 
 enum Workload: Codable, CustomStringConvertible {
-    case array(Array<WorkloadItem>)
+    case array([WorkloadItem])
     case string(String)
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let x = try? container.decode(String.self) {
@@ -135,7 +135,7 @@ enum Workload: Codable, CustomStringConvertible {
         }
         throw DecodingError.typeMismatch(Workload.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Workload"))
     }
-    
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
@@ -145,7 +145,7 @@ enum Workload: Codable, CustomStringConvertible {
             try container.encode(x)
         }
     }
-    
+
     var description: String {
         switch self {
         case .array(let x):
@@ -163,7 +163,7 @@ enum Workload: Codable, CustomStringConvertible {
 enum WorkloadItem: Codable, CustomStringConvertible {
     case string(String)
     case float(Float)
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let x = try? container.decode(String.self) {
@@ -176,7 +176,7 @@ enum WorkloadItem: Codable, CustomStringConvertible {
         }
         throw DecodingError.typeMismatch(Workload.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Workload"))
     }
-    
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
@@ -186,7 +186,7 @@ enum WorkloadItem: Codable, CustomStringConvertible {
             try container.encode(x)
         }
     }
-    
+
     var description: String {
         switch self {
         case .float(let x):

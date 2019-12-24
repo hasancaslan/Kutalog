@@ -24,7 +24,7 @@ class TasksDataSource {
      A persistent container to set up the Core Data stack.
      */
     lazy var persistentContainer = DataController.shared.persistentContainer
-    
+
     func createTask(_ newTask: NewTask) {
         let task = Task(context: persistentContainer.viewContext)
         task.uid = newTask.uid
@@ -35,18 +35,18 @@ class TasksDataSource {
         task.course = newTask.course
         try? persistentContainer.viewContext.save()
     }
-    
+
     func deleteTask(_ taskToDelete: Task) {
         persistentContainer.viewContext.delete(taskToDelete)
         try? persistentContainer.viewContext.save()
     }
-    
+
     func save() {
         try? persistentContainer.viewContext.save()
     }
-    
+
     // MARK: - NSFetchedResultsController
-    
+
     /**
      A fetched results controller delegate to give consumers a chance to update
      the user interface when content changes.
@@ -67,13 +67,13 @@ class TasksDataSource {
         // Perform the fetch.
         do {
             try controller.performFetch()
-            
+
         } catch {
             fatalError("Unresolved error \(error)")
         }
         return controller
     }()
-    
+
     /**
      A fetched results controller to fetch Schedule records sorted by time.
      */
@@ -93,16 +93,16 @@ class TasksDataSource {
         }
         return controller
     }()
-    
+
     var delegate: TasksDataSourceDelegate?
-    
+
     func loadListOfTasks() {
         let fetchedObjects = fetchedResultsController.fetchedObjects
         DispatchQueue.main.async {
             self.delegate?.taskListLoaded(taskList: fetchedObjects)
         }
     }
-    
+
     func loadScheduledCourses(uid: String) {
         let fetchedObjects = scheduleFetchedResultsController.fetchedObjects?.filter({ schedule in
             return schedule.uid == uid

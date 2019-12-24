@@ -39,7 +39,7 @@ extension AddTaskViewController: TextFieldTableViewCellDelegate {
     func getTitle(title: String?) {
         newTask.title = title
     }
-    
+
     func getDescription(description: String?) {
         newTask.taskDescription = description
     }
@@ -49,7 +49,7 @@ extension AddTaskViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DatePickerTableViewCell", for: indexPath) as! DatePickerTableViewCell
@@ -90,7 +90,7 @@ class AddTaskViewController: UIViewController {
     var scheduledCourses: [Course]?
     @IBOutlet weak var addTaskTableView: UITableView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addTaskTableView.dataSource = self
@@ -102,7 +102,7 @@ class AddTaskViewController: UIViewController {
             dataSource.loadScheduledCourses(uid: uid)
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let user = Auth.auth().currentUser
@@ -112,7 +112,7 @@ class AddTaskViewController: UIViewController {
             dataSource.loadScheduledCourses(uid: uid)
         }
     }
-    
+
     @IBAction func doneTapped(_ sender: Any) {
         var alertTitle = ""
         var success = false

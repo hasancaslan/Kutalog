@@ -21,7 +21,7 @@ extension ClassSearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return moduleArray.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClassCell", for: indexPath) as! ClassCollectionViewCell
         let index = indexPath.row
@@ -31,7 +31,7 @@ extension ClassSearchViewController: UICollectionViewDataSource {
         cell.infoTextView.text = module.description
         return cell
     }
-    
+
 }
 
 class ClassSearchViewController: UIViewController {
@@ -39,7 +39,7 @@ class ClassSearchViewController: UIViewController {
     var moduleArray: [Module] = []
     var activityIndicator = UIActivityIndicatorView(style: .gray)
     @IBOutlet weak var classListCollectionView: UICollectionView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         moduleDataSource.delegate = self
@@ -51,9 +51,7 @@ class ClassSearchViewController: UIViewController {
         activityIndicator.centerXAnchor.constraint(equalTo: classListCollectionView.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: classListCollectionView.centerYAnchor).isActive = true
     }
-    
 
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -66,6 +64,5 @@ class ClassSearchViewController: UIViewController {
 //            let module = moduleArray[index]
 //        }
 //    }
-    
 
 }

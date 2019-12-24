@@ -13,38 +13,38 @@ public final class CalendarView: UIView {
     public var selectedType: CalendarType {
         return type
     }
-    
+
     private var style: Style
     private var type = CalendarType.day
     private var yearData: YearData
     private var weekData: WeekData
     private let monthData: MonthData
     private var dayData: DayData
-    
+
     private lazy var dayCalendar: DayViewCalendar = {
         let day = DayViewCalendar(data: dayData, frame: frame, style: style)
         day.delegate = self
         return day
     }()
-    
+
     private lazy var weekCalendar: WeekViewCalendar = {
         let week = WeekViewCalendar(data: weekData, frame: frame, style: style)
         week.delegate = self
         return week
     }()
-    
+
     private lazy var monthCalendar: MonthViewCalendar = {
         let month = MonthViewCalendar(data: monthData, frame: frame, style: style)
         month.delegate = self
         return month
     }()
-    
+
     private lazy var yearCalendar: YearViewCalendar = {
         let year = YearViewCalendar(data: yearData, frame: frame, style: style)
         year.delegate = self
         return year
     }()
-    
+
     public init(frame: CGRect, date: Date = Date(), style: Style = Style(), years: Int = 4) {
         self.style = style.checkStyle
         self.yearData = YearData(date: date, years: years, style: style)
@@ -52,7 +52,7 @@ public final class CalendarView: UIView {
         self.weekData = WeekData(yearData: yearData, timeSystem: style.timeHourSystem, startDay: style.startWeekDay)
         self.monthData = MonthData(yearData: yearData, startDay: style.startWeekDay)
         super.init(frame: frame)
-        
+
         if let defaultType = style.defaultType {
             type = defaultType
             set(type: type, date: date)
@@ -60,11 +60,11 @@ public final class CalendarView: UIView {
             set(type: type, date: date)
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func switchTypeCalendar(type: CalendarType) {
         self.type = type
         if UIDevice.current.userInterfaceIdiom == .phone && type == .year {
@@ -74,7 +74,7 @@ public final class CalendarView: UIView {
             || $0 is WeekViewCalendar
             || $0 is MonthViewCalendar
             || $0 is YearViewCalendar }).forEach({ $0.removeFromSuperview() })
-        
+
         switch self.type {
         case .day:
             addSubview(dayCalendar)
@@ -86,16 +86,16 @@ public final class CalendarView: UIView {
             addSubview(yearCalendar)
         }
     }
-    
+
     public func addEventViewToDay(view: UIView) {
         dayCalendar.addEventView(view: view)
     }
-    
+
     public func set(type: CalendarType, date: Date) {
         self.type = type
         let newDate = convertDate(date)
         switchTypeCalendar(type: type)
-        
+
         switch type {
         case .day:
             dayCalendar.setDate(newDate)
@@ -107,7 +107,7 @@ public final class CalendarView: UIView {
             yearCalendar.setDate(newDate)
         }
     }
-    
+
     public func reloadData() {
         switch type {
         case .day:
@@ -120,10 +120,10 @@ public final class CalendarView: UIView {
             break
         }
     }
-    
+
     public func scrollToDate(date: Date) {
         let newDate = convertDate(date)
-        
+
         switch type {
         case .day:
             dayCalendar.setDate(newDate)
@@ -135,7 +135,7 @@ public final class CalendarView: UIView {
             yearCalendar.setDate(newDate)
         }
     }
-    
+
     private func convertDate(_ date: Date) -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -148,19 +148,19 @@ extension CalendarView: CalendarPrivateDelegate {
     func didSelectCalendarDate(_ date: Date?, type: CalendarType, frame: CGRect?) {
         delegate?.didSelectDate(date: date, type: type, frame: frame)
     }
-    
+
     func didSelectCalendarEvents(_ events: [Event]) {
         //delegate?.didSelectEvents(events)
     }
-    
+
     func didSelectCalendarEvent(_ event: Event, frame: CGRect?) {
         delegate?.didSelectEvent(event, type: type, frame: frame)
     }
-    
+
     func didSelectCalendarMore(_ date: Date, frame: CGRect?) {
         delegate?.didSelectMore(date, frame: frame)
     }
-    
+
     func getEventViewerFrame(frame: CGRect) {
         var newFrame = frame
         newFrame.origin = .zero
@@ -176,7 +176,7 @@ extension CalendarView: CalendarSettingProtocol {
         monthCalendar.reloadFrame(frame)
         yearCalendar.reloadFrame(frame)
     }
-    
+
     // work in progress
     func updateStyle(_ style: Style) {
         self.style = style
@@ -186,14 +186,14 @@ extension CalendarView: CalendarSettingProtocol {
 public enum TimeHourSystem: Int {
     case twelveHour = 12
     case twentyFourHour = 24
-    
+
     var hours: [String] {
         switch self {
         case .twelveHour:
             let array = ["12"] + Array(1...11).map({ String($0) })
             let am = array.map { $0 + " AM" } + ["Noon"]
             var pm = array.map { $0 + " PM" }
-            
+
             pm.removeFirst()
             if let item = am.first {
                 pm.append(item)
@@ -218,7 +218,7 @@ public enum CalendarType: String, CaseIterable {
 public struct EventColor {
     let value: UIColor
     let alpha: CGFloat
-    
+
     public init(_ color: UIColor, alpha: CGFloat = 0.3) {
         self.value = color
         self.alpha = alpha
@@ -245,7 +245,7 @@ public struct Event {
     public var isContainsFile: Bool = false
     public var textForMonth: String = ""
     public var eventData: Any?
-    
+
     public init() {}
 }
 

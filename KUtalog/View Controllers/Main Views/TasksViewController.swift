@@ -29,24 +29,24 @@ class TasksViewController: UIViewController {
         source.delegate = self
         return source
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tasksTableView.delegate = self
         self.tasksTableView.dataSource = self
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         dataSource.loadListOfTasks()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         selectedRowIndex = -1
     }
-    
-    // MARK:- Helpers
-    
+
+    // MARK: - Helpers
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is EditTaskViewController {
@@ -58,7 +58,7 @@ class TasksViewController: UIViewController {
     }
 }
 
-// MARK:- Table View Delegate
+// MARK: - Table View Delegate
 extension TasksViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
@@ -69,7 +69,7 @@ extension TasksViewController: UITableViewDelegate {
         }
         return 60
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tasksTableView.cellForRow(at: indexPath)?.backgroundColor = .gray
         if self.selectedRowIndex != -1 {
@@ -78,8 +78,7 @@ extension TasksViewController: UITableViewDelegate {
         if selectedRowIndex != indexPath.row {
             self.thereIsCellTapped = true
             self.selectedRowIndex = indexPath.row
-        }
-        else {
+        } else {
             // there is no cell selected anymore
             self.thereIsCellTapped = false
             self.selectedRowIndex = -1
@@ -89,12 +88,12 @@ extension TasksViewController: UITableViewDelegate {
     }
 }
 
-// MARK:- TableView DataSource
+// MARK: - TableView DataSource
 extension TasksViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.fetchedResultsController.fetchedObjects?.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? TaskTableViewCell {
             let fetchedObjects = dataSource.fetchedResultsController.fetchedObjects
@@ -127,7 +126,7 @@ extension TasksViewController: NSFetchedResultsControllerDelegate {
             tasksTableView.moveRow(at: indexPath!, to: newIndexPath!)
         }
     }
-    
+
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         let indexSet = IndexSet(integer: sectionIndex)
         switch type {
@@ -137,15 +136,15 @@ extension TasksViewController: NSFetchedResultsControllerDelegate {
             fatalError("Invalid change type in controller(_:didChange:atSectionIndex:for:). Only .insert or .delete should be possible.")
         }
     }
-    
+
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tasksTableView.beginUpdates()
     }
-    
+
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tasksTableView.endUpdates()
     }
-    
+
 }
 
 // MARK: - TasksDataSource Delegate
@@ -157,4 +156,3 @@ extension TasksViewController: TasksDataSourceDelegate {
         tasksTableView.endUpdates()
     }
 }
-

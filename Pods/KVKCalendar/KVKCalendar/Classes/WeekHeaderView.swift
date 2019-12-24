@@ -10,13 +10,13 @@ import UIKit
 final class WeekHeaderView: UIView {
     private var style: Style
     private let fromYear: Bool
-    
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         return label
     }()
-    
+
     var font: UIFont = .systemFont(ofSize: 17) {
         willSet {
             subviews.filter({ $0 is UILabel }).forEach { (label) in
@@ -26,7 +26,7 @@ final class WeekHeaderView: UIView {
             }
         }
     }
-    
+
     var backgroundColorWeekends: UIColor = .clear {
         willSet {
             subviews.filter({ $0 is UILabel }).forEach { (label) in
@@ -40,29 +40,29 @@ final class WeekHeaderView: UIView {
             }
         }
     }
-    
+
     var date: Date? {
         willSet {
             setDateToTitle(date: newValue, style: style)
         }
     }
-    
+
     init(frame: CGRect, style: Style, fromYear: Bool = false) {
         self.style = style
         self.fromYear = fromYear
         super.init(frame: frame)
         addViews(frame: frame, fromYear: fromYear)
     }
-    
+
     private func addViews(frame: CGRect, fromYear: Bool) {
         var days = DayType.allCases.filter({ $0 != .empty })
-        
+
         if let idx = days.firstIndex(where: { $0 == .sunday }), style.startWeekDay == .sunday {
             let leftDays = days[..<idx]
             days[..<idx] = []
             days += leftDays
         }
-        
+
         let width = frame.width / CGFloat(days.count)
         for (idx, value) in days.enumerated() {
             let label = UILabel(frame: CGRect(x: width * CGFloat(idx),
@@ -88,7 +88,7 @@ final class WeekHeaderView: UIView {
             addSubview(titleLabel)
         }
     }
-    
+
     private func setDateToTitle(date: Date?, style: Style) {
         if let date = date, !style.monthStyle.isHiddenTitleDate {
             var monthStyle = style.monthStyle
@@ -96,7 +96,7 @@ final class WeekHeaderView: UIView {
             titleLabel.text = formatter.string(from: date)
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -111,7 +111,7 @@ extension WeekHeaderView: CalendarSettingProtocol {
         }
         addViews(frame: self.frame, fromYear: fromYear)
     }
-    
+
     func updateStyle(_ style: Style) {
         self.style = style
     }

@@ -17,12 +17,12 @@ class DataController {
     static let shared: DataController = {
         return DataController()
     }()
-    
+
     init() {
         persistentContainer = NSPersistentContainer(name: "KUtalog")
         self.load()
     }
-    
+
     func configureContexts() {
         // Merge the changes from other contexts automatically.
         viewContext.automaticallyMergesChangesFromParent = true
@@ -30,7 +30,7 @@ class DataController {
         viewContext.undoManager = nil
         viewContext.shouldDeleteInaccessibleFaults = true
     }
-    
+
     func load(completion: (() -> Void)? = nil) {
         persistentContainer.loadPersistentStores { _, error in
             guard error == nil else {

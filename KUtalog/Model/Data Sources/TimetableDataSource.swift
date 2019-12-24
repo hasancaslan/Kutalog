@@ -29,12 +29,12 @@ class TimetableDataSource {
         } catch {
             fatalError("Unresolved error \(error)")
         }
-        
+
         return controller
     }()
-    
+
     var delegate: TimetableDataSourceDelegate?
-    
+
     func loadSchedule(uid: String) {
         let fetchedObjects = fetchedResultsController.fetchedObjects?.filter({ schedule in
             schedule.uid == uid
@@ -52,7 +52,7 @@ class TimetableDataSource {
             }
         }
     }
-    
+
     func deleteCourse(course: Course?) {
         course?.schedules? = NSSet()
         try? self.persistentContainer.viewContext.save()

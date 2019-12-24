@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-protocol EditTaskViewControllerDelegate{
+protocol EditTaskViewControllerDelegate {
     func preselectedCourse(row: Int)
 }
 
@@ -43,7 +43,7 @@ extension EditTaskViewController: TextFieldTableViewCellDelegate {
     func getTitle(title: String?) {
         task?.title = title
     }
-    
+
     func getDescription(description: String?) {
         task?.taskDescription = description
     }
@@ -53,7 +53,7 @@ extension EditTaskViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DatePickerTableViewCell", for: indexPath) as! DatePickerTableViewCell
@@ -101,7 +101,7 @@ class EditTaskViewController: UIViewController {
     var delegate: EditTaskViewControllerDelegate?
     @IBOutlet weak var editTaskTableView: UITableView!
     @IBOutlet weak var doneButton: UIBarButtonItem!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         editTaskTableView.dataSource = self
@@ -113,11 +113,11 @@ class EditTaskViewController: UIViewController {
             dataSource.loadScheduledCourses(uid: uid)
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     @IBAction func doneTapped(_ sender: Any) {
         if task?.title != "" {
             dataSource.save()
@@ -129,6 +129,3 @@ class EditTaskViewController: UIViewController {
         }
     }
 }
-
-
-

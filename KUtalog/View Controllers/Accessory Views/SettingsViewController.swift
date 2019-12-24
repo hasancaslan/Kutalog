@@ -25,14 +25,14 @@ class SettingsViewController: UIViewController {
         self.logOutButton.layer.cornerRadius = 15.0
         // Do any additional setup after loading the view.
     }
-    
-    // MARK:- Actions
+
+    // MARK: - Actions
     @IBAction func shareTapped(_ sender: Any) {
         let vc = UIActivityViewController(activityItems: [URL(string: "https://kutalog.flycricket.io")!],
                                           applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }
-    
+
     @IBAction func logOutTapped(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
@@ -56,25 +56,25 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingsCellData.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let setting = settingsCellData[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsCell
         cell.settingsCellLabel.text = setting
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            if let url = URL(string: "https://kutalog.flycricket.io/privacy.html"){
+            if let url = URL(string: "https://kutalog.flycricket.io/privacy.html") {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         } else if indexPath.row == 1 {
-            if let url = URL(string: "https://kutalog.flycricket.io"){
+            if let url = URL(string: "https://kutalog.flycricket.io") {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }

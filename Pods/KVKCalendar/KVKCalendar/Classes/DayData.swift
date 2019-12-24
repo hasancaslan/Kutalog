@@ -12,7 +12,7 @@ struct DayData {
     var date: Date
     var timeSystem: TimeHourSystem
     var events: [Event] = []
-    
+
     init(yearData: YearData, timeSystem: TimeHourSystem, startDay: StartDayType) {
         self.date = yearData.date
         let days = yearData.months.reduce([], { $0 + $1.days }).filter({ $0.type != .empty })
@@ -25,11 +25,11 @@ struct DayData {
         } else {
             tempDays = days
         }
-        
+
         if startDay == .sunday {
             tempDays.insert(.empty(), at: 0)
         }
-        
+
         self.days = tempDays
         self.timeSystem = timeSystem
     }

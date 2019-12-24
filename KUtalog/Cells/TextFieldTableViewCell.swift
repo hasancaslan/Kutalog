@@ -14,23 +14,23 @@ protocol TextFieldTableViewCellDelegate {
 }
 
 extension TextFieldTableViewCell: UITextFieldDelegate {
-    
+
 }
 
 class TextFieldTableViewCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     var delegate: TextFieldTableViewCellDelegate?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         textField.delegate = self
         textField?.text = nil
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     @IBAction func didChangeValue(_ sender: Any) {
         if textField.placeholder == "Title" {
             self.delegate?.getTitle(title: textField.text)
