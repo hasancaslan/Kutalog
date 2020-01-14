@@ -7,81 +7,9 @@
 //
 
 import UIKit
-import FirebaseAuth
+import KVKCalendar
 import CoreData
-
-extension TimetableViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = 120
-        let cellHeight = 40
-        let size = CGSize.init(width: cellWidth, height: cellHeight)
-        return size
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
-    }
-}
-
-extension TimetableViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LandscapeTimetableCollectionViewCell", for: indexPath) as! LandscapeTimetableCollectionViewCell
-        
-        // We use this variable to get the index of this class's start. If this index is equal to the current index, then we
-        // need to add the class code as a label. Cell decides what to do using this label
-        let course = grid[indexPath.row]
-        print(course)
-        let lesson = course?.semesterData?.semesterData.first??.timetable?.first
-        let start = lesson??.startTime
-        let lessonDay = lesson??.day
-        let courseStartIndex = translateStartHourToGridLocation(hour: start ?? "") * translateDaysToGridLocation(day: lessonDay ?? "")
-        cell.addClass(course: course ?? nil, addLabel: courseStartIndex == indexPath.row, color: translateDayToColor(day: lessonDay ?? ""))
-        return cell
-    }
-    
-}
-
-extension TimetableViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredClassesList?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TimetableTableViewCell", for: indexPath) as! TimetableTableViewCell
-        let count = Int(Double(indexPath.row).truncatingRemainder(dividingBy: Double(CellColors.backgrounColors.count - 1)))
-        let background = CellColors.backgrounColors[count]
-        cell.configure(course: filteredClassesList?[indexPath.row], background: background)
-        return cell
-    }
-    
-    
-}
-
-extension TimetableViewController: TimetableDataSourceDelegate {
-    func scheduleLoaded(schedule: Schedule?) {
-        if let courses = schedule?.courses?.allObjects as? [Course]? {
-            scheduledClassesList = courses
-            createGrid()
-            timetableTableView.reloadData()
-            weeklyScheduleCollectionView.reloadData()
-            
-            //            let lesson = scheduledClassesList?.first?.semesterData?.semesterData.first??.timetable?.first
-            //            print(lesson??.startTime)
-            //            print(lesson??.endTime)
-            //            print(lesson??.day)
-            //                        print(scheduledClassesList)
-        }
-    }
-}
+import FirebaseAuth
 
 extension TimetableViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -93,30 +21,83 @@ extension TimetableViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
-class TimetableViewController: UIViewController  {
-    // The array for the scheduled classes
+extension TimetableViewController: TimetableDataSourceDelegate {
+    func scheduleLoaded(schedule: Schedule?) {
+        if let courses = schedule?.courses?.allObjects as? [Course]? {
+            scheduledClassesList = courses
+            loadEvents { [unowned self] (events) in
+                self.events = events
+            }
+            DispatchQueue.main.async {
+                self.calendarView.reloadData()
+            }
+        }
+    }
+}
+
+final class TimetableViewController: UIViewController {
+    private var events = [Event]()
     var scheduledClassesList: [Course]?
-    var filteredClassesList: [Course]? = [Course]()
+    var courseToSendToDetails: Course?
     private lazy var dataSource: TimetableDataSource = {
         let source = TimetableDataSource()
         source.fetchedResultsControllerDelegate = self
         source.delegate = self
         return source
     }()
-    // The array we use to create the grid
-    var grid = Array<Course?>(repeating: nil, count: 100)
-    
-    // Outlets For Portrait
-    @IBOutlet weak var weekdaysSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var timetableTableView: UITableView!
-    
-    // Outlets For Landscape
-    @IBOutlet weak var weeklyScheduleCollectionView: UICollectionView!
-    
+    private var selectDate: Date = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        return formatter.date(from: "16.09.2019") ?? Date()
+    }()
+    private lazy var todayButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Today", style: .done, target: self, action: #selector(today))
+        button.tintColor = .red
+        return button
+    }()
+    private lazy var calendarView: CalendarView = {
+        var style = Style()
+        style.monthStyle.isHiddenSeporator = true
+        style.timelineStyle.widthTime = 40
+        style.timelineStyle.offsetTimeX = 2
+        style.timelineStyle.offsetLineLeft = 2
+        style.followInInterfaceStyle = true
+        style.timelineStyle.offsetTimeY = 80
+        style.timelineStyle.offsetEvent = 3
+        style.timelineStyle.currentLineHourWidth = 40
+        style.allDayStyle.isPinned = true
+        style.startWeekDay = .monday
+        style.timeHourSystem = .twelveHour
+        let calendar = CalendarView(frame: view.frame, date: selectDate, style: style)
+        calendar.delegate = self
+        calendar.dataSource = self
+        return calendar
+    }()
+    private lazy var segmentedControl: UISegmentedControl = {
+        let array: [CalendarType]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            array = CalendarType.allCases
+        } else {
+            array = CalendarType.allCases.filter({ $0 != .year })
+        }
+        let control = UISegmentedControl(items: array.map({ $0.rawValue.capitalized }))
+        control.tintColor = .red
+        control.selectedSegmentIndex = 0
+        control.addTarget(self, action: #selector(switchCalendar), for: .valueChanged)
+        return control
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
+        view.addSubview(calendarView)
+        navigationItem.titleView = segmentedControl
+        navigationItem.rightBarButtonItem = todayButton
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let user = Auth.auth().currentUser
@@ -125,210 +106,147 @@ class TimetableViewController: UIViewController  {
             dataSource.loadSchedule(uid: uid)
         }
     }
-    @IBAction func segmentIndexChanged(_ sender: Any) {
-        switch weekdaysSegmentedControl.selectedSegmentIndex {
-        case 0:
-            filterClassesList(byDay: "Monday")
-            timetableTableView.reloadData()
-        case 1:
-            filterClassesList(byDay: "Tuesday")
-            timetableTableView.reloadData()
-        case 2:
-            filterClassesList(byDay: "Wednesday")
-            timetableTableView.reloadData()
-        case 3:
-            filterClassesList(byDay: "Thursday")
-            timetableTableView.reloadData()
-        case 4:
-            filterClassesList(byDay: "Friday")
-            timetableTableView.reloadData()
-        default:
-            break
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        var frame = view.frame
+        frame.origin.y = 0
+        calendarView.reloadFrame(frame)
+    }
+
+    @objc func today(sender: UIBarButtonItem) {
+        calendarView.scrollToDate(date: Date())
+    }
+
+    @objc func switchCalendar(sender: UISegmentedControl) {
+        guard let type = CalendarType(rawValue: CalendarType.allCases[sender.selectedSegmentIndex].rawValue) else { return }
+        switch type {
+        case .day:
+            calendarView.set(type: .day, date: selectDate)
+        case .week:
+            calendarView.set(type: .week, date: selectDate)
+        case .month:
+            calendarView.set(type: .month, date: selectDate)
+        case .year:
+            calendarView.set(type: .year, date: selectDate)
         }
-        
+        calendarView.reloadData()
     }
-    
-    func filterClassesList(byDay day: String) {
-        filteredClassesList = scheduledClassesList?.filter({ course in
-            return course.semesterData?.semesterData.first??.timetable?.first??.day == day
-        })
-    }
-    
-    // This function is necessary to stop timetableTableView from updating if the orientation is Landscape
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        if UIApplication.shared.statusBarOrientation.isLandscape {
-            // activate landscape changes
-            timetableTableView.endUpdates()
-            
-        } else {
-            // activate portrait changes
-            timetableTableView.beginUpdates()
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        loadEvents { [unowned self] (events) in
+            self.events = events
+            self.calendarView.reloadData()
         }
     }
-    
-    func createGrid(){
-        for course in scheduledClassesList ?? [] {
-            guard let lesson = course.semesterData?.semesterData.first??.timetable?.first else { return }
-            guard let start = lesson?.startTime else { return }
-            guard let end = lesson?.endTime else { return }
-            guard let lessonDay = lesson?.day else { return }
-            let startHour = translateStartHourToGridLocation(hour: start)
-            let endHour = translateEndHourToGridLocation(hour: end)
-            let day = translateDaysToGridLocation(day: lessonDay)
-            //            guard let appDelegate =
-            //                UIApplication.shared.delegate as? AppDelegate else {
-            //                return
-            //            }
-            //            let managedContext = appDelegate.persistentContainer.viewContext
-            //            let course = Course.init(entity: NSEntityDescription.entity(forEntityName: "Course", in: managedContext)!, insertInto: managedContext)
-            //            print("\(startHour) \(endHour) \(day)")
-            if day != -1 && startHour != -1 && endHour != -1 {
-                let startIndex = startHour + day * 20
-                let endIndex = endHour + day * 20
-                for index in startIndex...endIndex{
-                    if grid[index] == nil {
-                        grid.insert(course, at: index)
-                        print("inserted to grid loc \(index)")
-                    }
-                }
+
+    func presentInFullScreen(_ viewController: UIViewController,
+                             animated: Bool,
+                             completion: (() -> Void)? = nil) {
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: animated, completion: completion)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ScheduledClassViewController {
+            destination.course = courseToSendToDetails
+        }
+    }
+}
+
+extension TimetableViewController: CalendarDelegate {
+    func didSelectDate(date: Date?, type: CalendarType, frame: CGRect?) {
+        selectDate = date ?? Date()
+        calendarView.reloadData()
+    }
+
+    func didSelectEvent(_ event: Event, type: CalendarType, frame: CGRect?) {
+        guard let scheduledCourses = scheduledClassesList else { return }
+        for course in scheduledCourses {
+            if course.moduleCode == (event.id as! String) {
+                self.courseToSendToDetails = course
             }
         }
-        
+        performSegue(withIdentifier: "showDetail", sender: event)
     }
-    
-    
-    // TRANSLATING FUNCTIONS:
-    // They are used for translating Strings about starting and endin hours, and the day of the class to Integers.
-    // These integers are then used for finding the appropriate index for the grid array
-    
-    func translateDaysToGridLocation(day: String) -> Int {
-        switch day {
-        case "Monday":
-            return 0
-        case "Tuesday":
-            return 1
-        case "Wednesday":
-            return 2
-        case "Thursday":
-            return 3
-        case "Friday":
-            return 4
-        default:
-            return -1
-        }
+}
+
+extension TimetableViewController: CalendarDataSource {
+    func eventsForCalendar() -> [Event] {
+        return events
     }
-    
-    func translateStartHourToGridLocation(hour: String) -> Int {
-        switch hour {
-        case "0800":
-            return 0
-        case "0830":
-            return 1
-        case "0900":
-            return 2
-        case "0930":
-            return 3
-        case "1000":
-            return 4
-        case "1030":
-            return 5
-        case "1100":
-            return 6
-        case "1130":
-            return 7
-        case "1200":
-            return 8
-        case "1230":
-            return 9
-        case "1300":
-            return 10
-        case "1330":
-            return 11
-        case "1400":
-            return 12
-        case "1430":
-            return 13
-        case "1500":
-            return 14
-        case "1530":
-            return 15
-        case "1600":
-            return 16
-        case "1630":
-            return 17
-        case "1700":
-            return 18
-        case "1730":
-            return 19
-        default:
-            return -1
+}
+
+extension TimetableViewController {
+    func loadEvents(completion: ([Event]) -> Void) {
+        var events = [Event]()
+        guard let scheduledCourses = scheduledClassesList else { return }
+        for course in scheduledCourses {
+            let index = Double(scheduledCourses.firstIndex(of: course) ?? 0)
+            let colorCount = Double(CellColors.backgrounColors.count)
+            let colorIndex = Int(index.truncatingRemainder(dividingBy: colorCount))
+            let color = CellColors.backgrounColors[colorIndex]
+            let weekday = course.semesterData?.semesterData.first??.timetable?.first??.day
+            var startDateString = "13.09.2019"
+            var endDateString = "13.09.2019"
+            if let startTime = course.semesterData?.semesterData.first??.timetable?.first??.startTime,
+                let endTime = course.semesterData?.semesterData.first??.timetable?.first??.endTime {
+                startDateString = "13.09.2019\(startTime)00"
+                endDateString = "13.09.2019\(endTime)00"
+            } else {
+                startDateString += "000000"
+                endDateString += "000000"
+            }
+            var start = self.formatter(date: startDateString)
+            var end = self.formatter(date: endDateString)
+            for _ in 0...13 {
+                var event = Event()
+                switch weekday {
+                case "Monday":
+                    start = start.next(.monday)
+                    end = end.next(.monday)
+                    event.start = start
+                    event.end = end
+                case "Tuesday":
+                   start = start.next(.tuesday)
+                    end = end.next(.tuesday)
+                    event.start = start
+                    event.end = end
+                case "Wednesday":
+                    start = start.next(.wednesday)
+                    end = end.next(.wednesday)
+                    event.start = start
+                    event.end = end
+                case "Thursday":
+                    start = start.next(.thursday)
+                    end = end.next(.thursday)
+                    event.start = start
+                    event.end = end
+                case "Friday":
+                   start = start.next(.friday)
+                    end = end.next(.friday)
+                    event.start = start
+                    event.end = end
+                default:
+                    event.start = start
+                    event.end = end
+                }
+                event.id = course.moduleCode as Any
+                event.color = EventColor(color)
+                event.isAllDay = false
+                event.textForMonth = "\(course.moduleCode ?? "")"
+                event.text = "\(course.moduleCode ?? "")"
+                events.append(event)
+            }
         }
+        completion(events)
     }
-    
-    func translateEndHourToGridLocation(hour: String) -> Int {
-        switch hour {
-        case "0830":
-            return 0
-        case "0900":
-            return 1
-        case "0930":
-            return 2
-        case "1000":
-            return 3
-        case "1030":
-            return 4
-        case "1100":
-            return 5
-        case "1130":
-            return 6
-        case "1200":
-            return 7
-        case "1230":
-            return 8
-        case "1300":
-            return 9
-        case "1330":
-            return 10
-        case "1400":
-            return 11
-        case "1430":
-            return 12
-        case "1500":
-            return 13
-        case "1530":
-            return 14
-        case "1600":
-            return 15
-        case "1630":
-            return 16
-        case "1700":
-            return 17
-        case "1730":
-            return 18
-        case "1800":
-            return 19
-        default:
-            return -1
-        }
+
+    func formatter(date: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyyHHmmss"
+        formatter.locale = Locale.init(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
+        return formatter.date(from: date) ?? Date()
     }
-    
-    func translateDayToColor(day: String) ->  UIColor {
-        if translateDaysToGridLocation(day: day)/2 == 0 {
-            return .lightGray
-        }
-        else {
-            return .white
-        }
-    }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

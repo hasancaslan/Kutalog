@@ -9,7 +9,6 @@
 import UIKit
 
 protocol TaskTableViewCellDelegate {
-    func editTapped(task: Task?)
     func deleteTapped(task: Task?)
 }
 
@@ -24,7 +23,7 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var descriptionLabelHeightAnchor: NSLayoutConstraint!
     @IBOutlet weak var topView: UIView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         titleLabel.text = ""
@@ -32,7 +31,7 @@ class TaskTableViewCell: UITableViewCell {
         timeLabel.text = ""
         descriptionLabel.text = ""
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         titleLabel.text = ""
@@ -43,11 +42,11 @@ class TaskTableViewCell: UITableViewCell {
         delegate = nil
         task = nil
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        super.setSelected(false, animated: animated)
     }
-    
+
     func configure(task: Task?, background: UIColor) {
         self.task = task
         self.contentView.backgroundColor = background
@@ -66,15 +65,13 @@ class TaskTableViewCell: UITableViewCell {
         if let taskDescription = task?.taskDescription {
             descriptionLabel.text = taskDescription
             if taskDescription != "" {
-                descriptionLabelHeightAnchor.constant = taskDescription.height(withConstrainedWidth: self.contentView.frame.width - 40, font: .systemFont(ofSize: 12))
+                descriptionLabelHeightAnchor.constant = taskDescription.height(withConstrainedWidth:
+                    self.contentView.frame.width - 40, font: .systemFont(ofSize: 12))
             }
         }
     }
-    
+
     @IBAction func deleteTap(_ sender: Any) {
         self.delegate?.deleteTapped(task: task)
-    }
-    @IBAction func editTap(_ sender: Any) {
-        self.delegate?.editTapped(task: task)
     }
 }

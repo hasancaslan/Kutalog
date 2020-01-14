@@ -15,25 +15,21 @@ class ClassSearchViewController: UIViewController {
     var filteredCourses: [Course]? = [Course]()
     let searchController = UISearchController(searchResultsController: nil)
     private let debouncer = Debouncer(seconds: 0.3)
-    
     private lazy var dataSource: ClassSearchDataSource = {
         let source = ClassSearchDataSource()
         source.fetchedResultsControllerDelegate = self
         source.delegate = self
         return source
     }()
-    
     // MARK: - View
     private let sectionInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 50.0, right: 20.0)
     private let itemsPerRow: CGFloat = 1
-    
     private lazy var spinner: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .whiteLarge)
+        let indicator = UIActivityIndicatorView(style: .large)
         indicator.color = .gray
         indicator.hidesWhenStopped = true
         return indicator
     }()
-    
     private lazy var noResultsLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -44,7 +40,7 @@ class ClassSearchViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Add spinner to superview
@@ -55,7 +51,6 @@ class ClassSearchViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: superView.centerXAnchor).isActive = true
             spinner.centerYAnchor.constraint(equalTo: superView.centerYAnchor).isActive = true
         }
-        
         // Add "No Results" label to superview
         if let superView = classListCollectionView.superview {
             superView.addSubview(noResultsLabel)
@@ -65,28 +60,26 @@ class ClassSearchViewController: UIViewController {
             noResultsLabel.isHidden = true
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
         dataSource.loadCourseList()
     }
-    
+
     // MARK: - Helpers
     func setupSearchController() {
-        
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Courses"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
         // Setup the Scope Bar
         searchController.searchBar.scopeButtonTitles = ["All", "Code", "Name", "Description"]
         searchController.searchBar.delegate = self
     }
-    
+
     func filterContentForSearchText(_ searchText: String?, scope: String = "All") {
         guard let query = searchText else {
             return
@@ -97,16 +90,12 @@ class ClassSearchViewController: UIViewController {
                 switch scope {
                 case "All":
                     doesCategoryMatch = course.title?.lowercased().contains(query.lowercased()) ?? false || course.moduleCode?.lowercased().contains(query.lowercased()) ?? false
-                    break
                 case "Code":
                     doesCategoryMatch = course.moduleCode?.lowercased().contains(query.lowercased()) ?? false
-                    break
                 case "Name":
                     doesCategoryMatch = course.title?.lowercased().contains(query.lowercased()) ?? false
-                    break
                 case "Description":
                     doesCategoryMatch = course.moduleDescription?.lowercased().contains(query.lowercased()) ?? false
-                    break
                 default:
                     break
                 }
@@ -116,7 +105,6 @@ class ClassSearchViewController: UIViewController {
                     return doesCategoryMatch
                 }
             })
-            
             DispatchQueue.main.async {
                 self.classListCollectionView.reloadData()
                 if self.filteredCourses?.isEmpty ?? true {
@@ -127,21 +115,20 @@ class ClassSearchViewController: UIViewController {
             }
         }
     }
-    
+
     func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    
+
     func isFiltering() -> Bool {
         let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
         return searchController.isActive && (!searchBarIsEmpty() || searchBarScopeIsFiltering)
     }
-    
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! ClassCollectionViewCell
+        guard let cell = sender as? ClassCollectionViewCell else { return }
         let indexPath = classListCollectionView.indexPath(for: cell)
-        
         if let indexPath = indexPath {
             let course: Course?
             if isFiltering() {
@@ -151,7 +138,7 @@ class ClassSearchViewController: UIViewController {
             }
             if let vc = segue.destination as? SearchedClassDetailViewController {
                 vc.course = course
-                //                vc.dataSource = dataSource
+                //vc.dataSource = dataSource
             }
         }
     }
@@ -165,7 +152,7 @@ extension ClassSearchViewController: UICollectionViewDataSource, UICollectionVie
         }
         return allCourses?.count ?? 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ClassCell", for: indexPath) as? ClassCollectionViewCell else { return UICollectionViewCell() }
         let course: Course?
@@ -177,7 +164,7 @@ extension ClassSearchViewController: UICollectionViewDataSource, UICollectionVie
         cell.configure(with: course)
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //        let course: Course?
         //        if isFiltering() {
@@ -196,20 +183,19 @@ extension ClassSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-        
         return CGSize(width: widthPerItem, height: 2 * widthPerItem / 3)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets
     }
-    
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -251,11 +237,9 @@ extension ClassSearchViewController: ClassSearchDataSourceDelegate {
             spinner.startAnimating()
             dataSource.fetchCourseList { error in
                 DispatchQueue.main.async {
-
                     // Update the spinner and refresh button states.
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     self.spinner.stopAnimating()
-
                     // Show an alert if there was an error.
                     guard let error = error else { return }
                     let alert = UIAlertController(title: "Fetch classes error!",
@@ -267,7 +251,7 @@ extension ClassSearchViewController: ClassSearchDataSourceDelegate {
             }
         }
         DispatchQueue.main.async {
-             self.classListCollectionView.reloadData()
+            self.classListCollectionView.reloadData()
         }
     }
 }

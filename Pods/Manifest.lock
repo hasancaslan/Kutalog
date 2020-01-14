@@ -1,5 +1,4 @@
 PODS:
-  - ExpandableCell (1.3.0)
   - Firebase/Auth (6.13.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.4.0)
@@ -43,6 +42,7 @@ PODS:
   - GoogleUtilities/Reachability (6.3.2):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.3.0)
+  - KVKCalendar (0.2.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -51,13 +51,12 @@ PODS:
   - TextFieldEffects (1.6.0)
 
 DEPENDENCIES:
-  - ExpandableCell (~> 1.3)
   - Firebase/Auth
+  - KVKCalendar
   - TextFieldEffects
 
 SPEC REPOS:
   trunk:
-    - ExpandableCell
     - Firebase
     - FirebaseAuth
     - FirebaseAuthInterop
@@ -68,11 +67,11 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - GTMSessionFetcher
+    - KVKCalendar
     - nanopb
     - TextFieldEffects
 
 SPEC CHECKSUMS:
-  ExpandableCell: 69ca7d71971c171473a7a30964d2127f4c6ceaf6
   Firebase: 458d109512200d1aca2e1b9b6cf7d68a869a4a46
   FirebaseAuth: 7d0f84873926f6648bbd1391a318dfb1a26b5e4f
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
@@ -83,9 +82,10 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: ef79a4728b864946a8aafdbab770d5294faf3b5f
   GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
+  KVKCalendar: e995fc8c2e5317670bfc522f0f42435066e80be5
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 0c96e2ed13805d96dcc9330a469ac79b8040e8f6
+PODFILE CHECKSUM: 5a4455ba2c5b9073431ea95446b82f4ebbd7ec1f
 
 COCOAPODS: 1.8.4

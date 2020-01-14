@@ -15,7 +15,6 @@ protocol TimetableDataSourceDelegate {
 class TimetableDataSource {
     // MARK: - Core Data
     lazy var persistentContainer = DataController.shared.persistentContainer
-    
     // MARK: - NSFetchedResultsController
     weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
     lazy var fetchedResultsController: NSFetchedResultsController<Schedule> = {
@@ -30,12 +29,12 @@ class TimetableDataSource {
         } catch {
             fatalError("Unresolved error \(error)")
         }
-        
+
         return controller
     }()
-    
+
     var delegate: TimetableDataSourceDelegate?
-    
+
     func loadSchedule(uid: String) {
         let fetchedObjects = fetchedResultsController.fetchedObjects?.filter({ schedule in
             schedule.uid == uid
@@ -52,5 +51,10 @@ class TimetableDataSource {
                 self.delegate?.scheduleLoaded(schedule: newSchedule)
             }
         }
+    }
+
+    func deleteCourse(course: Course?) {
+        course?.schedules? = NSSet()
+        try? self.persistentContainer.viewContext.save()
     }
 }

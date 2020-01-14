@@ -24,12 +24,12 @@ class SearchedClassDetailViewController: UIViewController {
     @IBOutlet weak var semester2ExamLabel: UILabel!
     @IBOutlet weak var semester2ExamText: UITextView!
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var detailTextFieldHeightAnchor: NSLayoutConstraint!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addButton.layer.cornerRadius = 55/2
-        
+        addButton.titleLabel?.minimumScaleFactor = 0.5
+        addButton.titleLabel?.adjustsFontSizeToFitWidth = true
         dataSource.delegate = self
         classCodeLabel.text = course?.moduleCode
         classNameLabel.text = course?.title
@@ -37,17 +37,22 @@ class SearchedClassDetailViewController: UIViewController {
         let semesterArray = course?.semesterData?.semesterData.map { sem -> String in
             if let s = sem?.semester {
                 return "Semester " + String(s)
-            }
-            else {
+            } else {
                 return ""
             }
         }
         semesterLabel.text = semesterArray?.joined(separator: " - ")
         let detailText = course?.moduleDescription
         classDetailsText.text = detailText
-        configureDetailTFHeight(detailText)
-        preclusionText.text = course?.preclusion
-        
+        //        configureDetailTFHeight(detailText)
+        if let preclusion = course?.preclusion {
+            preclusionText.text = preclusion
+            preclusionLabel.text = "Preclusion"
+        } else {
+            preclusionText.text = nil
+            preclusionLabel.text = nil
+        }
+
         let semesterExamArray = course?.semesterData?.semesterData.map { semester -> String in
             var str = ""
             if let isoDate = semester?.examDate {
@@ -63,7 +68,7 @@ class SearchedClassDetailViewController: UIViewController {
             }
             return str
         }
-        
+
         if let semester1Exam = semesterExamArray?.first {
             semester1ExamLabel.text =  "Semester 1 Exam"
             semester1ExamText.text = semester1Exam
@@ -71,62 +76,87 @@ class SearchedClassDetailViewController: UIViewController {
             semester1ExamLabel.text = nil
             semester1ExamText.text = nil
         }
-        
+
         if semesterExamArray?.indices.contains(1) ?? false {
             if let semester1Exam = semesterExamArray?[1] {
                 semester2ExamLabel.text =  "Semester 2 Exam"
                 semester2ExamText.text = semester1Exam
-            } else {
-                semester2ExamLabel.text = nil
-                semester2ExamText.text = nil
             }
+        } else {
+            semester2ExamLabel.text = nil
+            semester2ExamText.text = nil
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.addButton.alpha = 0.6
-        self.addButton.isEnabled = false
+        if isAddedToSchedule() {
+            self.addButton.alpha = 1.0
+            self.addButton.isEnabled = true
+            self.addButton.titleLabel?.text = "Delete from Schedule"
+        } else {
+            self.addButton.alpha = 0.6
+            self.addButton.isEnabled = false
+            self.addButton.titleLabel?.text = "Add to Schedule"
+        }
         if let courseDetail = course, let moduleCode = course?.moduleCode {
             dataSource.loadCourseDetail(moduleCode: moduleCode, course: courseDetail)
         }
-        self.addButton.isEnabled = false
     }
-    
-    // MARK:- Actions
-    @IBAction func dismissButton(_ sender: Any) {
-        self.dismiss(animated: true) {
-            
-        }
-    }
-    
-    @IBAction func addToScheduleTapped(_ sender: Any) {
-        let user = Auth.auth().currentUser
-        if let user = user {
-            let uid = user.uid
-            dataSource.addCourseToSchedule(uid: uid, course: course)
-        }
+
+    // MARK: - Actions
+    @IBAction func dismissTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    // MARK:- Helpers
-    func configureDetailTFHeight(_ detailText: String?) {
-        let textFieldWidth = view.frame.width - 40
-        let textFieldFont = classDetailsText.font ?? UIFont.systemFont(ofSize: 14)
-        if let text = detailText {
-            detailTextFieldHeightAnchor.constant = text.height(withConstrainedWidth: textFieldWidth,
-                                                               font: textFieldFont) + 16
-        } else {
-            detailTextFieldHeightAnchor.constant = 16
+
+    @IBAction func addToScheduleTapped(_ sender: Any) {
+        if let button = sender as? UIButton {
+            if button.titleLabel?.text == "Add to Schedule" {
+                let user = Auth.auth().currentUser
+                if let user = user {
+                    let uid = user.uid
+                    dataSource.addCourseToSchedule(uid: uid, course: course, completionHandler: {error in
+                        DispatchQueue.main.async {
+                            // Show an alert if there was an error.
+                            guard let error = error else {
+                                self.dismiss(animated: true, completion: nil)
+                                return
+                            }
+                            let alert = UIAlertController(title: error.localizedDescription,
+                                                          message: "",
+                                                          preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    })
+                }
+            } else if button.titleLabel?.text == "Delete from Schedule" {
+                dataSource.deleteCourseFromSchedule(course: course)
+                self.dismiss(animated: true, completion: nil)
+            }
         }
-        view.layoutIfNeeded()
+    }
+
+    // MARK: - Helpers
+    func isAddedToSchedule() -> Bool {
+        if let schedulesOfCourse = self.course?.schedules?.allObjects {
+            return !schedulesOfCourse.isEmpty
+        }
+        return false
     }
 }
 
-// MARK:- ClassSearchDataSource Delegate
+// MARK: - ClassSearchDataSource Delegate
 extension SearchedClassDetailViewController: ClassSearchDataSourceDelegate {
     func courseDetailLoaded() {
-        self.addButton.isEnabled = true
-        self.addButton.alpha = 1
+        if isAddedToSchedule() {
+            self.addButton.alpha = 1.0
+            self.addButton.isEnabled = true
+            self.addButton.titleLabel?.text = "Delete from Schedule"
+        } else {
+            self.addButton.isEnabled = true
+            self.addButton.alpha = 1
+            self.addButton.titleLabel?.text = "Add to Schedule"
+        }
     }
 }

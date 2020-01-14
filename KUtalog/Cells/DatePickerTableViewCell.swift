@@ -16,7 +16,7 @@ class DatePickerTableViewCell: UITableViewCell {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var deadlineLabel: UILabel!
-    
+
     var delegate: DatePickerTableViewCellDelegate?
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -31,7 +31,7 @@ class DatePickerTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     @IBAction func dateChanged(_ sender: Any) {
         self.dateLabel.text = dateFormatter.string(from: self.datePicker.date)
         self.delegate?.getSelectedDate(date: datePicker.date)

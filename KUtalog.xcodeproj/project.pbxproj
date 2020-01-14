@@ -15,8 +15,8 @@
 		14B937BB23A303C300AEF26C /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B937BA23A303C300AEF26C /* TextFieldTableViewCell.swift */; };
 		14B937BD23A303E200AEF26C /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B937BC23A303E200AEF26C /* PickerTableViewCell.swift */; };
 		14D062C923A6743F00894553 /* TimetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D062C823A6743E00894553 /* TimetableTableViewCell.swift */; };
-		14D062CB23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D062CA23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift */; };
 		D981C39D1C9DAA05CC9DC713 /* Pods_KUtalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */; };
+		F301F31423ABBA3700F6922E /* +Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301F31323ABBA3700F6922E /* +Task.swift */; };
 		F30E076A23A805A400523D4C /* +String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E076923A805A400523D4C /* +String.swift */; };
 		F314183823A646EC0013DFDE /* NewTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F314183723A646EC0013DFDE /* NewTask.swift */; };
 		F3285A64239FFDB5009B0498 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3285A63239FFDB5009B0498 /* Course.swift */; };
@@ -48,7 +48,9 @@
 		F3CF0017238BFA7E00450C5D /* KUtalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0016238BFA7E00450C5D /* KUtalogTests.swift */; };
 		F3CF0022238BFA7E00450C5D /* KUtalogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CF0021238BFA7E00450C5D /* KUtalogUITests.swift */; };
 		F3CFFFFD238BFA7800450C5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */; };
+		F3E240CE23AAAA400017848D /* +NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E240CD23AAAA400017848D /* +NSDate.swift */; };
 		F3E2B36223A3100F00CF8CC0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E2B36123A3100F00CF8CC0 /* DataController.swift */; };
+		F3F5D09923B265C900974080 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F5D09823B265C900974080 /* SettingsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,9 +80,9 @@
 		14B937BA23A303C300AEF26C /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		14B937BC23A303E200AEF26C /* PickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
 		14D062C823A6743E00894553 /* TimetableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableTableViewCell.swift; sourceTree = "<group>"; };
-		14D062CA23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeTimetableCollectionViewCell.swift; sourceTree = "<group>"; };
 		320E72FEA6535135BD49B75A /* Pods_KUtalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KUtalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D14C91BB5EF388AC06917CAA /* Pods-KUtalog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KUtalog.release.xcconfig"; path = "Target Support Files/Pods-KUtalog/Pods-KUtalog.release.xcconfig"; sourceTree = "<group>"; };
+		F301F31323ABBA3700F6922E /* +Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Task.swift"; sourceTree = "<group>"; };
 		F30E076923A805A400523D4C /* +String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+String.swift"; sourceTree = "<group>"; };
 		F314183723A646EC0013DFDE /* NewTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTask.swift; sourceTree = "<group>"; };
 		F3285A63239FFDB5009B0498 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -118,7 +120,9 @@
 		F3CF0023238BFA7E00450C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3CFFFF9238BFA7800450C5D /* KUtalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KUtalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3CFFFFC238BFA7800450C5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F3E240CD23AAAA400017848D /* +NSDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+NSDate.swift"; sourceTree = "<group>"; };
 		F3E2B36123A3100F00CF8CC0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		F3F5D09823B265C900974080 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +173,7 @@
 				14B937BA23A303C300AEF26C /* TextFieldTableViewCell.swift */,
 				14B937BC23A303E200AEF26C /* PickerTableViewCell.swift */,
 				14D062C823A6743E00894553 /* TimetableTableViewCell.swift */,
-				14D062CA23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift */,
+				F3F5D09823B265C900974080 /* SettingsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -198,6 +202,7 @@
 				F39B6DAF23AA477800E74B20 /* +UIViewController.swift */,
 				F39B6DB123AA71F600E74B20 /* CellColors.swift */,
 				F39B6DB323AA7DA800E74B20 /* +UIColor.swift */,
+				F3E240CD23AAAA400017848D /* +NSDate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				F3285A63239FFDB5009B0498 /* Course.swift */,
+				F301F31323ABBA3700F6922E /* +Task.swift */,
 			);
 			path = "Managed Object Classes";
 			sourceTree = "<group>";
@@ -534,6 +540,7 @@
 				F339533823994FAD00647058 /* LoginViewController.swift in Sources */,
 				F3C863FD23A00E9200071A17 /* KUtalog.xcdatamodeld in Sources */,
 				F39B6DB423AA7DA800E74B20 /* +UIColor.swift in Sources */,
+				F301F31423ABBA3700F6922E /* +Task.swift in Sources */,
 				F339533A23994FB700647058 /* RegisterViewController.swift in Sources */,
 				F3B84CA5239FD70300C02626 /* Semesters.swift in Sources */,
 				F33275B623A00C550096609A /* TimetableDataSource.swift in Sources */,
@@ -552,11 +559,12 @@
 				F339534023994FE900647058 /* ClassSearchViewController.swift in Sources */,
 				F339533C23994FC900647058 /* TimetableViewController.swift in Sources */,
 				F39B6DB223AA71F600E74B20 /* CellColors.swift in Sources */,
-				14D062CB23A6770300894553 /* LandscapeTimetableCollectionViewCell.swift in Sources */,
 				F33275B423A00C3E0096609A /* TasksDataSource.swift in Sources */,
 				14B937BD23A303E200AEF26C /* PickerTableViewCell.swift in Sources */,
+				F3E240CE23AAAA400017848D /* +NSDate.swift in Sources */,
 				142AD43123999F5100DDA179 /* ClassSearchDataSource.swift in Sources */,
 				F33953422399500E00647058 /* SearchedClassDetailViewController.swift in Sources */,
+				F3F5D09923B265C900974080 /* SettingsCell.swift in Sources */,
 				14B937BB23A303C300AEF26C /* TextFieldTableViewCell.swift in Sources */,
 				F3E2B36223A3100F00CF8CC0 /* DataController.swift in Sources */,
 				F39B6DB023AA477800E74B20 /* +UIViewController.swift in Sources */,
@@ -654,7 +662,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -708,7 +716,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -727,7 +735,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXV9WLK4Q4;
 				INFOPLIST_FILE = KUtalog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -749,7 +757,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXV9WLK4Q4;
 				INFOPLIST_FILE = KUtalog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

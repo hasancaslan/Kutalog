@@ -9,31 +9,30 @@
 import UIKit
 
 class TimetableTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var courseCodeLabel: UILabel!
     @IBOutlet weak var coursePlaceLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.courseCodeLabel.text = ""
         self.coursePlaceLabel.text = ""
         self.startTimeLabel.text = ""
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         // Configure the view for the selected state
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         self.courseCodeLabel.text = ""
         self.coursePlaceLabel.text = ""
         self.startTimeLabel.text = ""
     }
-    
+
     func configure(course: Course?, background: UIColor) {
         self.contentView.backgroundColor = background
         self.courseCodeLabel.text = course?.moduleCode

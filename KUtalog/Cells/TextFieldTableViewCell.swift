@@ -18,10 +18,9 @@ extension TextFieldTableViewCell: UITextFieldDelegate {
 }
 
 class TextFieldTableViewCell: UITableViewCell {
-
     @IBOutlet weak var textField: UITextField!
     var delegate: TextFieldTableViewCellDelegate?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         textField.delegate = self
@@ -31,7 +30,7 @@ class TextFieldTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     @IBAction func didChangeValue(_ sender: Any) {
         if textField.placeholder == "Title" {
             self.delegate?.getTitle(title: textField.text)
@@ -39,6 +38,4 @@ class TextFieldTableViewCell: UITableViewCell {
             self.delegate?.getDescription(description: textField.text)
         }
     }
-    
-
 }

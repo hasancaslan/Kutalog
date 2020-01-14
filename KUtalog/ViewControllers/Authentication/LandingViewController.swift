@@ -34,28 +34,27 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var titleLabelLayoutConstraintToCenter: NSLayoutConstraint!
     @IBOutlet weak var logoLayoutConstraintToCenter: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
-    
+
     let moduleDataSource = ClassSearchDataSource()
     var moduleArray: [Module] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.global(qos: .utility).async { [weak self] in
             guard let self = self else {
                 return
             }
-            
-            
+
         }
         self.registerButton.layer.cornerRadius = 55/2
         self.loginButton.layer.cornerRadius = 55/2
         self.navigationController?.navigationBar.shadowImage = UIImage()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         self.navigationController?.navigationBar.isHidden = true
-        
+
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         guard let email = UserDefaults.standard.string(forKey: "email"),
             let password = UserDefaults.standard.string(forKey: "password") else {
@@ -64,8 +63,8 @@ class LandingViewController: UIViewController {
                 }
                 return
         }
-        
-        Auth.auth().signIn(withEmail: email, password: password) {[unowned self] (user, err) in
+
+        Auth.auth().signIn(withEmail: email, password: password) {[unowned self] (_, err) in
             if err == nil {
                 let controller = self.storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
                 appDelegate.window?.rootViewController = controller
@@ -81,22 +80,22 @@ class LandingViewController: UIViewController {
             }
         }
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isHidden = false
     }
-    
+
     func animateView() {
         self.titleLabelLayoutConstraintToCenter.priority = UILayoutPriority(rawValue: 999)
         self.logoLayoutConstraintToCenter.priority = UILayoutPriority(rawValue: 1)
         UIView.animateKeyframes(withDuration: 1.5, delay: 0, options: [.calculationModeCubic], animations: {
-            
+
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1.0/1.5, animations: {
                 self.view.layoutIfNeeded()
                 self.titleLabel.alpha = 1.0
             })
-            
+
             UIView.addKeyframe(withRelativeStartTime: 1.0/1.5, relativeDuration: 0.5/1.5, animations: {
                 self.loginButton.alpha = 1.0
                 self.registerButton.alpha = 1.0
@@ -104,4 +103,3 @@ class LandingViewController: UIViewController {
         }, completion: nil)
     }
 }
-

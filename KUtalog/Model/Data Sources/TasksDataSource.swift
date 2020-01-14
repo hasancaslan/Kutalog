@@ -24,7 +24,7 @@ class TasksDataSource {
      A persistent container to set up the Core Data stack.
      */
     lazy var persistentContainer = DataController.shared.persistentContainer
-    
+
     func createTask(_ newTask: NewTask) {
         let task = Task(context: persistentContainer.viewContext)
         task.uid = newTask.uid
@@ -35,46 +35,45 @@ class TasksDataSource {
         task.course = newTask.course
         try? persistentContainer.viewContext.save()
     }
-    
+
     func deleteTask(_ taskToDelete: Task) {
         persistentContainer.viewContext.delete(taskToDelete)
         try? persistentContainer.viewContext.save()
     }
-    
+
+    func save() {
+        try? persistentContainer.viewContext.save()
+    }
+
     // MARK: - NSFetchedResultsController
-    
+
     /**
      A fetched results controller delegate to give consumers a chance to update
      the user interface when content changes.
      */
     weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
-    
     /**
      A fetched results controller to fetch Course records sorted by time.
      */
     lazy var fetchedResultsController: NSFetchedResultsController<Task> = {
-        
         // Create a fetch request for the Course entity sorted by time.
         let fetchRequest = NSFetchRequest<Task>(entityName: "Task")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         // Create a fetched results controller and set its fetch request, context, and delegate.
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                     managedObjectContext: persistentContainer.viewContext,
                                                     sectionNameKeyPath: nil, cacheName: "tasks")
         controller.delegate = fetchedResultsControllerDelegate
-        
         // Perform the fetch.
         do {
             try controller.performFetch()
-            
+
         } catch {
             fatalError("Unresolved error \(error)")
         }
-        
         return controller
     }()
-    
+
     /**
      A fetched results controller to fetch Schedule records sorted by time.
      */
@@ -92,19 +91,18 @@ class TasksDataSource {
         } catch {
             fatalError("Unresolved error \(error)")
         }
-        
         return controller
     }()
-    
+
     var delegate: TasksDataSourceDelegate?
-    
+
     func loadListOfTasks() {
         let fetchedObjects = fetchedResultsController.fetchedObjects
         DispatchQueue.main.async {
             self.delegate?.taskListLoaded(taskList: fetchedObjects)
         }
     }
-    
+
     func loadScheduledCourses(uid: String) {
         let fetchedObjects = scheduleFetchedResultsController.fetchedObjects?.filter({ schedule in
             return schedule.uid == uid

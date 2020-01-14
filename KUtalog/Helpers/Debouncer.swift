@@ -10,7 +10,6 @@ import UIKit
 import Foundation
 
 class Debouncer {
-
     // MARK: - Properties
     private let queue = DispatchQueue.main
     private var workItem = DispatchWorkItem(block: {})
@@ -30,7 +29,6 @@ class Debouncer {
 }
 
 class DebounceSearchBar: UISearchBar, UISearchBarDelegate {
-
     // MARK: - Properties
 
     /// Debounce engine

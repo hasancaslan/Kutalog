@@ -20,51 +20,48 @@ extension ClassSearchDataSourceDelegate {
 }
 
 class ClassSearchDataSource {
-    
     // MARK: - Core Data
     /**
      A persistent container to set up the Core Data stack.
      */
     lazy var persistentContainer = DataController.shared.persistentContainer
     lazy var viewContext = DataController.shared.viewContext
-    
     /**
      Fetches the module feed from the remote server, and imports it into Core Data.
      */
     var delegate: ClassSearchDataSourceDelegate?
     let baseUrl = "https://api.nusmods.com/v2/"
-    
+
     func fetchCourseList(completionHandler: @escaping (Error?) -> Void) {
-        print("fetched course list")
         // Create a URL to load, and a URLSession to load it.
         guard let url = URL(string: "\(baseUrl)2018-2019/moduleInfo.json") else {
             completionHandler(ClassError.urlError)
             return
         }
         let session = URLSession.shared
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         // Create a URLSession dataTask to fetch the feed.
-        let dataTask = session.dataTask(with: request) {data, _, error in
-            
+        let dataTask = session.dataTask(with: request) {data, _, _ in
+
             // Alert the user if no data comes back.
             guard let data = data else {
                 completionHandler(ClassError.networkUnavailable)
                 return
             }
-            
+
             // Decode the JSON and import it into Core Data.
             do {
                 // Decode the JSON into codable type [Module].
                 let decoder = JSONDecoder()
                 let moduleList = try decoder.decode([Module].self, from: data)
-                
+
                 // Import the [Module] into Core Data.
                 self.importClasses(from: moduleList)
-                
+
             } catch {
                 // Alert the user if data cannot be digested.
                 completionHandler(ClassError.wrongDataFormat)
@@ -75,16 +72,32 @@ class ClassSearchDataSource {
         // Start the task.
         dataTask.resume()
     }
-    
-    func addCourseToSchedule(uid: String, course: Course?) {
+
+    func addCourseToSchedule(uid: String, course: Course?, completionHandler: @escaping (Error?) -> Void) {
         let fetchedObjects = scheduleFetchedResultsController.fetchedObjects?.filter({ schedule in
             schedule.uid == uid
         })
         if let currentSchedule = fetchedObjects?.first {
-            if let schedules = course?.schedules?.adding(currentSchedule) {
-                course?.schedules = NSSet(set: schedules)
+            let scheduledCoursesArray = currentSchedule.courses?.allObjects as! [Course]
+            var conflictingCourses: [Course] = []
+            for scheduledCourse in scheduledCoursesArray {
+                if !courseTimeExistanceCheck(existingCourse: scheduledCourse, newCourse: course) {
+                    completionHandler(ClassError.courseTimeDoesNotExistError)
+                    return
+                }
+                if courseConflictCheck(existingCourse: scheduledCourse, newCourse: course) {
+                    conflictingCourses.append(scheduledCourse)
+                }
             }
-            try? viewContext.save()
+            if conflictingCourses.isEmpty {
+                if let schedules = course?.schedules?.adding(currentSchedule) {
+                    course?.schedules = NSSet(set: schedules)
+                }
+                try? viewContext.save()
+                completionHandler(nil)
+            } else {
+                completionHandler(ClassError.conflictCourseError)
+            }
         } else {
             let newSchedule = Schedule(context: viewContext)
             newSchedule.uid = uid
@@ -92,46 +105,92 @@ class ClassSearchDataSource {
                 course?.schedules = NSSet(set: schedules)
             }
             try? viewContext.save()
+            completionHandler(nil)
         }
     }
-    
+
+    func deleteCourseFromSchedule(course: Course?) {
+        course?.schedules? = NSSet()
+        try? self.viewContext.save()
+    }
+
+    func courseTimeExistanceCheck(existingCourse: Course, newCourse: Course?) -> Bool {
+        guard (existingCourse.semesterData?.semesterData.first??.timetable?.first??.startTime) != nil else {
+            return false
+        }
+        guard (existingCourse.semesterData?.semesterData.first??.timetable?.first??.endTime) != nil else {
+            return false
+        }
+        guard (newCourse?.semesterData?.semesterData.first??.timetable?.first??.startTime) != nil else {
+            return false
+        }
+        guard (newCourse?.semesterData?.semesterData.first??.timetable?.first??.endTime) != nil else {
+            return false
+        }
+        return true
+    }
+
+    func courseConflictCheck(existingCourse: Course, newCourse: Course?) -> Bool {
+        if let newCourse = newCourse {
+            let day1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.day ?? "Friday"
+            guard let start1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.startTime else {
+                return false
+            }
+            guard let end1 = existingCourse.semesterData?.semesterData.first??.timetable?.first??.endTime else {
+                return false
+            }
+            let day2 = newCourse.semesterData?.semesterData.first??.timetable?.first??.day ?? "Friday"
+            guard let start2 = newCourse.semesterData?.semesterData.first??.timetable?.first??.startTime else {
+                return false
+            }
+            guard let end2 = newCourse.semesterData?.semesterData.first??.timetable?.first??.endTime else {
+                return false
+            }
+            if day1 == day2 && Int(start1) ?? Int.max <= Int(end2) ?? Int.min && Int(start2) ?? Int.max <= Int(end1) ?? Int.min {
+                return true
+            }
+            return false
+        }
+        return true
+    }
+
     func loadCourseList() {
         let courses = self.fetchedResultsController.fetchedObjects
-            self.delegate?.courseListLoaded(courseList: courses)
+        self.delegate?.courseListLoaded(courseList: courses)
     }
-    
+
     private func importClasses(from moduleList: [Module]) {
         guard !moduleList.isEmpty else { return }
-        
+
         // Create a private queue context.
         let taskContext = persistentContainer.newBackgroundContext()
         taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        
+
         // Process records in batches to avoid a high memory footprint.
         let batchSize = 256
         let count = moduleList.count
-        
+
         // Determine the total number of batches.
         var numBatches = count / batchSize
         numBatches += count % batchSize > 0 ? 1 : 0
-        
+
         for batchNumber in 0 ..< numBatches {
-            
+
             // Determine the range for this batch.
             let batchStart = batchNumber * batchSize
             let batchEnd = batchStart + min(batchSize, count - batchNumber * batchSize)
             let range = batchStart..<batchEnd
-            
+
             // Create a batch for this range from the decoded JSON.
             let modulesBatch = Array(moduleList[range])
-            
+
             // Stop the entire import if any batch is unsuccessful.
             if !importOneBatch(modulesBatch, taskContext: taskContext) {
                 return
             }
         }
     }
-    
+
     /**
      Imports one batch of modules, creating managed objects from the new data,
      and saving them to the persistent store, on a private queue. After saving,
@@ -142,22 +201,22 @@ class ClassSearchDataSource {
      whether the import is successful.
      */
     private func importOneBatch(_ modulesBatch: [Module], taskContext: NSManagedObjectContext) -> Bool {
-        
+
         var success = false
-        
+
         // taskContext.performAndWait runs on the URLSession's delegate queue
         // so it won’t block the main thread.
         taskContext.performAndWait {
             // Create a new record for each course in the batch.
             for moduleData in modulesBatch {
-                
+
                 // Create a Course managed object on the private queue context.
                 guard let course = NSEntityDescription.insertNewObject(forEntityName: "Course", into: taskContext) as? Course else {
                     return
                 }
                 course.update(with: moduleData)
             }
-            
+
             // Save all insertions and deletions from the context to the store.
             if taskContext.hasChanges {
                 do {
@@ -173,7 +232,7 @@ class ClassSearchDataSource {
         }
         return success
     }
-    
+
     private func importOneModule(_ module: Module) {
         let context = persistentContainer.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
@@ -191,7 +250,7 @@ class ClassSearchDataSource {
             context.reset()
         }
     }
-    
+
     func loadCourseDetail(moduleCode: String, course: Course) {
         guard let url = URL(string: "\(baseUrl)2018-2019/modules/\(moduleCode).json") else {
             return
@@ -200,7 +259,7 @@ class ClassSearchDataSource {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         let dataTask = session.dataTask(with: request) {data, _, error in
             guard let data = data else {
                 return
@@ -209,56 +268,54 @@ class ClassSearchDataSource {
                 let decoder = JSONDecoder()
                 let module = try decoder.decode(Module.self, from: data)
                 course.update(with: module)
-                print(module)
-                    do {
-                        try self.viewContext.save()
-                        DispatchQueue.main.async {
-                            self.delegate?.courseDetailLoaded()
-                        }
-                    } catch {
-                        print("Error: \(error)\nCould not save Core Data context.")
-                        return
+                do {
+                    try self.viewContext.save()
+                    DispatchQueue.main.async {
+                        self.delegate?.courseDetailLoaded()
                     }
+                } catch {
+                    print("Error: \(error)\nCould not save Core Data context.")
+                    return
+                }
             } catch {
                 return
             }
         }
         dataTask.resume()
     }
-    
+
     // MARK: - NSFetchedResultsController
-    
+
     /**
      A fetched results controller delegate to give consumers a chance to update
      the user interface when content changes.
      */
     weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
-    
+
     /**
      A fetched results controller to fetch Course records sorted by time.
      */
     lazy var fetchedResultsController: NSFetchedResultsController<Course> = {
-        
+
         // Create a fetch request for the Course entity sorted by time.
         let fetchRequest = NSFetchRequest<Course>(entityName: "Course")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "moduleCode", ascending: true)]
-        
+
         // Create a fetched results controller and set its fetch request, context, and delegate.
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                     managedObjectContext: viewContext,
                                                     sectionNameKeyPath: nil, cacheName: "courses")
         controller.delegate = fetchedResultsControllerDelegate
-        
+
         // Perform the fetch.
         do {
             try controller.performFetch()
-            print("fetched results controller")
         } catch {
             fatalError("Unresolved error \(error)")
         }
         return controller
     }()
-    
+
     lazy var scheduleFetchedResultsController: NSFetchedResultsController<Schedule> = {
         let fetchRequest = NSFetchRequest<Schedule>(entityName: "Schedule")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "uid", ascending: true)]

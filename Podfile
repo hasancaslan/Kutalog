@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '12.4'
+platform :ios, '13.0'
 
 target 'KUtalog' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -8,5 +8,5 @@ target 'KUtalog' do
   # Pods for KUtalog
   pod 'Firebase/Auth'
   pod 'TextFieldEffects'
-  pod 'ExpandableCell', '~> 1.3'
+  pod 'KVKCalendar'
 end

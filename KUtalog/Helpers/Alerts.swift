@@ -25,12 +25,12 @@ func createErrorAlert(message: AlertMessages, error: Error?) -> UIAlertControlle
         return alert
     } else {
         let alert = UIAlertController(title: "Aw, Snap!", message: message.rawValue, preferredStyle: .alert)
-           alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-           return alert
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        return alert
     }
 }
 
-func createSuccessAlert(message: AlertMessages) -> UIAlertController{
+func createSuccessAlert(message: AlertMessages) -> UIAlertController {
     let alert = UIAlertController(title: "Success!", message: message.rawValue, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
     return alert
@@ -42,6 +42,8 @@ enum ClassError: Error {
     case wrongDataFormat
     case missingData
     case creationError
+    case conflictCourseError
+    case courseTimeDoesNotExistError
 }
 
 extension ClassError: LocalizedError {
@@ -57,6 +59,10 @@ extension ClassError: LocalizedError {
             return NSLocalizedString("Found and will discard a module missing a valid data.", comment: "")
         case .creationError:
             return NSLocalizedString("Failed to create a new Quake object.", comment: "")
+        case .conflictCourseError:
+            return NSLocalizedString("There is conflict with another course in your schedule.", comment: "")
+        case .courseTimeDoesNotExistError:
+            return NSLocalizedString("Course time does not exist in the API.", comment: "")
         }
     }
 }
